@@ -1,0 +1,24 @@
+.telecom-configRadio {
+    &__header {
+        background-image:  url('/build/images/header/ondesRadio.jpg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        min-height: 400px;
+
+        @include move-Axe-Y($name:configRadio01, $delai:.8s, $start-Top:10px);
+        overflow: hidden;
+
+        h1{
+            @include auto-prefixer__property(animation, (bounceInDown 2s), webkit moz o);
+        }
+        h2 {
+            @include auto-prefixer__property(animation, (fadeInLeft 1.2s), webkit moz o);
+        }
+    }
+
+
+    @media screen and (min-width:1199px) {
+        background-size: 250px;
+    }
+}

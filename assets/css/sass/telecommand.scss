@@ -1,0 +1,19 @@
+.telecommand {
+    
+    &__header {
+        background-image:  url('/build/images/header/techno.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        min-height: 300px;
+
+        @include move-Axe-Y($name:telecommand01,$delai:1s, $start-Top:10px);
+        h1{
+            @include auto-prefixer__property(animation, (lightSpeedInLeft 2s, bounceIn 1.5s 1.8s), webkit moz o);
+        }
+
+        h2{
+            @include auto-prefixer__property(animation, lightSpeedInRight 2s, webkit moz o);
+        }
+    }
+}

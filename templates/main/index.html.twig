@@ -1,0 +1,366 @@
+{% extends 'base.html.twig' %}
+
+{% import "components/components.html.twig" as component %}
+
+{% block title %}Présentation d'un projet robotique{% endblock %}
+{% block description %}IHM Robotique propose un projet DIY développé à partir de microcontrôleurs Rasbperry Pi et Arduino.{% endblock %}
+
+{% block body %}
+<article>
+    <div class="container-fluid robotique">
+        <div class="row bgColor--raspberry robotique__header">
+            <div class="col-12 col-lg-3 d-none d-lg-flex justify-content-center align-items-center">
+                <img src="{{ asset('/build/images/composants/raspberry-pi-4.webp') }}" alt="Raspberry-pi"
+                    class="robotique__header__img01">
+            </div>
+            <div class="col-12 col-lg-6 py-5">
+                <div class="text-center">
+                    <h1 class="txtShadow--black txt-color--yellow pt-4 text-uppercase
+                        ">Projet robotique</h1>
+                    <h2 class="txtShadow--black txt-color--yellow pb-4 ">(Raspberry et arduino)</h2>
+                    <h2 class="text-white txtShadow--black py-5">Conception d'un robot motorisé <br>avec caméra
+                        infra-rouge.
+                    </h2>
+                </div>
+            </div>
+            <div class="col-12 col-lg-3 d-none d-lg-flex justify-content-center align-items-center">
+                <img src="{{ asset('/build/images/composants/arduino-officiel.png') }}" alt="Arduino uno"
+                    class="robotique__header__img02">
+            </div>
+        </div>
+    </div>
+
+    <div class="container robotique">
+        <section class="row mt-4">
+            <div class="col-12 col-md-6 d-flex align-items-center">
+                <div class="text-center">
+                    {# Modal #}
+                    {{component.modalRc(
+                        "Radio télécommande",
+                        "/build/images/telecommande.png",
+                        "telecommande",
+                        "effect-grayscaleZoomTurnIn",
+                        "lg"
+                    )}}
+                </div>
+            </div>
+            <div class="col-12 col-md-6 d-flex align-items-center pt-3 pt-md-0">
+                <div>
+                    <h3 class="txtShadow--white txt-color--raspberry"><a
+                            href="{{'/telecommande/liste-des-composants.html' }}" class="txt-color--raspberry">La
+                            télecommande</a></h3>
+                    <p>Un <a href="{{'/telecommande/emetteur-recepteur-radio.html' }}"><span class="font-weight-bold">
+                                émetteur
+                                récepteur </span></a>connecté au microcontroleur arduino permet d'envoyer les positions
+                        des
+                        joysticks et l'état de boutons. Un programme convertit les valeurs analogiques et numériques
+                        puis
+                        structure les données avant de les transmettres par ondes radio.
+                    </p>
+                    <p>Lorsque la télécommande est mise sous tension, 3
+                        <a href="{{'/telecommande/diode-electroluminescente.html' }}">
+                            <span class="font-weight-bold"> LED </span>
+                        </a>
+                        clignotent, indiquant que le script arduino s'est chargé normalement. <br>
+                        Puis le led bleu
+                        s'allume à chaque émission d'onde radio. </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="row mt-4">
+            <div class="col-12 order-2 col-md-6 order-md-1 d-flex align-items-center pt-3 pt-md-0">
+                <div>
+                    <h3 class="txtShadow--white txt-color--raspberry"><a
+                            href="{{'/telecommande/telecommande-web.html' }}" class="txt-color--raspberry">Interface de
+                            télécommande web</a></h3>
+                    <p>Son rôle est identique à la solution décrite dans le paragraphe précédent. <br> Le mode de
+                        communication
+                        exploite les technologies Web. Déployé sur le raspberry, l'interface web communique avec un
+                        serveur
+                        qui
+                        interagit avec le microcontrôleur arduino. <br> Les commandes peuvent être executer de façon
+                        distante à
+                        travers le reseau internet ou localement en utilisant le point d'accès installée sur le système
+                        d'exploitation de notre raspberry.</p>
+                </div>
+            </div>
+            <div class="col-12 order-1 col-md-6 d-flex justify-content-center align-items-center">
+                <div class="text-center">
+                    {{component.modalRc(
+                        "Interface de commande web",
+                        "/build/images/telecom.png",
+                        "web",
+                        "effect-grayscaleZoomTurnOut",
+                        "md"
+                    )}}
+                </div>
+            </div>
+        </section>
+
+        <section class="row mt-4">
+            <div class="col-12 col-md-6 d-flex align-items-center">
+                <div class="text-center">
+                    {{component.modalRc(
+                        "Robot",
+                        "/build/images/robot.png",
+                        "vehicule",
+                        "effect-move_X",
+                        "xl"
+                    )}}
+                </div>
+            </div>
+            <div class="col-12 col-md-6 d-flex align-items-center">
+                <div>
+                    <h3 class="txtShadow--white txt-color--raspberry"><a
+                            href="{{'/robot/liste-des-composants.html' }}"
+                            class="txt-color--raspberry">Le robot</a></h3>
+                    <p>Une page web permet de
+                        <a href="{{'/robot/installer-et-configurer-une-camera.html' }}">
+                            <span class="font-weight-bold"> visualiser le flux vidéo </span>
+                        </a>
+                        et de traiter les requêtes des utilisateurs à
+                        l'aide
+                        de l'interface de commande ci-dessus. <br>Le microcontroleur Arduino gère la partie
+                        éléctronique,
+                        actionne
+                        les
+                        moteurs, et récupère les données renvoyées par les capteurs. </p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <section class="container-fluid robotique my-2">
+        <div class="row">
+            <div class="col-12 robotique__video p-0"></div>
+        </div>
+    </section>
+
+    <section class="container robotique py-4 my-2">
+        <div class="row no-gutters box-border">
+            <div class="col-12">
+                <h3 class="txtShadow--white txt-color--raspberry bgColor--orangeLight p-4 text-center">
+                    Différences entre Raspberry et Arduino</h3>
+                <table class="mt-5">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p>&nbsp;</p>
+                            </td>
+                            <td>
+                                <p class="text-info"><strong>Arduino Uno</strong></p>
+                            </td>
+                            <td>
+                                <p class="text-info"><strong>Raspberry Pi 4 Modèle B</strong></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Prix</p>
+                            </td>
+                            <td class="px-2">
+                                <p>env. 23 €</p>
+                            </td>
+                            <td class="px-2">
+                                <p>env. 39 € à 83,95 €</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Taille</p>
+                            </td>
+                            <td class="px-2">
+                                <p>7.6 x&nbsp;1.9 x 6.4&nbsp;cm</p>
+                            </td>
+                            <td class="px-2">
+                                <p>8.5 cm × &nbsp;5.6 cm × 1.6&nbsp; cm</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Mémoire vive</p>
+                            </td>
+                            <td class="px-2">
+                                <p>0.002 MB</p>
+                            </td>
+                            <td class="px-2">
+                                <p>1GB, 2GB, ou 4GB de mémoire SDRAM LPDDR4</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Vitesse d’horloge</p>
+                            </td>
+                            <td class="px-2">
+                                <p>16&nbsp;MHz</p>
+                            </td>
+                            <td class="px-2">
+                                <p> ARM A72 quadricœur cadencé à 1,5 GHz</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Réseau embarqué</p>
+                            </td>
+                            <td class="px-2">
+                                <p>Aucun</p>
+                            </td>
+                            <td class="px-2">
+                                <p>1 WIFI 802.11b / g / n / ac de 2,4 GHz et 5,0 GHz <br> Gigabit Ethernet port
+                                    RJ45<br>
+                                    Bluetooth 5.0 BLE</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Capacité multitâche</p>
+                            </td>
+                            <td class="px-2">
+                                <p>Non</p>
+                            </td>
+                            <td class="px-2">
+                                <p>Oui</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Tension d’entrée</p>
+                            </td>
+                            <td class="px-2">
+                                <p>7 à 12&nbsp;V</p>
+                            </td>
+                            <td class="px-2">
+                                <p>5V DC via USB-C, Compatible PoE nécessitant PoE HAT (non fourni), 5V DC via GPIO
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Mémoire flash</p>
+                            </td>
+                            <td class="px-2">
+                                <p>32&nbsp;KB</p>
+                            </td>
+                            <td class="px-2">
+                                <p>Carte SD</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>USB</p>
+                            </td>
+                            <td class="px-2">
+                                <p>1 entrée uniquement</p>
+                            </td>
+                            <td class="px-2">
+                                <p>4 ports USB dont 2 (2.0), 2 (3.0)</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Système d’exploitation</p>
+                            </td>
+                            <td class="px-2">
+                                <p>Non</p>
+                            </td>
+                            <td class="px-2">
+                                <p>Distributions Lunix "Raspberry Pi OS" (32 bits, 64 bits)</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Environnement de développement intégré (IDE)</p>
+                            </td>
+                            <td class="px-2">
+                                <p>Arduino</p>
+                            </td>
+                            <td class="px-2">
+                                <p>Scratch, IDLE, tout dispositif avec Linux</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <section class="row mt-4">
+                    <div class="col-12 col-lg-6">
+                        <!-- MODAL IMAGE Raspberry -->
+                        <div class="text-center bg-white">
+                            {# Modal #}
+                            {{component.modalRc(
+                                "Raspberry",
+                                "/build/images/composants/raspberry-pi4.png", 
+                                "raspberry",
+                                "",
+                                "md"
+                            )}}
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 d-flex align-items-center">
+                        <div>
+                            <h4 class="txt-color--raspberry">Le raspberry</h4>
+                            <p>Ce micro
+                                ordinateur, plus rapide et plus complexe à utiliser que
+                                l'arduino permet d'exécuter un système d’exploitation réel sous Linux. <br>Il peut effectuer plusieurs
+                                tâches, il
+                                dispose jusqu’à quatre ports USB en natif et peut se connecter
+                                à
+                                Internet en
+                                wifi ou en filaire. <br>
+                                Dans le cadre de ce projet, il permet d'héberger un serveur (Apache, PHP, MySQL, node Js) et
+                                servir de
+                                HostPot, gérer une caméra ou webCam. <br>
+                                En résumé, il est idéal pour envoyer des instructions à un arduino. Il accepte de nombreux
+                                langages de
+                                programmations C++, python, java... .
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="row mt-4 mt-0-xl">
+                    <div class="col-12 col-lg-6 order-2 order-lg-1 d-flex align-items-center">
+                        <div>
+                            <h4 class="txt-color--raspberry">L'arduino</h4>
+                             <p>Certe moins
+                                 puissant,
+                                  cette carte programmable simple sur laquelle on branche
+                                 des
+                                 composants électroniques, possède un grand nombre d'entrées/sorties (plus que le raspberry)
+                                 ce
+                                 qui permet
+                                 de brancher beaucoup de composants (capteurs, leds et autres... ). <br>
+                                 Il est donc principalement utilisé pour réaliser des interfaces électroniques avec des
+                                 capteurs,
+                                 des
+                                 actionneurs, circuits électroniques et autres... Une fois le programme chargé, l'Arduino
+                                 l’exécute en
+                                 boucle de manière autonome. Le langage utilisé est le C.</p> 
+                         </div>
+                    </div>
+                    <div class="col-12 col-lg-6 order-1 order-lg-2">
+                        <!-- MODAL IMAGE Arduino -->
+                        <div class="text-center">
+                            {# Modal #}
+                            {{component.modalRc(
+                                "Arduino",
+                                "/build/images/composants/arduino.png", 
+                                "arduino",
+                                "",
+                                "md"
+                            )}}
+                        </div>
+                    </div>
+                </section>
+                <p>En conclusion il fonctionne parfaitement ensemble, et sont donc complémentaires. </p>
+            </div>
+        </div>
+    </section>
+</article>
+
+{% endblock %}
+
+{% block javascripts %}
+    {# // <script src="{{ asset('build/demoVideo.js') }}"></script> #}
+    {{ encore_entry_script_tags('main') }}
+{% endblock %}

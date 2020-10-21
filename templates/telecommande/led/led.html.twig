@@ -1,0 +1,117 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Alimentation d'une LED{% endblock %}
+{% block description %}Découvrez la diodes électroluminescente, comment calculer la résistance a appliquer.{% endblock %}
+{% block body %}
+    <article class="led">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12  py-5 led__header">
+                    <div class="text-center titre-header">
+                        <h1 class="txtShadow--black txt-color--yellow py-4 text-uppercase">Diode électroluminescente</h1>
+                        <h2 class="text-white txtShadow--black py-4">Alimentation d'une LED</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container p-4">
+            <section>
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="txtShadow--white txt-color--raspberry">Présentation</h3>
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-start align-items-center">
+                    <img src="{{ asset('/build/images/led/led.png') }}" alt="LED">
+                    <p class="p-4">K = (K)Cathode, pôle "négatif" de la LED, patte la plus courte. <br>
+                        A = Anode, pôle "positif" de la LED, patte la plus longue.</p>
+                    <div class="col-12">
+                        <p>Il s'agit d'une diode un peu particulière, qui a la propriété d'émettre de la lumière quand un
+                            courant la
+                            parcourt (de l'Anode vers la Cathode).</p>
+                        <p>Une LED est prévue pour fonctionner à un courant nominal donné, par exemple 10 mA ou 20 mA. <br>
+                            Faire parcourir à la LED un courant trop intense risque de la détruire. </p>
+                        <p>
+                            <span class="font-weight-bold">Une LED doit toujours être alimentée au travers d'un système de
+                                limitation
+                                (voire de régulation) du courant, qui se résume la plupart du temps à une simple
+                                résistance</span> .
+                        </p>
+                        <ul>
+                            <li>Une LED rouge standard présente une tension de seuil de 1,6 V à 2 V.</li>
+                            <li>Une LED verte ou jaune standard présente une tension de seuil de 2,2 V.</li>
+                            <li>Une LED bleue ou pour certaines LED haute luminosité, cette tension se situe plutôt autour
+                                de 3
+                                V,
+                                voire 3,6 V.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="row mt-4">
+                <div class="col-12">
+                    <h3 class="txtShadow--white txt-color--raspberry">Calcul de la puissance</h3>
+                </div>
+                <div class="col-12">
+                    <p>
+                        Exemple pour une led verte fonctionnant de façon nominale avec une tension de 2,2 V et un courant de
+                        20
+                        mA (0,02 A).
+                    </p>
+                    <p>
+                        Calcul de la puissance exprimée en watts : <span class="font-weight-bold">P = U X I</span>
+                        <ul>
+                            <li>P : puissance en watts.</li>
+                            <li>U : Tension en volts.</li>
+                            <li>I : Intensité en ampères.</li>
+                        </ul>
+                        Résultat : <span class="font-weight-bold">0.044</span> watt = 2,2 X 0,02 A
+                    </p>
+                    <p>
+                        Un microcontroleur arduino ou raspberry fourni une tension de 5 volt et 20 ma soit une puissance de
+                        <span class="font-weight-bold">0.1 watt</span>. Donc deux fois supérieur à celle absorbée par la Led
+                        qui
+                        s'echauffera et finira par grillée. </p>
+                </div>
+            </section>
+
+            <section class="row mt-4">
+                <div class="col-12">
+                    <h3 class="txtShadow--white txt-color--raspberry">Calcul de la résistance</h3>
+                </div>
+                <div class="col-12">
+                    <p>
+                        Pour calculer de la résistance à appliquer sur un circuit : <span class="font-weight-bold">U = R X
+                            I</span>
+
+                        <ul>
+                            <li>U : Tension en volts.</li>
+                            <li>R : Résistance en ohms.</li>
+                            <li>I : Intensité en ampères.</li>
+                        </ul>
+                    </p>
+                    <p>Ce qui donne pour le calcul de la résistance : R = U / I</p>
+                    <h3 class="txtShadow--white txt-color--raspberry  mt-4">Mise en pratique</h3>
+                    <img src="{{ asset('/build/images/led/test-circuit.png') }}" alt="Circuit">
+                    <ul>
+                        <li>R est la valeur (en ohms) de la résistance qui limite le courant dans la LED</li>
+                        <li>Ualim est la tension disponible (en volts) qui servira à alimenter la LED</li>
+                        <li> Uled est la chute de tension (en volts) au borne de la LED (on parle aussi de tension nominale
+                            de
+                            la LED)</li>
+                        <li>Iled le courant (en ampères) devant parcourir la LED pour qu'elle s'allume "normalement"</li>
+                    </ul>
+                    <p>
+                        Reprenons notre exemple pour une led verte : tension de 2,2 V et un courant de 20 mA.
+                        L'arduino fourni donc une tension de 5 volt.
+                    </p>
+                    <p>R = (Ualim - Uled) / Iled</p>
+                    <p>(5 - 2,2) / 0,02 = 140 ohms </p>
+                    <img src="{{ asset('/build/images/led/valeur-resistances.png') }}" alt="Valeurs standards de résistances">
+                </div>
+            </section>
+        </div>
+    </article>
+{% endblock %}

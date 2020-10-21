@@ -1,0 +1,51 @@
+{# Image trigger modal #}
+{% macro modalRc(title, img_source, image_id, effectImage, breakpoint) %}
+    <img src="{{ asset(img_source) }}" alt="{{ title }}" class="{{ effectImage }} modal__vignettes modal__cursor-zoomIn"
+        data-toggle="modal" data-target="#{{ image_id }}">
+    <div class="modal fade" id="{{ image_id }}" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog modal-{{ breakpoint }}">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-dark">{{ title }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="{{ asset(img_source) }}" alt="Télécommande" class="modal-body__image">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
+
+{% macro boxVideoLinkUrl(path_image, path_video, url_link, commentaire ) %}
+    <div class="boxVideoLinkURL">
+        <video autoplay loop muted poster="{{ asset(path_image) }}">
+            <source src="{{ asset(path_video) }}" type="video/mp4">
+            <p>Votre navigateur ne prend pas en charge les vidéos HTML5.Mais vous pouvez
+                toujours
+                <a href="{{ asset(path_video) }}">la télécharger</a> !
+            </p>
+        </video>
+        <div class="boxVideoLinkURL__link">
+            <a href="{{ url_link }}" target="__blank" class="boxVideoLinkURL__play_button_max"></a>
+        </div>
+    </div>
+    <p class="text-secondary">{{ commentaire }}</p>
+{% endmacro %}
+
+{% macro cardRc( title, src ) %}
+    <article class="cardRc">
+        <div class="cardRc__title text-white">
+            <h5>{{ title }}</h5>
+        </div>
+        <div class="cardRc__body">
+            <img src="{{ asset(src) }}" alt="{{ title }}">       
+        </div>
+    </article>
+{% endmacro %}

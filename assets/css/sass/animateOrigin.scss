@@ -1,0 +1,2106 @@
+@charset "UTF-8";
+
+/*!
+ * animate.css - https://animate.style/
+ * Version - 4.1.1
+ * Licensed under the MIT license - http://opensource.org/licenses/MIT
+ *
+ * Copyright (c) 2020 Animate.css
+ *
+ * Convert to sass by ricou
+ */
+
+$animate-duration: 1s;
+$animate-delay: 1s;
+$animate-repeat: 1;
+
+@mixin animate__animated() {
+    @include auto-prefixer__property(animation-duration, $animate-duration, webkit o moz);
+    @include auto-prefixer__property(animation-fill-mode, both, webkit o moz);
+
+    @media print,
+    (prefers-reduced-motion: reduce) {
+        & {
+            @include auto-prefixer__property(animation-duration, 1ms !important, webkit o moz);
+            @include auto-prefixer__property(transition-duration, 1ms !important);
+            @include auto-prefixer__property(animation-iteration-count, 1 !important, webkit o moz);
+        }
+
+        &[class*='Out'] {
+            opacity: 0;
+        }
+    }
+
+}
+
+.animate {
+    &__animated {
+        @include animate__animated;
+    }
+
+    &__infinite {
+        @include auto-prefixer__property(animation-iteration-count, infinite, webkit o moz);
+    }
+
+    &__repeat-1 {
+        @include auto-prefixer__property(animation-iteration-count, $animate-repeat, webkit o moz);
+    }
+
+    &__repeat-2 {
+        @include auto-prefixer__property(animation-iteration-count, $animate-repeat * 2, webkit o moz);
+    }
+
+    &__repeat-3 {
+        @include auto-prefixer__property(animation-iteration-count,$animate-repeat * 3, webkit o moz);
+    }
+
+    &__delay-1s {
+        @include auto-prefixer__property(animation-delay, $animate-delay, webkit o moz);
+    }
+
+    &__delay-2s {
+        @include auto-prefixer__property(animation-delay, $animate-delay * 2, webkit o moz);
+    }
+
+    &__delay-3s {
+        @include auto-prefixer__property(animation-delay, $animate-delay * 3, webkit o moz);
+    }
+
+    &__delay-4s {
+        @include auto-prefixer__property(animation-delay, $animate-delay * 4, webkit o moz);
+    }
+
+    &__delay-5s {
+        @include auto-prefixer__property(animation-delay, $animate-delay * 5, webkit o moz);
+    }
+
+    &__faster {
+        @include auto-prefixer__property(animation-duration, $animate-duration / 2, webkit o moz);
+    }
+
+    &__fast {
+        @include auto-prefixer__property(animation-duration, $animate-duration * 0.8, webkit o moz);
+    }
+
+    &__slow {
+        @include auto-prefixer__property(animation-duration, $animate-duration * 2, webkit o moz);
+    }
+
+    &__slower {
+        @include auto-prefixer__property(animation-duration, $animate-duration * 3, webkit o moz);
+    }
+
+    /* Attention seekers  */
+    @include auto-prefixer__keyframes (bounce) {
+
+        from,
+        20%,
+        53%,
+        to {
+            @include auto-prefixer__property(animation-timing-function, cubic-bezier(0.215, 0.61, 0.355, 1), webkit o moz);
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0), webkit o moz);
+        }
+
+        40%,
+        43% {
+            @include auto-prefixer__property(animation-timing-function, cubic-bezier(0.755, 0.05, 0.855, 0.06), webkit o moz);
+            @include auto-prefixer__property(transform, translate3d(0, -30px, 0) scaleY(1.1), webkit o ms);
+        }
+
+        70% {
+            @include auto-prefixer__property(animation-timing-function, cubic-bezier(0.755, 0.05, 0.855, 0.06), webkit o moz);
+            @include auto-prefixer__property(transform, translate3d(0, -15px, 0) scaleY(1.05), webkit o ms);
+        }
+
+        80% {
+            @include auto-prefixer__property(transition-timing-function, cubic-bezier(0.215, 0.61, 0.355, 1));
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0) scaleY(0.95), webkit o ms);
+        }
+
+        90% {
+            @include auto-prefixer__property(transform, translate3d(0, -4px, 0) scaleY(1.02), webkit o ms);
+        }
+    }
+
+    &__bounce {
+        @include auto-prefixer__property(animation-name, bounce, webkit o moz);
+        @include auto-prefixer__property(transform-origin, center bottom, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (flash) {
+
+        from,
+        50%,
+        to {
+            opacity: 1;
+        }
+
+        25%,
+        75% {
+            opacity: 0;
+        }
+    }
+
+    &__flash {
+        @include auto-prefixer__property(animation-name, flash, webkit o moz);
+    }
+
+    /* originally authored by Nick Pettit - https://github.com/nickpettit/glide */
+    @include auto-prefixer__keyframes (pulse) {
+        from {
+            @include auto-prefixer__property(transform, scale3d(1, 1, 1), webkit o ms);
+        }
+
+        50% {
+            @include auto-prefixer__property(transform, scale3d(1.05, 1.05, 1.05), webkit o ms);
+        }
+
+        to {
+            @include auto-prefixer__property(transform, scale3d(1, 1, 1), webkit o ms);
+        }
+    }
+
+    &__pulse {
+        @include auto-prefixer__property(animation-name, pulse, webkit o moz);
+        @include auto-prefixer__property(animation-timing-function, ease-in-out, webkit o moz);
+    }
+
+
+    @include auto-prefixer__keyframes (rubberBand) {
+        from {
+            @include auto-prefixer__property(transform, scale3d(1, 1, 1), webkit o ms);
+        }
+
+        30% {
+            @include auto-prefixer__property(transform, scale3d(1.25, 0.75, 1), webkit o ms);
+        }
+
+        40% {
+            @include auto-prefixer__property(transform, scale3d(0.75, 1.25, 1), webkit o ms);
+        }
+
+        50% {
+            @include auto-prefixer__property(transform, scale3d(1.15, 0.85, 1), webkit o ms);
+        }
+
+        65% {
+            @include auto-prefixer__property(transform, scale3d(0.95, 1.05, 1), webkit o ms);
+        }
+
+        75% {
+            @include auto-prefixer__property(transform, scale3d(1.05, 0.95, 1), webkit o ms);
+        }
+
+        to {
+            @include auto-prefixer__property(transform, scale3d(1, 1, 1), webkit o ms);
+        }
+    }
+
+    &__rubberBand {
+        @include auto-prefixer__property(animation-name, rubberBand, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (shakeX) {
+
+        from,
+        to {
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0), webkit o ms);
+        }
+
+        10%,
+        30%,
+        50%,
+        70%,
+        90% {
+            @include auto-prefixer__property(transform, translate3d(-10px, 0, 0), webkit o ms);
+        }
+
+        20%,
+        40%,
+        60%,
+        80% {
+            @include auto-prefixer__property(transform, translate3d(10px, 0, 0), webkit o ms);
+        }
+    }
+
+    &__shakeX {
+        @include auto-prefixer__property(animation-name, shakeX, webkit o moz);
+    }
+
+
+    @include auto-prefixer__keyframes (shakeY) {
+
+        from,
+        to {
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0), webkit o ms);
+        }
+
+        10%,
+        30%,
+        50%,
+        70%,
+        90% {
+            @include auto-prefixer__property(transform, translate3d(0, -10px, 0), webkit o ms);
+        }
+
+        20%,
+        40%,
+        60%,
+        80% {
+            @include auto-prefixer__property(transform, translate3d(0, 10px, 0), webkit o ms);
+        }
+    }
+
+    &__shakeY {
+        @include auto-prefixer__property(animation-name, shakeY, webkit o moz);
+    }
+
+
+    @include auto-prefixer__keyframes (headShake) {
+        0% {
+            @include auto-prefixer__property(transform, translateX(0), webkit o ms);
+        }
+
+        6.5% {
+            @include auto-prefixer__property(transform, translateX(-6px) rotateY(-9deg), webkit o ms);
+        }
+
+        18.5% {
+            @include auto-prefixer__property(transform, translateX(5px) rotateY(7deg), webkit o ms);
+        }
+
+        31.5% {
+            @include auto-prefixer__property(transform, translateX(-3px) rotateY(-5deg), webkit o ms);
+        }
+
+        43.5% {
+            @include auto-prefixer__property(transform, translateX(2px) rotateY(3deg), webkit o ms);
+        }
+
+        50% {
+            @include auto-prefixer__property(transform, translateX(0), webkit o ms);
+        }
+    }
+
+    &__headShake {
+        @include auto-prefixer__property(animation-timing-function, ease-in-out, webkit o moz);
+        @include auto-prefixer__property(animation-name, headShake, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (swing) {
+        20% {
+            @include auto-prefixer__property(transform, rotate3d(0, 0, 1, 15deg), webkit o ms);
+        }
+
+        40% {
+            @include auto-prefixer__property(transform, rotate3d(0, 0, 1, -10deg), webkit o ms);
+        }
+
+        60% {
+            @include auto-prefixer__property(transform, rotate3d(0, 0, 1, 5deg), webkit o ms);
+        }
+
+        80% {
+            @include auto-prefixer__property(transform, rotate3d(0, 0, 1, -5deg), webkit o ms);
+        }
+
+        to {
+            @include auto-prefixer__property(transform, rotate3d(0, 0, 1, 0deg), webkit o ms);
+        }
+    }
+
+    &__swing {
+        @include auto-prefixer__property(transform-origin, top center, webkit o ms);
+        @include auto-prefixer__property(animation-name, swing, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (tada) {
+        from {
+            @include auto-prefixer__property(transform, scale3d(1, 1, 1), webkit o ms);
+        }
+
+        10%,
+        20% {
+            @include auto-prefixer__property(transform, scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg), webkit o ms);
+        }
+
+        30%,
+        50%,
+        70%,
+        90% {
+            @include auto-prefixer__property(transform, scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg), webkit o ms);
+        }
+
+        40%,
+        60%,
+        80% {
+            @include auto-prefixer__property(transform, scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg), webkit o ms);
+        }
+
+        to {
+            @include auto-prefixer__property(transform, scale3d(1, 1, 1), webkit o ms);
+        }
+    }
+
+    &__tada {
+        @include auto-prefixer__property(animation-name, tada, webkit o moz);
+    }
+
+    /* originally authored by Nick Pettit - https://github.com/nickpettit/glide */
+
+    @include auto-prefixer__keyframes (wobble) {
+        from {
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0), webkit o ms);
+        }
+
+        15% {
+            @include auto-prefixer__property(transform, translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg), webkit o ms);
+        }
+
+        30% {
+            @include auto-prefixer__property(transform, translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg), webkit o ms);
+        }
+
+        45% {
+            @include auto-prefixer__property(transform, translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg), webkit o ms);
+        }
+
+        60% {
+            @include auto-prefixer__property(transform, translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg), webkit o ms);
+        }
+
+        75% {
+            @include auto-prefixer__property(transform, translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg), webkit o ms);
+        }
+
+        to {
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0), webkit o ms);
+        }
+    }
+
+    &__wobble {
+        @include auto-prefixer__property(animation-name, wobble, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (jello) {
+
+        from,
+        11.1%,
+        to {
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0), webkit o ms);
+        }
+
+        22.2% {
+            @include auto-prefixer__property(transform, skewX(-12.5deg) skewY(-12.5deg), webkit o ms);
+        }
+
+        33.3% {
+            @include auto-prefixer__property(transform, skewX(6.25deg) skewY(6.25deg), webkit o ms);
+        }
+
+        44.4% {
+            @include auto-prefixer__property(transform, skewX(-3.125deg) skewY(-3.125deg), webkit o ms);
+        }
+
+        55.5% {
+            @include auto-prefixer__property(transform, skewX(1.5625deg) skewY(1.5625deg), webkit o ms);
+        }
+
+        66.6% {
+            @include auto-prefixer__property(transform, skewX(-0.78125deg) skewY(-0.78125deg), webkit o ms);
+        }
+
+        77.7% {
+            @include auto-prefixer__property(transform, skewX(0.390625deg) skewY(0.390625deg), webkit o ms);
+        }
+
+        88.8% {
+            @include auto-prefixer__property(transform, skewX(-0.1953125deg) skewY(-0.1953125deg), webkit o ms);
+        }
+    }
+
+    &__jello {
+        @include auto-prefixer__property(animation-name, jello, webkit o moz);
+        @include auto-prefixer__property(transform-origin, center, webkit o ms);
+    }
+
+    @include auto-prefixer__keyframes (heartBeat) {
+        0% {
+            @include auto-prefixer__property(transform, scale(1), webkit o ms);
+        }
+
+        14% {
+            @include auto-prefixer__property(transform, scale(1.3), webkit o ms);
+        }
+
+        28% {
+            @include auto-prefixer__property(transform, scale(1), webkit o ms);
+        }
+
+        42% {
+            @include auto-prefixer__property(transform, scale(1.3), webkit o ms);
+        }
+
+        70% {
+            @include auto-prefixer__property(transform, scale(1), webkit o ms);
+        }
+    }
+
+    &__heartBeat {
+        @include auto-prefixer__property(animation-name, heartBeat, webkit o moz);
+        @include auto-prefixer__property(animation-duration, 1s * 1.3, webkit o moz);
+        @include auto-prefixer__property(animation-duration, $animate-duration * 1.3, webkit o moz);
+        @include auto-prefixer__property(animation-timing-function, ease-in-out, webkit o moz);
+    }
+
+    /* Back entrances */
+    @include auto-prefixer__keyframes (backInDown) {
+        0% {
+            @include auto-prefixer__property(transform, translateY(-1200px) scale(0.7), webkit o ms);
+            opacity: 0.7;
+        }
+
+        80% {
+            @include auto-prefixer__property(transform, translateY(0px) scale(0.7), webkit o ms);
+            opacity: 0.7;
+        }
+
+        100% {
+            @include auto-prefixer__property(transform, scale(1), webkit o ms);
+            opacity: 1;
+        }
+    }
+
+    &__backInDown {
+        @include auto-prefixer__property(animation-name, backInDown, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (backInLeft) {
+        0% {
+            @include auto-prefixer__property(transform, translateX(-2000px) scale(0.7), webkit o ms);
+            opacity: 0.7;
+        }
+
+        80% {
+            @include auto-prefixer__property(transform, translateX(0px) scale(0.7), webkit o ms);
+            opacity: 0.7;
+        }
+
+        100% {
+            @include auto-prefixer__property(transform, scale(1), webkit o ms);
+            opacity: 1;
+        }
+    }
+
+    &__backInLeft {
+        @include auto-prefixer__property(animation-name, backInLeft, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (backInRight) {
+        0% {
+            @include auto-prefixer__property(transform, translateX(2000px) scale(0.7), webkit o ms);
+            opacity: 0.7;
+        }
+
+        80% {
+            @include auto-prefixer__property(transform, translateX(0px) scale(0.7), webkit o ms);
+            opacity: 0.7;
+        }
+
+        100% {
+            @include auto-prefixer__property(transform, scale(1), webkit o ms);
+            opacity: 1;
+        }
+    }
+
+    &__backInRight {
+        @include auto-prefixer__property(animation-name, backInRight, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (backInUp) {
+        0% {
+            @include auto-prefixer__property(transform, translateY(1200px) scale(0.7), webkit o ms);
+            opacity: 0.7;
+        }
+
+        80% {
+            @include auto-prefixer__property(transform, translateY(0px) scale(0.7), webkit o ms);
+            opacity: 0.7;
+        }
+
+        100% {
+            @include auto-prefixer__property(transform, scale(1), webkit o ms);
+            opacity: 1;
+        }
+    }
+
+    &__backInUp {
+        @include auto-prefixer__property(animation-name, backInUp, webkit o moz);
+    }
+
+    /* Back exits */
+    @include auto-prefixer__keyframes (backOutDown) {
+        0% {
+            @include auto-prefixer__property(transform, scale(1), webkit o ms);
+            opacity: 1;
+        }
+
+        20% {
+            @include auto-prefixer__property(transform, translateY(0px) scale(0.7), webkit o ms);
+            opacity: 0.7;
+        }
+
+        100% {
+            @include auto-prefixer__property(transform, translateY(700px) scale(0.7), webkit o ms);
+            opacity: 0.7;
+        }
+    }
+
+    &__backOutDown {
+        @include auto-prefixer__property(animation-name, backOutDown, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (backOutLeft) {
+        0% {
+            @include auto-prefixer__property(transform, scale(1), webkit o ms);
+            opacity: 1;
+        }
+
+        20% {
+            @include auto-prefixer__property(transform, translateX(0px) scale(0.7), webkit o ms);
+            opacity: 0.7;
+        }
+
+        100% {
+            @include auto-prefixer__property(transform, translateX(-2000px) scale(0.7), webkit o ms);
+            opacity: 0.7;
+        }
+    }
+
+    &__backOutLeft {
+        @include auto-prefixer__property(animation-name, backOutLeft, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (backOutRight) {
+        0% {
+            @include auto-prefixer__property(transform, scale(1), webkit o ms);
+            opacity: 1;
+        }
+
+        20% {
+            @include auto-prefixer__property(transform, translateX(0px) scale(0.7), webkit o ms);
+            opacity: 0.7;
+        }
+
+        100% {
+            @include auto-prefixer__property(transform, translateX(2000px) scale(0.7), webkit o ms);
+            opacity: 0.7;
+        }
+    }
+
+    &__backOutRight {
+        @include auto-prefixer__property(animation-name, backOutRight, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (backOutUp) {
+        0% {
+            @include auto-prefixer__property(transform, scale(1), webkit o ms);
+            opacity: 1;
+        }
+
+        20% {
+            @include auto-prefixer__property(transform, translateY(0px) scale(0.7), webkit o ms);
+            opacity: 0.7;
+        }
+
+        100% {
+            @include auto-prefixer__property(transform, translateY(-700px) scale(0.7), webkit o ms);
+            opacity: 0.7;
+        }
+    }
+
+    &__backOutUp {
+        @include auto-prefixer__property(animation-name, backOutUp, webkit o moz);
+    }
+
+    /* Bouncing entrances  */
+    @include auto-prefixer__keyframes (bounceIn) {
+
+        from,
+        20%,
+        40%,
+        60%,
+        80%,
+        to {
+            @include auto-prefixer__property(animation-timing-function, cubic-bezier(0.215, 0.61, 0.355, 1), webkit o moz);
+        }
+
+        0% {
+            opacity: 0;
+            @include auto-prefixer__property(transform, scale3d(0.3, 0.3, 0.3), webkit o ms);
+        }
+
+        20% {
+            @include auto-prefixer__property(transform, scale3d(1.1, 1.1, 1.1), webkit o ms);
+        }
+
+        40% {
+            @include auto-prefixer__property(transform, scale3d(0.9, 0.9, 0.9), webkit o ms);
+        }
+
+        60% {
+            opacity: 1;
+            @include auto-prefixer__property(transform, scale3d(1.03, 1.03, 1.03), webkit o ms);
+        }
+
+        80% {
+            @include auto-prefixer__property(transform, scale3d(0.97, 0.97, 0.97), webkit o ms);
+        }
+
+        to {
+            opacity: 1;
+            @include auto-prefixer__property(transform, scale3d(1, 1, 1), webkit o ms);
+        }
+    }
+
+    &__bounceIn {
+        @include auto-prefixer__property(animation-duration, 1s * 0.75, webkit o moz);
+        @include auto-prefixer__property(animation-duration, $animate-duration * 0.75, webkit o moz);
+        @include auto-prefixer__property(animation-name, bounceIn, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (bounceInDown) {
+
+        from,
+        60%,
+        75%,
+        90%,
+        to {
+            @include auto-prefixer__property(animation-timing-function, cubic-bezier(0.215, 0.61, 0.355, 1), webkit o moz);
+        }
+
+        0% {
+            opacity: 0;
+            @include auto-prefixer__property(transform, translate3d(0, -3000px, 0) scaleY(3), webkit o ms);
+        }
+
+        60% {
+            opacity: 1;
+            @include auto-prefixer__property(transform, translate3d(0, 25px, 0) scaleY(0.9), webkit o ms);
+        }
+
+        75% {
+            @include auto-prefixer__property(transform, translate3d(0, -10px, 0) scaleY(0.95), webkit o ms);
+        }
+
+        90% {
+            @include auto-prefixer__property(transform, translate3d(0, 5px, 0) scaleY(0.985), webkit o ms);
+        }
+
+        to {
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0), webkit o ms);
+        }
+    }
+
+    &__bounceInDown {
+        @include auto-prefixer__property(animation-name, bounceInDown, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (bounceInLeft) {
+
+        from,
+        60%,
+        75%,
+        90%,
+        to {
+            @include auto-prefixer__property(animation-timing-function, cubic-bezier(0.215, 0.61, 0.355, 1), webkit o moz);
+        }
+
+        0% {
+            opacity: 0;
+            @include auto-prefixer__property(transform, translate3d(-3000px, 0, 0) scaleX(3), webkit o ms);
+        }
+
+        60% {
+            opacity: 1;
+            @include auto-prefixer__property(transform, translate3d(25px, 0, 0) scaleX(1), webkit o ms);
+        }
+
+        75% {
+            @include auto-prefixer__property(transform, translate3d(-10px, 0, 0) scaleX(0.98), webkit o ms);
+        }
+
+        90% {
+            @include auto-prefixer__property(transform, translate3d(5px, 0, 0) scaleX(0.995), webkit o ms);
+        }
+
+        to {
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0), webkit o ms);
+        }
+    }
+
+    &__bounceInLeft {
+        @include auto-prefixer__property(animation-name, bounceInLeft, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (bounceInRight) {
+
+        from,
+        60%,
+        75%,
+        90%,
+        to {
+            @include auto-prefixer__property(animation-timing-function, cubic-bezier(0.215, 0.61, 0.355, 1), webkit o moz);
+        }
+
+        from {
+            opacity: 0;
+            @include auto-prefixer__property(transform, translate3d(3000px, 0, 0) scaleX(3), webkit o ms);
+        }
+
+        60% {
+            opacity: 1;
+            @include auto-prefixer__property(transform, translate3d(-25px, 0, 0) scaleX(1), webkit o ms);
+        }
+
+        75% {
+            @include auto-prefixer__property(transform, translate3d(10px, 0, 0) scaleX(0.98), webkit o ms);
+        }
+
+        90% {
+            @include auto-prefixer__property(transform, translate3d(-5px, 0, 0) scaleX(0.995), webkit o ms);
+        }
+
+        to {
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0), webkit o ms);
+        }
+    }
+
+    &__bounceInRight {
+        @include auto-prefixer__property(animation-name, bounceInRight, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (bounceInUp) {
+
+        from,
+        60%,
+        75%,
+        90%,
+        to {
+            @include auto-prefixer__property(animation-timing-function, cubic-bezier(0.215, 0.61, 0.355, 1), webkit o moz);
+        }
+
+        from {
+            opacity: 0;
+            @include auto-prefixer__property(transform, translate3d(0, 3000px, 0) scaleY(5), webkit o ms);
+        }
+
+        60% {
+            opacity: 1;
+            @include auto-prefixer__property(transform, translate3d(0, -20px, 0) scaleY(0.9), webkit o ms);
+        }
+
+        75% {
+            @include auto-prefixer__property(transform, translate3d(0, 10px, 0) scaleY(0.95), webkit o ms);
+        }
+
+        90% {
+            @include auto-prefixer__property(transform, translate3d(0, -5px, 0) scaleY(0.985), webkit o ms);
+        }
+
+        to {
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0), webkit o ms);
+        }
+    }
+
+    &__bounceInUp {
+        @include auto-prefixer__property(animation-name, bounceInUp, webkit o moz);
+    }
+
+    /* Bouncing exits  */
+    @include auto-prefixer__keyframes (bounceOut) {
+        20% {
+            @include auto-prefixer__property(transform, scale3d(0.9, 0.9, 0.9), webkit o ms);
+        }
+
+        50%,
+        55% {
+            opacity: 1;
+            @include auto-prefixer__property(transform, scale3d(1.1, 1.1, 1.1), webkit o ms);
+        }
+
+        to {
+            opacity: 0;
+            @include auto-prefixer__property(transform, scale3d(0.3, 0.3, 0.3), webkit o ms);
+        }
+    }
+
+    &__bounceOut {
+        @include auto-prefixer__property(animation-duration, 1s * 0.75, webkit o moz);
+        @include auto-prefixer__property(animation-duration, $animate-duration * 0.75, webkit o moz);
+        @include auto-prefixer__property(animation-name, bounceOut, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (bounceOutDown) {
+        20% {
+            @include auto-prefixer__property(transform, translate3d(0, 10px, 0) scaleY(0.985), webkit o ms);
+        }
+
+        40%,
+        45% {
+            opacity: 1;
+            @include auto-prefixer__property(transform, translate3d(0, -20px, 0) scaleY(0.9), webkit o ms);
+        }
+
+        to {
+            opacity: 0;
+            @include auto-prefixer__property(transform, translate3d(0, 2000px, 0) scaleY(3), webkit o ms);
+        }
+    }
+
+    &__bounceOutDown {
+        @include auto-prefixer__property(animation-name, bounceOutDown, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (bounceOutLeft) {
+        20% {
+            opacity: 1;
+            @include auto-prefixer__property(transform, translate3d(20px, 0, 0) scaleX(0.9), webkit o ms);
+        }
+
+        to {
+            opacity: 0;
+            @include auto-prefixer__property(transform, translate3d(-2000px, 0, 0) scaleX(2), webkit o ms);
+        }
+    }
+
+    &__bounceOutLeft {
+        @include auto-prefixer__property(animation-name, bounceOutLeft, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (bounceOutRight) {
+        20% {
+            opacity: 1;
+            @include auto-prefixer__property(transform, translate3d(-20px, 0, 0) scaleX(0.9), webkit o ms);
+        }
+
+        to {
+            opacity: 0;
+            @include auto-prefixer__property(transform, translate3d(2000px, 0, 0) scaleX(2), webkit o ms);
+        }
+    }
+
+    &__bounceOutRight {
+        @include auto-prefixer__property(animation-name, bounceOutRight, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (bounceOutUp) {
+        20% {
+            @include auto-prefixer__property(transform, translate3d(0, -10px, 0) scaleY(0.985), webkit o ms);
+        }
+
+        40%,
+        45% {
+            opacity: 1;
+            @include auto-prefixer__property(transform, translate3d(0, 20px, 0) scaleY(0.9), webkit o ms);
+        }
+
+        to {
+            opacity: 0;
+            @include auto-prefixer__property(transform, translate3d(0, -2000px, 0) scaleY(3), webkit o ms);
+        }
+    }
+
+    &__bounceOutUp {
+        @include auto-prefixer__property(animation-name, bounceOutUp, webkit o moz);
+    }
+
+    /* Fading entrances  */
+    @include auto-prefixer__keyframes (fadeIn) {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    &__fadeIn {
+        @include auto-prefixer__property(animation-name, fadeIn, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (fadeInDown) {
+        from {
+            opacity: 0;
+            @include auto-prefixer__property(transform, translate3d(0, -100%, 0), webkit o ms);
+        }
+
+        to {
+            opacity: 1;
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0), webkit o ms);
+        }
+    }
+
+    &__fadeInDown {
+        @include auto-prefixer__property(animation-name, fadeInDown, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (fadeInDownBig) {
+        from {
+            opacity: 0;
+            @include auto-prefixer__property(transform, translate3d(0, -2000px, 0), webkit o ms);
+        }
+
+        to {
+            opacity: 1;
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0), webkit o ms);
+        }
+    }
+
+    &__fadeInDownBig {
+        @include auto-prefixer__property(animation-name, fadeInDownBig, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (fadeInLeft) {
+        from {
+            opacity: 0;
+            @include auto-prefixer__property(transform, translate3d(-100%, 0, 0), webkit o ms);
+        }
+
+        to {
+            opacity: 1;
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0), webkit o ms);
+        }
+    }
+
+    &__fadeInLeft {
+        @include auto-prefixer__property(animation-name, fadeInLeft, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (fadeInLeftBig) {
+        from {
+            opacity: 0;
+            @include auto-prefixer__property(transform, translate3d(-2000px, 0, 0), webkit o ms);
+        }
+
+        to {
+            opacity: 1;
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0), webkit o ms);
+        }
+    }
+
+    &__fadeInLeftBig {
+        @include auto-prefixer__property(animation-name, fadeInLeftBig, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (fadeInRight) {
+        from {
+            opacity: 0;
+            @include auto-prefixer__property(transform, translate3d(100%, 0, 0), webkit o ms);
+        }
+
+        to {
+            opacity: 1;
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0), webkit o ms);
+        }
+    }
+
+    &__fadeInRight {
+        @include auto-prefixer__property(animation-name, fadeInRight, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (fadeInRightBig) {
+        from {
+            opacity: 0;
+            @include auto-prefixer__property(transform, translate3d(2000px, 0, 0), webkit o ms);
+        }
+
+        to {
+            opacity: 1;
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0), webkit o ms);
+        }
+    }
+
+    &__fadeInRightBig {
+        @include auto-prefixer__property(animation-name, fadeInRightBig, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (fadeInUp) {
+        from {
+            opacity: 0;
+            @include auto-prefixer__property(transform, translate3d(0, 100%, 0), webkit o ms);
+        }
+
+        to {
+            opacity: 1;
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0), webkit o ms);
+        }
+    }
+
+    &__fadeInUp {
+        @include auto-prefixer__property(animation-name, fadeInUp, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (fadeInUpBig) {
+        from {
+            opacity: 0;
+            @include auto-prefixer__property(transform, translate3d(0, 2000px, 0), webkit o ms);
+        }
+
+        to {
+            opacity: 1;
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0), webkit o ms);
+        }
+    }
+
+    &__fadeInUpBig {
+        @include auto-prefixer__property(animation-name, fadeInUpBig, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (fadeInTopLeft) {
+        from {
+            opacity: 0;
+            @include auto-prefixer__property(transform, translate3d(-100%, -100%, 0), webkit o ms);
+        }
+
+        to {
+            opacity: 1;
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0), webkit o ms);
+        }
+    }
+
+    &__fadeInTopLeft {
+        @include auto-prefixer__property(animation-name, fadeInTopLeft, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (fadeInTopRight) {
+        from {
+            opacity: 0;
+            @include auto-prefixer__property(transform, translate3d(100%, -100%, 0), webkit o ms);
+        }
+
+        to {
+            opacity: 1;
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0), webkit o ms);
+        }
+    }
+
+    &__fadeInTopRight {
+        @include auto-prefixer__property(animation-name, fadeInTopRight, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (fadeInBottomLeft) {
+        from {
+            opacity: 0;
+            @include auto-prefixer__property(transform, translate3d(-100%, 100%, 0), webkit o ms);
+        }
+
+        to {
+            opacity: 1;
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0), webkit o ms);
+        }
+    }
+
+    &__fadeInBottomLeft {
+        @include auto-prefixer__property(animation-name, fadeInBottomLeft, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (fadeInBottomRight) {
+        from {
+            opacity: 0;
+            @include auto-prefixer__property(transform, translate3d(100%, 100%, 0), webkit o ms);
+        }
+
+        to {
+            opacity: 1;
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0), webkit o ms);
+        }
+    }
+
+    &__fadeInBottomRight {
+        @include auto-prefixer__property(animation-name, fadeInBottomRight, webkit o moz);
+    }
+
+    /* Fading exits */
+    @include auto-prefixer__keyframes (fadeOut) {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+        }
+    }
+
+    &__fadeOut {
+        @include auto-prefixer__property(animation-name, fadeOut, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (fadeOutDown) {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+            @include auto-prefixer__property(transform, translate3d(0, 100%, 0), webkit o ms);
+        }
+    }
+
+    &__fadeOutDown {
+        @include auto-prefixer__property(animation-name, fadeOutDown, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (fadeOutDownBig) {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+            @include auto-prefixer__property(transform, translate3d(0, 2000px, 0), webkit o ms);
+        }
+    }
+
+    &__fadeOutDownBig {
+        @include auto-prefixer__property(animation-name, fadeOutDownBig, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (fadeOutLeft) {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+            @include auto-prefixer__property(transform, translate3d(-100%, 0, 0), webkit o ms);
+        }
+    }
+
+    &__fadeOutLeft {
+        @include auto-prefixer__property(animation-name, fadeOutLeft, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (fadeOutLeftBig) {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+            @include auto-prefixer__property(transform, translate3d(-2000px, 0, 0), webkit o ms);
+        }
+    }
+
+    &__fadeOutLeftBig {
+        @include auto-prefixer__property(animation-name, fadeOutLeftBig, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (fadeOutRight) {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+            @include auto-prefixer__property(transform, translate3d(100%, 0, 0), webkit o ms);
+        }
+    }
+
+    &__fadeOutRight {
+        @include auto-prefixer__property(animation-name, fadeOutRight, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (fadeOutRightBig) {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+            @include auto-prefixer__property(transform, translate3d(2000px, 0, 0), webkit o ms);
+        }
+    }
+
+    &__fadeOutRightBig {
+        @include auto-prefixer__property(animation-name, fadeOutRightBig, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (fadeOutUp) {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+            @include auto-prefixer__property(transform, translate3d(0, -100%, 0), webkit o ms);
+        }
+    }
+
+    &__fadeOutUp {
+        @include auto-prefixer__property(animation-name, fadeOutUp, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (fadeOutUpBig) {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+            @include auto-prefixer__property(transform, translate3d(0, -2000px, 0), webkit o ms);
+        }
+    }
+
+    &__fadeOutUpBig {
+        @include auto-prefixer__property(animation-name, fadeOutUpBig, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (fadeOutTopLeft) {
+        from {
+            opacity: 1;
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0), webkit o ms);
+        }
+
+        to {
+            opacity: 0;
+            @include auto-prefixer__property(transform, translate3d(-100%, -100%, 0), webkit o ms);
+        }
+    }
+
+    &__fadeOutTopLeft {
+        @include auto-prefixer__property(animation-name, fadeOutTopLeft, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (fadeOutTopRight) {
+        from {
+            opacity: 1;
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0), webkit o ms);
+        }
+
+        to {
+            opacity: 0;
+            @include auto-prefixer__property(transform, translate3d(100%, -100%, 0), webkit o ms);
+        }
+    }
+
+    &__fadeOutTopRight {
+        @include auto-prefixer__property(animation-name, fadeOutTopRight, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (fadeOutBottomRight) {
+        from {
+            opacity: 1;
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0), webkit o ms);
+        }
+
+        to {
+            opacity: 0;
+            @include auto-prefixer__property(transform, translate3d(100%, 100%, 0), webkit o ms);
+        }
+    }
+
+    &__fadeOutBottomRight {
+        @include auto-prefixer__property(animation-name, fadeOutBottomRight, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (fadeOutBottomLeft) {
+        from {
+            opacity: 1;
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0), webkit o ms);
+        }
+
+        to {
+            opacity: 0;
+            @include auto-prefixer__property(transform, translate3d(-100%, 100%, 0), webkit o ms);
+        }
+    }
+
+    &__fadeOutBottomLeft {
+        @include auto-prefixer__property(animation-name, fadeOutBottomLeft, webkit o moz);
+    }
+
+    /* Flippers */
+    @include auto-prefixer__keyframes (flip) {
+        from {
+            @include auto-prefixer__property(transform, perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 0) rotate3d(0, 1, 0, -360deg), webkit o ms);
+            @include auto-prefixer__property(animation-timing-function, ease-out, webkit o moz);
+        }
+
+        40% {
+            @include auto-prefixer__property(transform, perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -190deg), webkit o ms);
+            @include auto-prefixer__property(animation-timing-function, ease-out, webkit o moz);
+        }
+
+        50% {
+            @include auto-prefixer__property(transform, perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -170deg), webkit o ms);
+            @include auto-prefixer__property(animation-timing-function, ease-in, webkit o moz);
+        }
+
+        80% {
+            @include auto-prefixer__property(transform, perspective(400px) scale3d(0.95, 0.95, 0.95) translate3d(0, 0, 0) rotate3d(0, 1, 0, 0deg), webkit o ms);
+            @include auto-prefixer__property(animation-timing-function, ease-in, webkit o moz);
+        }
+
+        to {
+            @include auto-prefixer__property(transform, perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 0) rotate3d(0, 1, 0, 0deg), webkit o ms);
+            @include auto-prefixer__property(animation-timing-function, ease-in, webkit o moz);
+        }
+    }
+
+    &__animated &__flip {
+        backface-visibility: visible;
+        @include auto-prefixer__property(animation-name, flip, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (flipInX) {
+        from {
+            @include auto-prefixer__property(transform, perspective(400px) rotate3d(1, 0, 0, 90deg), webkit o ms);
+            @include auto-prefixer__property(animation-timing-function, ease-in, webkit o moz);
+            opacity: 0;
+        }
+
+        40% {
+            @include auto-prefixer__property(transform, perspective(400px) rotate3d(1, 0, 0, -20deg), webkit o ms);
+            @include auto-prefixer__property(animation-timing-function, ease-in, webkit o moz);
+        }
+
+        60% {
+            @include auto-prefixer__property(transform, perspective(400px) rotate3d(1, 0, 0, 10deg), webkit o ms);
+            opacity: 1;
+        }
+
+        80% {
+            @include auto-prefixer__property(transform, perspective(400px) rotate3d(1, 0, 0, -5deg), webkit o ms);
+        }
+
+        to {
+            @include auto-prefixer__property(transform, perspective(400px), webkit o ms);
+        }
+    }
+
+    &__flipInX {
+        backface-visibility: visible !important;
+        @include auto-prefixer__property(animation-name, flipInX, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (flipInY) {
+        from {
+            @include auto-prefixer__property(transform, perspective(400px) rotate3d(0, 1, 0, 90deg), webkit o ms);
+            @include auto-prefixer__property(animation-timing-function, ease-in, webkit o moz);
+            opacity: 0;
+        }
+
+        40% {
+            @include auto-prefixer__property(transform, perspective(400px) rotate3d(0, 1, 0, -20deg), webkit o ms);
+            @include auto-prefixer__property(animation-timing-function, ease-in, webkit o moz);
+        }
+
+        60% {
+            @include auto-prefixer__property(transform, perspective(400px) rotate3d(0, 1, 0, 10deg), webkit o ms);
+            opacity: 1;
+        }
+
+        80% {
+            @include auto-prefixer__property(transform, perspective(400px) rotate3d(0, 1, 0, -5deg), webkit o ms);
+        }
+
+        to {
+            @include auto-prefixer__property(transform, perspective(400px), webkit o ms);
+        }
+    }
+
+    &__flipInY {
+        backface-visibility: visible !important;
+        @include auto-prefixer__property(animation-name, flipInY, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (flipOutX) {
+        from {
+            @include auto-prefixer__property(transform, perspective(400px), webkit o ms);
+        }
+
+        30% {
+            @include auto-prefixer__property(transform, perspective(400px) rotate3d(1, 0, 0, -20deg), webkit o ms);
+            opacity: 1;
+        }
+
+        to {
+            @include auto-prefixer__property(transform, perspective(400px) rotate3d(1, 0, 0, 90deg), webkit o ms);
+            opacity: 0;
+        }
+    }
+
+    &__flipOutX {
+        @include auto-prefixer__property(animation-duration, 1s * 0.75, webkit o moz);
+        @include auto-prefixer__property(animation-duration, $animate-duration * 0.75, webkit o moz);
+        @include auto-prefixer__property(animation-name, flipOutX, webkit o moz);
+        backface-visibility: visible !important;
+    }
+
+    @include auto-prefixer__keyframes (flipOutY) {
+        from {
+            @include auto-prefixer__property(transform, perspective(400px), webkit o ms);
+        }
+
+        30% {
+            @include auto-prefixer__property(transform, perspective(400px) rotate3d(0, 1, 0, -15deg), webkit o ms);
+            opacity: 1;
+        }
+
+        to {
+            @include auto-prefixer__property(transform, perspective(400px) rotate3d(0, 1, 0, 90deg), webkit o ms);
+            opacity: 0;
+        }
+    }
+
+    &__flipOutY {
+        @include auto-prefixer__property(animation-duration, 1s * 0.75, webkit o moz);
+        @include auto-prefixer__property(animation-duration, $animate-duration * 0.75, webkit o moz);
+        backface-visibility: visible !important;
+        @include auto-prefixer__property(animation-name, flipOutY, webkit o moz);
+    }
+
+    /* Lightspeed */
+    @include auto-prefixer__keyframes (lightSpeedInRight) {
+        from {
+            @include auto-prefixer__property(transform, translate3d(100%, 0, 0) skewX(-30deg), webkit o ms);
+            opacity: 0;
+        }
+
+        60% {
+            @include auto-prefixer__property(transform, skewX(20deg), webkit o ms);
+            opacity: 1;
+        }
+
+        80% {
+            @include auto-prefixer__property(transform, skewX(-5deg), webkit o ms);
+        }
+
+        to {
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0), webkit o ms);
+        }
+    }
+
+    &__lightSpeedInRight {
+        @include auto-prefixer__property(animation-name, lightSpeedInRight, webkit o moz);
+        @include auto-prefixer__property(animation-timing-function, ease-out, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (lightSpeedInLeft) {
+        from {
+            @include auto-prefixer__property(transform, translate3d(-100%, 0, 0) skewX(30deg), webkit o ms);
+            opacity: 0;
+        }
+
+        60% {
+            @include auto-prefixer__property(transform, skewX(-20deg), webkit o ms);
+            opacity: 1;
+        }
+
+        80% {
+            @include auto-prefixer__property(transform, skewX(5deg), webkit o ms);
+        }
+
+        to {
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0), webkit o ms);
+        }
+    }
+
+    &__lightSpeedInLeft {
+        @include auto-prefixer__property(animation-name, lightSpeedInLeft, webkit o moz);
+        @include auto-prefixer__property(animation-timing-function, ease-out, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (lightSpeedOutRight) {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            @include auto-prefixer__property(transform, translate3d(100%, 0, 0) skewX(30deg), webkit o ms);
+            opacity: 0;
+        }
+    }
+
+    &__lightSpeedOutRight {
+        @include auto-prefixer__property(animation-name, lightSpeedOutRight, webkit o moz);
+        @include auto-prefixer__property(animation-timing-function, ease-in, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (lightSpeedOutLeft) {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            @include auto-prefixer__property(transform, translate3d(-100%, 0, 0) skewX(-30deg), webkit o ms);
+            opacity: 0;
+        }
+    }
+
+    &__lightSpeedOutLeft {
+        @include auto-prefixer__property(animation-name, lightSpeedOutLeft, webkit o moz);
+        @include auto-prefixer__property(animation-timing-function, ease-in, webkit o moz);
+    }
+
+    /* Rotating entrances */
+    @include auto-prefixer__keyframes (rotateIn) {
+        from {
+            @include auto-prefixer__property(transform, rotate3d(0, 0, 1, -200deg), webkit o ms);
+            opacity: 0;
+        }
+
+        to {
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0), webkit o ms);
+            opacity: 1;
+        }
+    }
+
+    &__rotateIn {
+        @include auto-prefixer__property(animation-name, rotateIn, webkit o moz);
+        @include auto-prefixer__property(transform-origin, center, webkit o ms);
+    }
+
+    @include auto-prefixer__keyframes (rotateInDownLeft) {
+        from {
+            @include auto-prefixer__property(transform, rotate3d(0, 0, 1, -45deg), webkit o ms);
+            opacity: 0;
+        }
+
+        to {
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0), webkit o ms);
+            opacity: 1;
+        }
+    }
+
+    &__rotateInDownLeft {
+        @include auto-prefixer__property(animation-name, rotateInDownLeft, webkit o moz);
+        @include auto-prefixer__property(transform-origin, left bottom, webkit o ms);
+    }
+
+    @include auto-prefixer__keyframes (rotateInDownRight) {
+        from {
+            @include auto-prefixer__property(transform, rotate3d(0, 0, 1, 45deg), webkit o ms);
+            opacity: 0;
+        }
+
+        to {
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0), webkit o ms);
+            opacity: 1;
+        }
+    }
+
+    &__rotateInDownRight {
+        @include auto-prefixer__property(animation-name, rotateInDownRight, webkit o moz);
+        @include auto-prefixer__property(transform-origin, right bottom, webkit o ms);
+    }
+
+    @include auto-prefixer__keyframes (rotateInUpLeft) {
+        from {
+            @include auto-prefixer__property(transform, rotate3d(0, 0, 1, 45deg), webkit o ms);
+            opacity: 0;
+        }
+
+        to {
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0), webkit o ms);
+            opacity: 1;
+        }
+    }
+
+    &__rotateInUpLeft {
+        @include auto-prefixer__property(animation-name, rotateInUpLeft, webkit o moz);
+        @include auto-prefixer__property(transform-origin, left bottom, webkit o ms);
+    }
+
+    @include auto-prefixer__keyframes (rotateInUpRight) {
+        from {
+            @include auto-prefixer__property(transform, rotate3d(0, 0, 1, -90deg), webkit o ms);
+            opacity: 0;
+        }
+
+        to {
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0), webkit o ms);
+            opacity: 1;
+        }
+    }
+
+    &__rotateInUpRight {
+        @include auto-prefixer__property(animation-name, rotateInUpRight, webkit o moz);
+        @include auto-prefixer__property(transform-origin, right bottom, webkit o ms);
+    }
+
+    /* Rotating exits */
+    @include auto-prefixer__keyframes (rotateOut) {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            @include auto-prefixer__property(transform, rotate3d(0, 0, 1, 200deg), webkit o ms);
+            opacity: 0;
+        }
+    }
+
+    &__rotateOut {
+        @include auto-prefixer__property(animation-name, rotateOut, webkit o moz);
+        @include auto-prefixer__property(transform-origin, center, webkit o ms);
+    }
+
+    @include auto-prefixer__keyframes (rotateOutDownLeft) {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            @include auto-prefixer__property(transform, rotate3d(0, 0, 1, 45deg), webkit o ms);
+            opacity: 0;
+        }
+    }
+
+    &__rotateOutDownLeft {
+        @include auto-prefixer__property(animation-name, rotateOutDownLeft, webkit o moz);
+        @include auto-prefixer__property(transform-origin, left bottom, webkit o ms);
+    }
+
+    @include auto-prefixer__keyframes (rotateOutDownRight) {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            @include auto-prefixer__property(transform, rotate3d(0, 0, 1, -45deg), webkit o ms);
+            opacity: 0;
+        }
+    }
+
+    &__rotateOutDownRight {
+        @include auto-prefixer__property(animation-name, rotateOutDownRight, webkit o moz);
+        @include auto-prefixer__property(transform-origin, right bottom, webkit o ms);
+    }
+
+    @include auto-prefixer__keyframes (rotateOutUpLeft) {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            @include auto-prefixer__property(transform, rotate3d(0, 0, 1, -45deg), webkit o ms);
+            opacity: 0;
+        }
+    }
+
+    &__rotateOutUpLeft {
+        @include auto-prefixer__property(animation-name, rotateOutUpLeft, webkit o moz);
+        @include auto-prefixer__property(transform-origin, left bottom, webkit o ms);
+    }
+
+    @include auto-prefixer__keyframes (rotateOutUpRight) {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            @include auto-prefixer__property(transform, rotate3d(0, 0, 1, 90deg), webkit o ms);
+            opacity: 0;
+        }
+    }
+
+    &__rotateOutUpRight {
+        @include auto-prefixer__property(animation-name, rotateOutUpRight, webkit o moz);
+        @include auto-prefixer__property(transform-origin, right bottom, webkit o ms);
+    }
+
+    /* Specials */
+    @include auto-prefixer__keyframes (hinge) {
+        0% {
+            @include auto-prefixer__property(animation-timing-function, ease-in-out, webkit o moz);
+        }
+
+        20%,
+        60% {
+            @include auto-prefixer__property(transform, rotate3d(0, 0, 1, 80deg), webkit o ms);
+            @include auto-prefixer__property(animation-timing-function, ease-in-out, webkit o moz);
+        }
+
+        40%,
+        80% {
+            @include auto-prefixer__property(transform, rotate3d(0, 0, 1, 60deg), webkit o ms);
+            @include auto-prefixer__property(animation-timing-function, ease-in-out, webkit o moz);
+            opacity: 1;
+        }
+
+        to {
+            @include auto-prefixer__property(transform, translate3d(0, 700px, 0), webkit o ms);
+            opacity: 0;
+        }
+    }
+
+    &__hinge {
+        @include auto-prefixer__property(animation-duration, 1s * 2, webkit o moz);
+        @include auto-prefixer__property(animation-duration, $animate-duration * 2, webkit o moz);
+        @include auto-prefixer__property(animation-name, hinge, webkit o moz);
+        @include auto-prefixer__property(transform-origin, top left, webkit o ms);
+    }
+
+    @include auto-prefixer__keyframes (jackInTheBox) {
+        from {
+            opacity: 0;
+            @include auto-prefixer__property(transform, scale(0.1) rotate(30deg), webkit o ms);
+            @include auto-prefixer__property(transform-origin, center bottom, webkit o ms);
+        }
+
+        50% {
+            @include auto-prefixer__property(transform, rotate(-10deg), webkit o ms);
+        }
+
+        70% {
+            @include auto-prefixer__property(transform, rotate(3deg), webkit o ms);
+        }
+
+        to {
+            opacity: 1;
+            @include auto-prefixer__property(transform, scale(1), webkit o ms);
+        }
+    }
+
+    &__jackInTheBox {
+        @include auto-prefixer__property(animation-name, jackInTheBox, webkit o moz);
+    }
+
+    /* originally authored by Nick Pettit - https://github.com/nickpettit/glide */
+    @include auto-prefixer__keyframes (rollIn) {
+        from {
+            opacity: 0;
+            @include auto-prefixer__property(transform, translate3d(-100%, 0, 0) rotate3d(0, 0, 1, -120deg), webkit o ms);
+        }
+
+        to {
+            opacity: 1;
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0), webkit o ms);
+        }
+    }
+
+    &__rollIn {
+        @include auto-prefixer__property(animation-name, rollIn, webkit o moz);
+    }
+
+    /* originally authored by Nick Pettit - https://github.com/nickpettit/glide */
+    @include auto-prefixer__keyframes (rollOut) {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+            @include auto-prefixer__property(transform, translate3d(100%, 0, 0) rotate3d(0, 0, 1, 120deg), webkit o ms);
+        }
+    }
+
+    &__rollOut {
+        @include auto-prefixer__property(animation-name, rollOut, webkit o moz);
+    }
+
+    /* Zooming entrances */
+    @include auto-prefixer__keyframes (zoomIn) {
+        from {
+            opacity: 0;
+            @include auto-prefixer__property(transform, scale3d(0.3, 0.3, 0.3), webkit o ms);
+        }
+
+        50% {
+            opacity: 1;
+        }
+    }
+
+    &__zoomIn {
+        @include auto-prefixer__property(animation-name, zoomIn, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (zoomInDown) {
+        from {
+            opacity: 0;
+            @include auto-prefixer__property(transform, scale3d(0.1, 0.1, 0.1) translate3d(0, -1000px, 0), webkit o ms);
+            @include auto-prefixer__property(animation-timing-function, cubic-bezier(0.55, 0.055, 0.675, 0.19), webkit o moz);
+        }
+
+        60% {
+            opacity: 1;
+            @include auto-prefixer__property(transform, scale3d(0.475, 0.475, 0.475) translate3d(0, 60px, 0), webkit o ms);
+            @include auto-prefixer__property(animation-timing-function, cubic-bezier(0.175, 0.885, 0.32, 1), webkit o moz);
+        }
+    }
+
+    &__zoomInDown {
+        @include auto-prefixer__property(animation-name, zoomInDown, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (zoomInLeft) {
+        from {
+            opacity: 0;
+            @include auto-prefixer__property(transform, scale3d(0.1, 0.1, 0.1) translate3d(-1000px, 0, 0), webkit o ms);
+            @include auto-prefixer__property(animation-timing-function, cubic-bezier(0.55, 0.055, 0.675, 0.19), webkit o moz);
+        }
+
+        60% {
+            opacity: 1;
+            @include auto-prefixer__property(transform, scale3d(0.475, 0.475, 0.475) translate3d(10px, 0, 0), webkit o ms);
+            @include auto-prefixer__property(animation-timing-function, cubic-bezier(0.175, 0.885, 0.32, 1), webkit o moz);
+        }
+    }
+
+    &__zoomInLeft {
+        @include auto-prefixer__property(animation-name, zoomInLeft, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (zoomInRight) {
+        from {
+            opacity: 0;
+            @include auto-prefixer__property(transform, scale3d(0.1, 0.1, 0.1) translate3d(1000px, 0, 0), webkit o ms);
+            @include auto-prefixer__property(animation-timing-function, cubic-bezier(0.55, 0.055, 0.675, 0.19), webkit o moz);
+        }
+
+        60% {
+            opacity: 1;
+            @include auto-prefixer__property(transform, scale3d(0.475, 0.475, 0.475) translate3d(-10px, 0, 0), webkit o ms);
+            @include auto-prefixer__property(animation-timing-function, cubic-bezier(0.175, 0.885, 0.32, 1), webkit o moz);
+        }
+    }
+
+    &__zoomInRight {
+        @include auto-prefixer__property(animation-name, zoomInRight, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (zoomInUp) {
+        from {
+            opacity: 0;
+            @include auto-prefixer__property(transform, scale3d(0.1, 0.1, 0.1) translate3d(0, 1000px, 0), webkit o ms);
+            @include auto-prefixer__property(animation-timing-function, cubic-bezier(0.55, 0.055, 0.675, 0.19), webkit o moz);
+        }
+
+        60% {
+            opacity: 1;
+            @include auto-prefixer__property(transform, scale3d(0.475, 0.475, 0.475) translate3d(0, -60px, 0), webkit o ms);
+            @include auto-prefixer__property(animation-timing-function, cubic-bezier(0.175, 0.885, 0.32, 1), webkit o moz);
+        }
+    }
+
+    &__zoomInUp {
+        @include auto-prefixer__property(animation-name, zoomInUp, webkit o moz);
+    }
+
+    /* Zooming exits */
+    @include auto-prefixer__keyframes (zoomOut) {
+        from {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: 0;
+            @include auto-prefixer__property(transform, scale3d(0.3, 0.3, 0.3), webkit o ms);
+        }
+
+        to {
+            opacity: 0;
+        }
+    }
+
+    &__zoomOut {
+        @include auto-prefixer__property(animation-name, zoomOut, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (zoomOutDown) {
+        40% {
+            opacity: 1;
+            @include auto-prefixer__property(transform, scale3d(0.475, 0.475, 0.475) translate3d(0, -60px, 0), webkit o ms);
+            @include auto-prefixer__property(animation-timing-function, cubic-bezier(0.55, 0.055, 0.675, 0.19), webkit o moz);
+        }
+
+        to {
+            opacity: 0;
+            @include auto-prefixer__property(transform, scale3d(0.1, 0.1, 0.1) translate3d(0, 2000px, 0), webkit o ms);
+            @include auto-prefixer__property(animation-timing-function, cubic-bezier(0.175, 0.885, 0.32, 1), webkit o moz);
+        }
+    }
+
+    &__zoomOutDown {
+        @include auto-prefixer__property(animation-name, zoomOutDown, webkit o moz);
+        @include auto-prefixer__property(transform-origin, center bottom, webkit o ms);
+    }
+
+    @include auto-prefixer__keyframes (zoomOutLeft) {
+        40% {
+            opacity: 1;
+            @include auto-prefixer__property(transform, scale3d(0.475, 0.475, 0.475) translate3d(42px, 0, 0), webkit o ms);
+        }
+
+        to {
+            opacity: 0;
+            @include auto-prefixer__property(transform, scale(0.1) translate3d(-2000px, 0, 0), webkit o ms);
+        }
+    }
+
+    &__zoomOutLeft {
+        @include auto-prefixer__property(animation-name, zoomOutLeft, webkit o moz);
+        @include auto-prefixer__property(transform-origin, left center, webkit o ms);
+    }
+
+    @include auto-prefixer__keyframes (zoomOutRight) {
+        40% {
+            opacity: 1;
+            @include auto-prefixer__property(transform, scale3d(0.475, 0.475, 0.475) translate3d(-42px, 0, 0), webkit o ms);
+        }
+
+        to {
+            opacity: 0;
+            @include auto-prefixer__property(transform, scale(0.1) translate3d(2000px, 0, 0), webkit o ms);
+        }
+    }
+
+    &__zoomOutRight {
+        @include auto-prefixer__property(animation-name, zoomOutRight, webkit o moz);
+        @include auto-prefixer__property(transform-origin, right center, webkit o ms);
+    }
+
+    @include auto-prefixer__keyframes (zoomOutUp) {
+        40% {
+            opacity: 1;
+            @include auto-prefixer__property(transform, scale3d(0.475, 0.475, 0.475) translate3d(0, 60px, 0), webkit o ms);
+            @include auto-prefixer__property(animation-timing-function, cubic-bezier(0.55, 0.055, 0.675, 0.19), webkit o moz);
+        }
+
+        to {
+            opacity: 0;
+            @include auto-prefixer__property(transform, scale3d(0.1, 0.1, 0.1) translate3d(0, -2000px, 0), webkit o ms);
+            @include auto-prefixer__property(animation-timing-function, cubic-bezier(0.175, 0.885, 0.32, 1), webkit o moz);
+        }
+    }
+
+    &__zoomOutUp {
+        @include auto-prefixer__property(animation-name, zoomOutUp, webkit o moz);
+        @include auto-prefixer__property(transform-origin, center bottom, webkit o ms);
+    }
+
+    /* Sliding entrances */
+    @include auto-prefixer__keyframes (slideInDown) {
+        from {
+            @include auto-prefixer__property(transform, translate3d(0, -100%, 0), webkit o ms);
+            visibility: visible;
+        }
+
+        to {
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0), webkit o ms);
+        }
+    }
+
+    &__slideInDown {
+        @include auto-prefixer__property(animation-name, slideInDown, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (slideInLeft) {
+        from {
+            @include auto-prefixer__property(transform, translate3d(-100%, 0, 0), webkit o ms);
+            visibility: visible;
+        }
+
+        to {
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0), webkit o ms);
+        }
+    }
+
+    &__slideInLeft {
+        @include auto-prefixer__property(animation-name, slideInLeft, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (slideInRight) {
+        from {
+            @include auto-prefixer__property(transform, translate3d(100%, 0, 0), webkit o ms);
+            visibility: visible;
+        }
+
+        to {
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0), webkit o ms);
+        }
+    }
+
+    &__slideInRight {
+        @include auto-prefixer__property(animation-name, slideInRight, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (slideInUp) {
+        from {
+            @include auto-prefixer__property(transform, translate3d(0, 100%, 0), webkit o ms);
+            visibility: visible;
+        }
+
+        to {
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0), webkit o ms);
+        }
+    }
+
+    &__slideInUp {
+        @include auto-prefixer__property(animation-name, slideInUp, webkit o moz);
+    }
+
+    /* Sliding exits */
+    @include auto-prefixer__keyframes (slideOutDown) {
+        from {
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0), webkit o ms);
+        }
+
+        to {
+            visibility: hidden;
+            @include auto-prefixer__property(transform, translate3d(0, 100%, 0), webkit o ms);
+        }
+    }
+
+    &__slideOutDown {
+        @include auto-prefixer__property(animation-name, slideOutDown, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (slideOutLeft) {
+        from {
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0), webkit o ms);
+        }
+
+        to {
+            visibility: hidden;
+            @include auto-prefixer__property(transform, translate3d(-100%, 0, 0), webkit o ms);
+        }
+    }
+
+    &__slideOutLeft {
+        @include auto-prefixer__property(animation-name, slideOutLeft, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (slideOutRight) {
+        from {
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0), webkit o ms);
+        }
+
+        to {
+            visibility: hidden;
+            @include auto-prefixer__property(transform, translate3d(100%, 0, 0), webkit o ms);
+        }
+    }
+
+    &__slideOutRight {
+        @include auto-prefixer__property(animation-name, slideOutRight, webkit o moz);
+    }
+
+    @include auto-prefixer__keyframes (slideOutUp) {
+        from {
+            @include auto-prefixer__property(transform, translate3d(0, 0, 0), webkit o ms);
+        }
+
+        to {
+            visibility: hidden;
+            @include auto-prefixer__property(transform, translate3d(0, -100%, 0), webkit o ms);
+        }
+    }
+
+    &__slideOutUp {
+        @include auto-prefixer__property(animation-name, slideOutUp, webkit o moz);
+    }
+}

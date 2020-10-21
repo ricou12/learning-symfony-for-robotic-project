@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+{% block description %}Créer votre compte{% endblock %}
+
+{% block body %}
+
+    <article class="formAccount">
+        <div class="container py-2">
+            <div class="row d-flex justify-content-center p-2">
+                <div class="col-12 col-sm-10 col-md-8 col-lg-6 text-white p-3 rounded bg-dark">
+                    <div class="border p-3">
+                        {% for flashError in app.flashes('verify_email_error') %}
+                        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+                        {% endfor %}
+
+                        <div class="d-flex justify-content-between mb-3">
+                            <h1 class="h4 font-weight-bold txt-color--raspberry">Inscription</h1>
+                            <a href="/login" class="h5 font-italic text-warning">Se connecter</a>
+                        </div>
+
+                        {# RENDU DU FORMULAIRE #}
+                        {{ form_start(registrationForm) }}
+                            {# RENDU DU CHAMP ET MISE EN FORME DU CONTENU 2 METHODES #}
+                            {# {{ form_row(registrationForm.Author,
+                                    {
+                                        'attr': {'class': 'form-control'},
+                                        'label':'Pseudo',
+                                        'label_attr': {'class': 'regles'}
+                                    })
+                            }} #}
+                            {# OU BIEN EN DECOMPOSANT #}
+                            {# {{ form_label(registrationForm.Author, 'Pseudo: ', {'label_attr': {'class': ''}}) }}
+                            {{ form_widget(registrationForm.Author, {'attr': {'class': 'border rounded'}}) }} #}
+
+                            <div class="form-group">
+                                {{ form_row(registrationForm.Author,
+                                    {
+                                        'attr': {'class': 'form-control'},
+                                        'required': true,
+                                        'label':'Nom / Pseudo',
+                                    })
+                                }}
+                            </div>
+                            
+                            <div class="form-group">
+                            {{ form_row(registrationForm.email,
+                                {
+                                    'attr': {'class': 'form-control'},
+                                    'label':'Email', 
+                                })
+                            }}
+                            </div>
+
+                            <div class="form-group">
+                            {{ form_row(registrationForm.plainPassword,
+                                {
+                                    'attr': {'class': 'form-control'},
+                                    'label':'Mot de passe', 
+                                })
+                            }}
+                            </div>
+
+                             <div class="form-row align-items-center justify-content-around">
+                                <div class="col-auto my-1">
+                                    <div class="form-check">
+                                        {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'form-check-control'}}) }}
+                                        {{ form_label(registrationForm.agreeTerms, 'Accepter les termes ', {'label_attr': {'class': 'form-check-label'}}) }}
+                                    </div>
+                                </div>
+                                <div class="col-auto my-1">
+                                    <button type="submit" class="btn btn-outline-light mt-2">Register</button>
+                                </div>
+                        {{ form_end(registrationForm) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+
+{% endblock %}

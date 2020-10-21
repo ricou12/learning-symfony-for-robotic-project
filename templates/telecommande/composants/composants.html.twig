@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% import "components/components.html.twig" as component %}
+
+{% block title %}Pièces de la télécommande{% endblock %}
+{% block description %}Découvrez la liste des pièces nécessaire pour réaliser la télécommande.{% endblock %}
+
+{% block body %}
+<article>
+    <!-- TELECOMMANDE -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 py-5 telecom-composant__header">
+                <div class="telecom-composant__header__box-title">
+                    <div class="text-center">
+                        <h1 class="txtShadow--black txt-color--yellow py-4 text-uppercase">Conception de la télécommande
+                        </h1>
+                        <h2 class="text-white txtShadow--black py-5">Liste des composants</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-2 rounded">
+        <div class="row">
+            <div class="col-12 composants">
+                {{ component.cardRc(
+                    "Plaque de plexiglass",
+                    "/build/images/composants/pexi.png",
+                ) }}
+
+                {{ component.cardRc(
+                    "Arduino uno",
+                    "/build/images/composants/arduino.png" ,
+                ) }}
+
+                {{ component.cardRc(
+                    "Joystick de jeu",
+                    "/build/images/composants/joystick.png",
+                ) }}
+
+                {{ component.cardRc(
+                    "Cables pour plaque de prototypage",
+                    "/build/images/composants/cable.png",
+                ) }}
+
+                {{ component.cardRc(
+                    "Résistances",
+                    "/build/images/composants/resistances.png",
+                ) }}
+
+                {{ component.cardRc(
+                    "Bouton poussoir",
+                    "/build/images/composants/bouton-poussoir.png",
+                ) }}
+
+                {{ component.cardRc(
+                    "Led",
+                    "/build/images/composants/led.png",
+                ) }}
+
+                {{ component.cardRc(
+                "Emetteur Récepteur sans Fil 2.4G 100m NRF24L01+PA+LNA avec antenne KY67",
+                    "/build/images/composants/emetteur-recepteur.png",
+                ) }}
+
+                {{ component.cardRc(
+                    "Circuit imprimé 4x6cm",
+                    "/build/images/composants/plaquesasouder.png",
+                ) }}
+
+                {{ component.cardRc(
+                    "Pin strip Reglette à broches",
+                    "/build/images/composants/broches.png",
+                ) }}
+            </div>
+        </div>
+    </div>
+</article>
+{% endblock %}

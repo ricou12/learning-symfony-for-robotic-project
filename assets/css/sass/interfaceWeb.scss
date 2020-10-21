@@ -1,0 +1,38 @@
+// @import "animate.scss";
+.interfaceWeb {
+    &__header{
+        background-image:  url('/build/images/header/server.jpg');
+        background-repeat: no-repeat;
+        background-position: right;
+        background-size: cover;
+        min-height: 400px;
+        overflow: hidden;
+        @include move-Axe-Y($name:interfaceWeb01,$delai:1s, $start-Top:20px);
+
+        h1{
+            @include auto-prefixer__property(animation, (backInUp 2s,jello 1s 1.8s), webkit moz o);
+        }
+        h2{
+            @include auto-prefixer__property(animation, backInUp 1.5s, webkit moz o);
+        }
+    }
+
+    &__image {
+        width: 100%;
+    }
+
+    &__video {
+
+        &__play-button {
+            @include play_button($bg-position:left 1rem center, $bg-size:1.1rem, $ft-size:.8em, $padding:.8rem 2rem .8rem 4rem);
+            font-weight: 700;
+
+            @include effect_play_button($animation_name:interfaceWeb, $delai:1.1s, $bgPositionIn:left 1rem center, $bgPositionOut:left 2rem center,$bgColorIn:rgb(238, 251, 232), $bgColorOut:rgba(253, 244, 115, 0.8), $textColorIn:rgb(255, 146, 146), $textColorOut:rgb(255, 30, 0));
+        }
+    }
+
+    /* VIDEO */
+    video {
+        width: 100%;
+    }
+}

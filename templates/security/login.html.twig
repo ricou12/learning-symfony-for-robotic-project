@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Se connecter{% endblock %}
+{% block description %}Accédez à votre profil{% endblock %}
+
+{% block body %}
+<article class="formAccount">
+
+    <div class="container py-2">
+        <div class="row d-flex justify-content-center p-2">
+            <div class="col-12 col-sm-10 col-md-8 col-lg-6 text-white p-3 rounded bg-dark">
+                 <form class="border p-3" method="post">
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+                
+                    {% if app.user %}
+                        <div class="mb-3">
+                            Vous êtes connecté en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Se déconnecter</a>
+                        </div>
+                    {% endif %}
+
+                    <div class="d-flex justify-content-between mb-3">
+                        <h1 class="h4 font-weight-bold txt-color--raspberry">Connexion</h1>
+                        <a href="/register" class="h5 font-italic text-warning">S'inscrire</a>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputEmail">Email</label>
+                        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword">Password</label>
+                        <input type="password" name="password" id="inputPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" class="form-control" required>
+                        <small id="pseudoHelp" class="form-text text-muted"> 6 caractères minimum, au moins 1 chiffre et 1 lettre majuscule et 1 lettre minuscule</small>
+
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"
+                        {#
+                            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                            See https://symfony.com/doc/current/security/remember_me.html
+                    
+                            <div class="checkbox mb-3">
+                                <label>
+                                    <input type="checkbox" name="_remember_me"> Remember me
+                                </label>
+                            </div>
+                        #}
+                    >
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-light" type="submit">
+                            Connexion
+                        </button>
+                    </div>
+                </form> 
+            </div>
+        </div>
+    </div>
+</article>
+{% endblock %}

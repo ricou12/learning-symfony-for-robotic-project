@@ -1,0 +1,99 @@
+.robotique {
+
+    &__header {
+        background-image: url('/build/images/header/connect.jpg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        min-height: 400px;
+        overflow: hidden;
+
+        @include move-Axe-Y($name:robotique02, $delai:2s, $start-Top:20px);
+
+        h1{
+            @include auto-prefixer__property(animation, (zoomInDown 3s, rubberBand 1.5s 2.4s), webkit moz o);
+        }
+
+        h2{
+            @include auto-prefixer__property(animation, zoomInUp 2s, webkit moz o);
+        }
+
+
+        img {
+            width: 80%;
+            min-width: 200px;
+            max-width: 300px;
+        }
+
+        &__img01 {
+            animation:zoomIn 2s;
+        }
+
+        &__img02 {
+            animation:zoomIn 2s;
+        }
+    }
+
+    &__video {
+        background-color: #d7dae0;
+        position: relative;
+
+        &--height {
+            min-width: 100vw;
+            max-height: 500px;
+        }
+
+        &__container {
+            background-image: -webkit-gradient(linear, left top, right top, from(#d7dae0), color-stop(25%, rgba(215, 218, 224, 0)), color-stop(75%, rgba(215, 218, 224, 0)), to(#d7dae0)), url(/build/images/placeholder.webp);
+            background-image: linear-gradient(90deg, #d7dae0 0%, rgba(215, 218, 224, 0) 25%, rgba(215, 218, 224, 0) 75%, #d7dae0), url(/build/images/placeholder.webp);
+            background-repeat: no-repeat;
+            background-position: -73%;
+            background-size: 110%;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            height: 56.25vw;
+            max-height: 75vh;
+            padding: 0;
+        }
+
+        &__play-button {
+            @include play_button($bg-position:left 1rem center, $bg-size:1.6rem,$ft-size: 1.2em, $padding:1rem 3rem 1rem 8rem);
+            @include effect_play_button($animation_name:robotiqueMax, $delai:1s, $bgPositionIn:left 2rem center, $bgPositionOut:left 5rem center, $bgColorIn:rgba(255, 255, 255, 0.8), $bgColorOut:rgba(255, 0, 0, 0.2),  $textColorIn:rgb(148, 63, 63), $textColorOut:red);
+        }
+    }
+
+    /* VIDEO */
+    video {
+        width: 100%;
+    }
+}
+
+.o-container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 5%;
+    padding-left: 5%;
+    max-width: 1300px;
+}
+
+@media screen and (max-width:575px) {
+    .robotique {
+        &__video__play-button {
+            // @mixin play_button (position fleche, taille fleche, $ft-size, $padding)
+            @include play_button(left 1rem center, 1.2rem, 1.1em, .7rem 2rem .7rem 5rem);
+
+            // @mixin effect_play_button($animation_name, $delai, $valueIn, $valueOut, $bgColorIn, $bgColorOut,$textColorOut, $textColorOut)
+            @include effect_play_button(robotiqueMin, 1s, left 2rem center, left 3rem center, rgba(255, 255, 255, 0.8), rgba(255, 0, 0, 0.2), rgb(148, 63, 63), red);
+        }
+    }
+}
+
+@media screen and (min-width: 1300px) {
+    .robotique__video__container {
+        background-position: 50%;
+        background-size: cover;
+        height: 731.25px;
+        width: 1300px;
+    }
+}

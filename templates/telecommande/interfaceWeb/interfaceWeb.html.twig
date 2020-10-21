@@ -1,0 +1,34 @@
+
+{% extends "base.html.twig" %}
+
+{% block title %}L'interface web{% endblock %}
+{% block description %}Découvrez la technologie web déployée sur le Rasberry pi pour établir la communication avec le robot et le détail du code source de l'application web {% endblock %}
+
+{% block body %}
+    <article class="interfaceWeb">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 interfaceWeb__header py-5">
+                    <div class="text-center">
+                        <h1 class=" txtShadow--black text-white py-4 text-uppercase">Télécommande web</h1>
+                        <h2 class=" txtShadow--black text-white py-5 text-center">
+                            Le serveur node JS fait office de relais de communication</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="container">
+            <div class="row mt-4 mb-5 d-flex justify-content-center align-items-center interfaceWeb__video"></div>
+            <div class="row">
+                <div class="col-12 GistHub">
+                    <script src="https://gist.github.com/ricou12/6a96b0ef4d799f74e1e5d260115763e8.js"></script>
+                </div>
+            </div>
+        </section>
+    </article>
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('telecommandeWeb') }}
+{% endblock %}

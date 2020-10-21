@@ -1,0 +1,118 @@
+
+@mixin changeOpacity($delai, $min, $max) {
+    @include auto-prefixer__property(animation, changeOpacity $delai, webkit moz o);
+
+    @include auto-prefixer__keyframes(changeOpacity) {
+        from {
+            opacity: $min;
+        }
+
+        to {
+            opacity: $max;
+        }
+    }
+}
+
+//
+@mixin move-Axe-Y($name, $delai, $start-Top:0, $startRotateDgr:0deg) {
+    @include auto-prefixer__property(animation, $name $delai, webkit moz o);
+
+    @include auto-prefixer__keyframes($name) {
+        0% {
+            @include auto-prefixer__property(transform, translateY($start-Top) rotateZ($startRotateDgr), webkit o ms);
+        }
+
+        100% {
+            @include auto-prefixer__property(transform, translateY(0), webkit o ms);
+
+        }
+    }
+}
+ 
+// 
+@mixin move-Axe-X($name, $delai, $start-Top:0, $startRotateDgr:0deg) {
+    @include auto-prefixer__property(animation, $name $delai, webkit moz o);
+
+    @include auto-prefixer__keyframes($name) {
+        0% {
+            @include auto-prefixer__property(transform, translateX($start-Top) rotateZ($startRotateDgr), webkit o ms);
+        }
+
+        100% {
+            @include auto-prefixer__property(transform, translateX(0), webkit o ms);
+        }
+    }
+
+}
+
+@mixin zoom($delai, $zoomSize) {
+    @include auto-prefixer__property(animation, zoom $delai ease-in-out, webkit moz o);
+
+    @include auto-prefixer__keyframes(zoom) {
+        0% {
+            @include auto-prefixer__property(transform, scale(0), webkit o ms);
+        }
+
+        100% {
+            @include auto-prefixer__property(transform, scale($zoomSize), webkit o ms);
+        }
+    }
+}
+
+@mixin shadow($delai) {
+    @include auto-prefixer__property(animation, shadow $delai alternate infinite, webkit moz o);
+
+    @include auto-prefixer__keyframes(shadow) {
+        0% {}
+
+        100% {
+            text-shadow: 1px 2px 2px #ffffff, -1px -2px 1px #ffffff;
+
+        }
+    }
+}
+
+// 
+@mixin changeOpacityInfinite {
+    @include auto-prefixer__property(changeOpacityInfinite, 1.5s ease-in-out alternate-reverse infinite);
+
+    @include auto-prefixer__keyframes(changeOpacityInfinite) {
+        0% {
+            opacity: .2;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+}
+
+// 
+@mixin solarise {
+    @include auto-prefixer__property(animation, solarise 3s ease-in-out);
+
+    @include auto-prefixer__keyframes(solarise) {
+        FROM {
+            text-shadow: 2px 0 10px rgb(243, 206, 179);
+        }
+
+        TO {
+            text-shadow: 0 0 0 rgb(230, 184, 151);
+        }
+    }
+}
+
+// 
+@mixin invertColor {
+    @include auto-prefixer__property(animation, invertColor 2s alternate infinite);
+
+    @include auto-prefixer__keyframes(invertColor) {
+        to {
+            @include auto-prefixer__property(filter, invert(0), webkit);
+        }
+
+        from {
+            @include auto-prefixer__property(filter, invert(1), webkit);
+        }
+    }
+}

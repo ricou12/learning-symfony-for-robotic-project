@@ -1,0 +1,55 @@
+/* ARRIERE PLAN */
+.background {
+    position: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+} 
+
+.bgImage {
+    z-index: -500;
+    background-image: url('/images/robotique.jpg');
+    @include auto-prefixer__property(filter, blur(5px),webkit);
+}
+
+.bgColor--black-transparency {
+    z-index: -400;
+    background-color: rgba(0, 0, 0, 0.3);
+    @include auto-prefixer__property(filter,blur(2px),webkit);
+}
+
+// WAVE
+.animate-bg-redWave {
+    background-image: url('/build/images/icon/bg-redWave.svg');
+    background-repeat: no-repeat;
+}
+
+.animate-bg-orangeWave {
+    background-image: url('/build/images/icon/Web-Header-Background.svg');
+}
+
+.animate-bg-raspberryWave {
+    background-image: url('/build/images/icon/bg-raspberryWave.svg');
+    background-repeat: no-repeat;
+}
+
+.animate-bg-blueWave {
+    background-image: url('/build/images/icon/bg-blueWave.svg');
+    background-repeat: no-repeat;
+}
+
+.animate-bg-blue {
+    background-image: url('/build/images/icon/bg-blueSnow.svg');
+    background-repeat: no-repeat;
+}
+
+// SNOW
+.animate-bg-raspberrySnow {
+    background-image: url('/build/images/icon/bg-raspberrySnow.svg');
+    background-repeat: no-repeat;
+}
+
+

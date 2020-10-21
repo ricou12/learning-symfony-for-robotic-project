@@ -1,0 +1,33 @@
+.erreur {
+    height: 100vh;
+    min-height: 400px;
+
+    h1,h2{
+        font-family: 'RobotoGoogle', sans-serif;
+    }
+
+    h2{
+        line-height: 3em;
+    }
+
+    &__title {
+        color: white;
+    }
+
+    &__bg--img {
+        z-index: -500;
+        background-image: url("/build/images/foret-5.jpg");
+    }
+
+    &__bg--color {
+        z-index: -400;
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+    
+}
+
+@media  screen and (max-width:574px){
+    .erreur h2{
+        line-height:1.5em;
+    }
+}

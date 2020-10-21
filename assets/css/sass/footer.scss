@@ -1,0 +1,70 @@
+.footer {
+    font-family: 'Playfair Display', serif;
+    
+    h3 {
+        font-size: 1.4em;
+        font-weight: 700;
+    }
+
+    h4 {
+        font-size: 1.2em;
+        font-weight: 500;
+    }
+
+    p {
+        font-size: 0.8em;
+    }
+
+    ul,
+    h6 {
+        padding-left: 0;
+
+        li {
+            list-style: none;
+            font-size: .8em;
+            line-height: 2em;
+        }
+
+        a {
+            text-decoration: none !important;
+
+            &:link {
+                color: white;
+            }
+
+            &:visited {
+                color: white;
+            }
+
+            &:hover {
+                color: rgb(178, 180, 169);
+                text-shadow: 1px 1px 2px #080808;
+            }
+
+        }
+    }
+
+    &__langIcon {
+        img {
+            margin: 1px;
+            width: 70px;
+            border: 1px solid white;
+            border-radius: 5px;
+        }
+
+    }
+
+    &__copyright {
+        width: 100%;
+        text-align: right;
+
+        a {
+            color: rgb(141, 155, 188);
+        }
+
+        &:hover {
+            color: white;
+        }
+    }
+
+}

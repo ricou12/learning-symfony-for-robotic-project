@@ -1,0 +1,47 @@
+/* COMPOSANTS */
+
+.cardRc{
+    display: flex;
+    flex-direction: column;
+    width: 17rem;
+    margin: 10px;
+    border-radius: 5px;
+    @include auto-prefixer__property(transition, .3s ease-in-out);
+    @include box-shadow-up;
+
+    &:hover{
+        @include auto-prefixer__property(filter, brightness(.9),webkit);
+        @include box-shadow-down;
+    }
+
+    &__title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 5px;
+        height: 150px;
+        font-weight: 500;
+        border-radius: 5px 5px 0 0;
+        background-color: #c51d4a;
+        h5 {
+            font-size: 1em;
+        }
+    }
+
+    &__body{
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 300px;
+        width: 100%;
+        border-radius: 0 0 5px 5px;
+
+        img{
+            width: 100%;
+            max-height:250px;
+        }
+
+    }
+}

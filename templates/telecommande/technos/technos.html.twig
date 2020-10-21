@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% import "components/components.html.twig" as component %}
+
+{% block title %}Télécommande matériel et logicielle{% endblock %}
+{% block description %}Décrit les méthodes déployées pour établir la communication avec le robot. Que ce soit à partir d'une interface web connectée à un serveur impliquant une connection wifi ou avec une télécommande équipée d'un émetteur récepteur radio.{% endblock %}
+
+{% block body %}
+<article>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 py-5 telecommand__header">
+                <div class="text-center">
+                    <h1 class="txtShadow--white txt-color--raspberry py-4 text-uppercase">Solution matériel et logiciel</h1>
+                    <h2 class="text-white txtShadow--black py-5 text-center">
+                        Schémas de fonctionnement</h2>
+                </div>        
+            </div> 
+        </div>
+    </div>
+
+    <div class="container-fluid border">
+        <div class="row">
+            <div class="col-12 pt-4">
+                <p>
+                    J'ai prévu 2 modes de contrôle commande :
+                    <ul>
+                        <li>Matériel<a href="{{'/telecommande/liste-des-composants.html' }}"> - Télécommande radio</a></li>
+                        <li>Logiciel<a href="{{'/telecommande/telecommande-web.html' }}"> - Télécommande web</a></li>
+                    </ul>
+                </p>
+            </div>
+            <section class="col-12 col-lg-6 p-2">
+                <h3>Matériel</h3>
+                <p>
+                    La première solution nécessite la réalisation d'une <a
+                        href="{{'/telecommande/liste-des-composants.html' }}"> télécommande</a>. <br>
+                    Dans ce cas la communication entre la télécommande et le robot est réalisée via les ondes radios.
+                    Les composants principaux sont une carte arduino uno, 2 joystick, des leds et un émetteur récepteur
+                    2.4
+                    ghz.
+                </p>
+                <div class="text-center">
+                    {# Modal #}
+                    {{component.modalRc(
+                        "Solution matériel",
+                        "/build/images/schema/telecommande-arduino.png",
+                        "matériel",
+                        "",
+                        "xl"
+                    )}}
+                </div>
+            </section>
+
+            <section class="col-12 col-lg-6 p-3">
+                <h3 class=" mt-4">Logiciel</h3>
+                <p>La seconde méthode nécessite le développement d'une <a
+                        href="{{'/telecommande/telecommande-web.html' }}">interface web</a> connectée à un serveur. J'ai opté
+                    pour
+                    une technologie de type front end. <br>
+                    <span class="font-weight-bold">Node Js</span> permet de développer en quelques lignes un serveur
+                    fonctionnel, c'est un environnement d'exécution JavaScript asynchrone et orienté événement. <br>
+                    Le noyau de Node.js est tout petit. De base, Node.js ne sait en fait pas faire grand chose, mais il
+                    est
+                    très riche grâce à son extensibilité, il existe des milliers de modules (extensions) qui offrent des
+                    fonctionnalités variées. <br>
+                    Comme le montre le schéma ci-dessous, le contrôle commande est géré par le microcontrôleur arduino.
+                    <br>
+                    Pour que l'arduino puisse exécuter les différentes actions , il doit pouvoir communiquer avec le
+                    serveur.
+                    Le port serie (port de communication) de type USB va permettre l'échange des données entre le
+                    serveur et
+                    l'arduino.
+                    Le module Node SerialPort permet d'interagir entre les deux périphériques.
+                </p>
+                <!-- MODAL IMAGE BALISE <img> -->
+                <div class="text-center">
+                {# Modal #}
+                    {{component.modalRc(
+                        "Solution logiciel",
+                        "/build/images/schema/serveur-arduino.png",
+                        "logiciel",
+                        "",
+                        "xl"
+                    )}}
+                </div>
+            </section>
+        </div>
+    </div>
+</article>
+{% endblock %}

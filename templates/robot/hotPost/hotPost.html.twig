@@ -1,0 +1,54 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Créer un HotPost{% endblock %}
+{% block description %}Apprenez a créer un point d'accès WiFi, sur Raspberry Pi avec RaspAP.{% endblock %}
+
+{% block body %}
+<article>
+    <div class="container-fluid border">
+        <div class="row">
+            <div class="col-12 py-5 hotPost__header">
+                <div class="text-center">
+                    <h1 class="txtShadow--white txt-color--raspberry py-4 text-uppercase">Créer un hotspot Wi-Fi</h1>
+                    <h2 class="text-white txtShadow--black py-5">Se connecter en wifi <br> sur le raspberry avec RaspAP</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container py-3 mt-2 rounded">
+        <div class="row">
+            <section class="col-12">
+                <h3 class=" txt-color--raspberry">Sauvegarder le fichier de configuration du wifi</h3>
+                <p>Faire un copie du fichier de configuration qui contrôle l'interface wifi :</p>
+                <pre
+                    class="code">sudo cp /etc/wpa_supplicant/wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant.conf.sav<br>sudo cp /dev/null /etc/wpa_supplicant/wpa_supplicant.conf</pre>
+            </section>
+
+            <section class="col-12">
+                <h3 class=" txt-color--raspberry">Editer le fichier de configuration du wifi</h3>
+                <p>Le fichier étant vide <span class="extrait">/etc/wpa_supplicant/wpa_supplicant.conf</span> ajoutez
+                    les lignes suivantes :</p>
+                <pre class="code">ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev<br>update_config=1</pre>
+            </section>
+
+            <section class="col-12">
+                <h3 class=" txt-color--raspberry">Construire un point d’accès</h3>
+                <p>Pour construire un point d’accès avec la raspberry pi, nous utilisons : le logiciel hostapd. <br>
+                    Et pour faciliter l’installation et l’administration de ce point d’accès on utilise RaspAP (une
+                    interface web qui nous permettra de contrôler notre hotspot)
+                </p>
+                <pre class="code">wget -q https://git.io/voEUQ -O /tmp/raspap && bash /tmp/raspap</pre>
+                <p>Installer RaspAP dans le sous repertoire <span class="extrait">/var/www/html</span> nommer le par
+                    exemple : RaspAP</p>
+            </section>
+
+            <section class="col-12">
+                <h3 class=" txt-color--raspberry">Se connecter à votre hotspot Wi-Fi</h3>
+                <p>Lorsque l’installation est terminée, la raspberry pi redémarre, et vous devriez voir apparaître un
+                    réseau « raspi-webgui » dans la liste des réseaux accessibles.</p>
+            </section>
+        </div>
+    </div>
+</article>
+{% endblock %}

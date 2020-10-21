@@ -1,0 +1,22 @@
+.formAccount {
+
+    h1,h2{
+        font-family: 'RobotoGoogle', sans-serif;
+    }
+
+    .InputForm{
+        min-width: 100px;
+        width:60%;
+
+        border:1px solid gray;
+        border-radius: 5px;
+    }
+
+    .labelOfInput{
+        text-align: right;
+        color:white;
+        min-width: 110px;
+
+        padding: .4rem .5rem ;
+    }
+}

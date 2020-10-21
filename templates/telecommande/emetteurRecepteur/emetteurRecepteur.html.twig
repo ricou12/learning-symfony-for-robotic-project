@@ -1,0 +1,116 @@
+{% extends 'base.html.twig' %}
+
+{% import "components/components.html.twig" as component %}
+
+{% block title %}Emetteur recepteur radio 2.4Ghz{% endblock %}
+{% block description %}"Découvrez les spécifications de l'émetteur récepteur radio nRF24L01, son fonctionnement, et l'installation de la librairie afin d'exploiter la communication radio.{% endblock %}
+{% block body %}
+<article>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 py-5 telecom-configRadio__header">
+                <div class="text-center">
+                    <h1 class="txtShadow--black txt-color--yellowHight py-4 text-uppercase">Emetteur Récepteur<br>sans Fil
+                        2.4G</h1>
+                    <h2 class="text-white txtShadow--black py-5">Installation et configuration</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="container pt-4">
+        <div class="row">
+            <div class="col-12">
+                <h3 class=" txt-color--raspberry">Le module NRF24L01</h3>
+                <p>L'époque des communications câblées est révolue. Aujourd'hui, de plus en plus de communications entre cartes électroniques se font sans fil ainsi ce module permet à la fois d'envoyer et recevoir les données.</p>
+            </div>
+        </div>
+        <section class="row">
+            <div class="col-12">
+                <h4 class=" txt-color--raspberry">Spécifications du module nRF24L01</h4>
+                <ul>
+                    <li>La consommation d'énergie est d'environ 12mA pendant la transmission, ce qui est encore moins
+                        que la
+                        led.</li>
+                    <li>Il peut fonctionner avec des débits en bauds de 250 Kbps à 2 Mbps.</li>
+                    <li>Sa portée peut atteindre jusqu'à 100 mètres si elle est utilisée en espace ouvert et avec
+                        antenne.
+                    </li>
+                    <li>Il peut à la fois envoyer et recevoir les données simultanément.</li>
+                    <li>Chaque module peut communiquer avec 6 autres modules.</li>
+                    <li>Il utilise la bande 2,4 GHz.</li>
+                    <li>Il peut envoyer de 1 à 25 octets de données brutes à une vitesse de transmission de 1 Mo.</li>
+                    <li>Il dispose de 125 canaux différents.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="row">
+            <div class="col-12 col-md-6">
+                <h4 class=" txt-color--raspberry">Connectique</h4>
+                {# Modal #}
+                {{component.modalRc(
+                    "Module nrf24l01" ,
+                    "/build/images/montage/nrf24l01.jpg",
+                    "connectique" ,
+                    "",
+                    "lg" 
+                )}}
+            </div>
+            <div class="col-12 col-md-6 mt-md-5">
+                <p class="colorGreen">Broches utilisées pour le UNO</p>
+                <ul class="colorGreen">
+                    <li>MISO -> 12 </li>
+                    <li>MOSI -> 11</li>
+                    <li>SCK -> 13</li>
+                    <li>CE -> 8</li>
+                    <li>CSN -> 7</li>
+                    <li>GND -> GND</li>
+                    <li>VCC -> 3.3v (Volts du regulateur)</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="row">
+            <div class="col-12">
+                <p class="mt-2"> La tension de fonctionnement de ce module est de 1,9 à 3,6 V mais les autres broches
+                    sont
+                    tolérantes à 5 V, ce qui signifie que les autres broches peuvent être directement connectées à
+                    l'Arduino. <br>
+                    Le MOSI, MISO et le SCK doivent être connectés aux broches SPI d'Arduino. Chaque modèle d'Arduino
+                    possède des numéros broches SPI différentes. Ci-dessus un exemple de brochage pour une carte arduino
+                    uno, un autre exemple est fourni dans le <a
+                        href="{{'/telecommande/code-source-arduino.html' }}">code</a>
+                    pour le modèle mega. <br>
+                    Le CSN et le CE servent à mettre le module en mode actif et à basculer entre le mode de commande et
+                    le
+                    mode de transmission. Ceux-ci peuvent être connectés à toutes les broches numériques d'Arduino. <br>
+                    La broche IRQ est la broche d'interruption et vous n'avez pas besoin de la connecter.
+                </p>
+                <p>Installer le software Arduino téléchargeable à <a href="https://www.arduino.cc/en/main/software"
+                        target="_blank"> sur le site officiel.</a></p>
+                <p>Puis télécharger la libraire <span class="font-weight-bold"> nrf24l01</span><a
+                        href="{{ 'assets/librairie/arduino-nrf24l01.zip' }}"> ici.</a></p>
+                <p class="mt-2">Enfin ajouter la librairie dans l'onglet croquis <span class="extrait">inclure une
+                        bibliothèque</span>.</p>
+                <div class="row">
+                    <div class="col-12 col-sm-10 col-lg-8">
+                        {# Modal #}
+                        {{component.modalRc(
+                            "Importer une librairie",
+                            '/build/images/arduino-biblio.jpg',
+                            "librairie",
+                            "",
+                            "lg"
+                        )}}
+                    </div>
+                </div>
+
+                <p>Retrouvez tous les détails dans <a href="{{'/telecommande/code-source-arduino.html' }}"> le code
+                        source.</a>
+                </p>
+            </div>
+        </section>
+    </section>
+</article>
+{% endblock %}

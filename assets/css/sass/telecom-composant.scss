@@ -1,0 +1,19 @@
+
+.telecom-composant {
+    &__header {
+        background-image:  url('/build/images/header/electronique.jpg');
+        background-repeat: no-repeat;
+        background-position: right;
+        background-size: cover;
+        min-height: 400px;
+        overflow: hidden;
+    
+        h1 {
+            @include auto-prefixer__property(animation, (flipInX 2.5s, rubberBand 1.5s 1s), webkit moz o);
+        }
+
+        h2 {
+            @include auto-prefixer__property(animation, lightSpeedInLeft 2s, webkit moz o);
+        }           
+    }
+}

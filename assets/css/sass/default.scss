@@ -1,0 +1,4 @@
+body{
+    // @include changeOpacity(2s, 0, 1);
+    @include auto-prefixer__property(animation, fadeIn 2s, webkit moz o);
+}

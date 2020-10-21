@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Code source de la télécommande radio émetteur{% endblock %}
+{% block description %}Découvrez le détail du code source a téléverser sur le microcontrôleur arduino connecté sur la télécommande et ainsi controler le robot via la communication radio.{% endblock %}
+{% block body %}
+<article>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 py-5 code__header">
+                <div class="text-center">
+                    <h1 class="txtShadow--black txt-color--green py-4 text-uppercase">La télécommande</h1>
+                    <h2 class="text-white txtShadow--black py-4">Le code a téléverser sur l'Arduino</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="container">
+        <div class="row">
+            <div class="col-12 GistHub">
+                <script src="https://gist.github.com/ricou12/7d812de50d0884d99c53f66bbc18d406.js"></script>
+            </div>
+        </div>
+    </section>
+</article>
+{% endblock %}

@@ -1,0 +1,18 @@
+.rpiCam {
+    &__header {
+        background-image: url('/build/images/header/camera.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        min-height: 400px;
+        overflow: hidden;
+        @include move-Axe-Y($name:rpiCam01,$delai:4s, $start-Top:10px);
+
+        h1{
+            animation: bounceInDown 2.5s;
+        }
+
+        h2{
+            animation: bounceInDown 2s;
+        }
+    }
+}

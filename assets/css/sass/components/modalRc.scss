@@ -1,0 +1,48 @@
+.modal__vignettes {
+    width: 100%;
+    height: auto;
+    border-radius: 2px;  
+}
+
+.modal-body__image{
+	width:100%;
+}
+
+
+.modal__cursor-zoomIn {
+    cursor: pointer;
+}
+
+// Effect
+.effect-grayscaleZoomTurnOut {
+	@include auto-prefixer__property(transition,.7s ease-in);
+}
+
+.effect-grayscaleZoomTurnOut:hover {
+	@include auto-prefixer__property(filter, grayscale(100%),webkit);
+	@include auto-prefixer__property(transform, rotate(-5deg) scale(.9),webkit moz ms);
+}
+
+.effect-grayscaleZoomTurnIn {
+	@include auto-prefixer__property(transition,.7s ease-in);
+}
+
+.effect-grayscaleZoomTurnIn:hover {
+	@include auto-prefixer__property(filter, grayscale(100%),webkit);
+	@include auto-prefixer__property(transform, rotate(5deg) scale(.9),webkit moz ms);
+}
+
+.effect-move_X {
+	@include auto-prefixer__property(transition,2s ease-in);
+}
+
+.effect-move_X:hover {
+	@include auto-prefixer__property(filter, grayscale(100%),webkit);
+	@include auto-prefixer__property(transform, translateX(100px),webkit moz ms);
+}
+
+@media screen and (max-width:575px){
+    .modal__vignettes {
+		width: 80%;  
+	}
+}

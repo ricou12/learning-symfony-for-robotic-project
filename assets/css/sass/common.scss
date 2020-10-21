@@ -1,0 +1,240 @@
+
+// POLICE DE CARACTERES
+@font-face {
+    font-family:"RobotoGoogle";
+    src:
+        url('/build/fonts/Roboto/Roboto-Black.ttf') format("truetype"),
+        url('/build/fonts/Roboto/Roboto-BlackItalic.ttf') format("truetype"),
+        url('/build/fonts/Roboto/Roboto-Bold.ttf') format("truetype"),
+        url('/build/fonts/Roboto/Roboto-BoldItalic.ttf') format("truetype"),
+        url('/build/fonts/Roboto/Roboto-Italic.ttf') format("truetype"),
+        url('/build/fonts/Roboto/Roboto-Light.ttf') format("truetype"),
+        url('/build/fonts/Roboto/Roboto-LightItalic.ttf') format("truetype"),
+        url('/build/fonts/Roboto/Roboto-Medium.ttf') format("truetype")
+        url('/build/fonts/Roboto/Roboto-MediumItalic.ttf') format("truetype"),
+        url('/build/fonts/Roboto/Roboto-Regular.ttf') format("truetype"),
+        url('/build/fonts/Roboto/Roboto-Thin.ttf') format("truetype"),
+        url('/build/fonts/Roboto/Roboto-ThinItalic.ttf') format("truetype"),;
+}
+
+@font-face {
+    font-family: "Ranchers";
+    src: url('/build/fonts/Ranchers/Ranchers-Regular.ttf') format("truetype");
+}
+
+@font-face {
+    font-family:"Playfair Display";
+    src:
+        url('/build/fonts/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf') format("truetype");
+}
+
+// TAILLE DES POLICES
+.ftsz-10 {
+    font-size: 1em;
+}
+
+.ftsz-9 {
+    font-size: .9em;
+}
+
+.ftsz-8 {
+    font-size: .8em;
+}
+
+.ftsz-7 {
+    font-size: .7em;
+}
+
+.ftsz-5 {
+    font-size: .5em;
+}
+
+// PROPRIETES COMMUNES AUX DIFFERENTES PAGES
+body {
+    font-family: 'RobotoGoogle', sans-serif;
+}
+
+[class*="__header"]{
+    font-family: 'Ranchers', cursive;
+    word-spacing: .2rem;
+}
+
+h1,h2,h4{
+    font-weight: 400;
+}
+
+
+// BARRE DE NAVIGATION
+.navigation {
+    font-weight: 700;
+
+    &__connect {
+        filter: drop-shadow(2px 2px 5px rgb(121, 120, 120));
+        transition:.5s;
+
+        &:hover{
+            transform: rotateZ(20deg);
+        }
+        &:active {
+            filter: drop-shadow(2px 2px 5px rgb(121, 120, 120), -2px -2px 5px rgb(121, 120, 120));
+            transform: scale(.8);
+        }
+    }
+}
+
+.composants {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.cursor-zoomIn {
+    cursor: zoom-in;
+}
+
+
+
+/* BACKGROUND COLOR */
+.bgColor--blackHight {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.bgColor--blackMedium {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.bgColor--blackLight {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.bgColor-title--blue {
+    background-color: rgba(14, 40, 45, 0.5);
+}
+
+.bgColor--blueLight {
+    background-color: rgba(21, 35, 35, 0.63);
+}
+
+.bgColor--greenLight {
+    background-color: rgb(107, 249, 107);
+}
+
+.bgColor--greenExtraLight {
+    background-color: rgb(169, 245, 163);
+}
+
+.bgColor--orangeLight {
+    background-color: rgb(247, 168, 143);
+}
+
+.bgColor--orange {
+    background-color: rgb(249, 142, 47);
+}
+
+.bgColor--blueDark {
+    background-color: rgb(41, 70, 127);
+}
+
+.bgColor--raspberry {
+    background-color: rgb(197, 29, 74);
+}
+
+/* COLOR */
+.txt-color--blue {
+    color: rgb(7, 45, 192);
+}
+
+.txt-color--blueLight {
+    color: rgb(70, 106, 245);
+}
+
+.txt-color--turquoise {
+    color: rgb(144, 228, 220);
+}
+.txt-color--blueSky {
+    color: #00caf8;
+}
+
+.txt-color--blueDark {
+    color:rgb(50, 50, 80);
+}
+
+.txt-color--orange {
+    color: rgb(251, 117, 36);
+}
+
+.txt-color--red {
+    color: rgb(255, 0, 0);
+}
+
+.txt-color--raspberry {
+    color: rgb(197, 29, 74);
+}
+
+.txt-color--yellowHight {
+    color: rgb(255, 255, 0);
+}
+
+.txt-color--yellow {
+    color: rgb(236, 242, 77);
+}
+
+.txt-color--green {
+    color:  rgb(154, 243, 104);
+}
+
+/* TEXT COLOR */
+.colorGreen {
+    color: #0a8c0a;
+    font-weight: bold;
+}
+
+/* TEXT SHADOW */
+.txtShadow--black {
+    text-shadow: 1px 2px 2px rgb(0, 0, 0);
+}
+
+.txtShadow--white {
+    text-shadow: 1px 2px 2px #ffffff;
+}
+
+.txtShadow--raspberry {
+    text-shadow: 1px 2px 2px rgb(254, 0, 0);
+}
+
+.txtShadow--red {
+    text-shadow:-1px -1px 1px black, 1px 1px 1px rgb(255, 3, 3);
+}
+
+.txtShadow--turquoise {
+    text-shadow: -1px -1px 1px black, 1px 1px 1px #00cfff;
+}
+
+/* BOX BORDER */
+.box-border {
+    border: 2px solid rgba(253, 253, 253, 0.3);
+}
+
+// TAILLE DES POLICES POUR SUPPORTS MOBILE
+@media screen and (max-width:575px){
+    h1{
+       font-size: 2em; 
+    }
+
+    h2{
+        font-size: 1.7em;
+    }
+
+    h3{
+        font-size: 1.4em;
+    }
+
+    h4{
+        font-size: 1.1em;
+    }
+
+    p,li{
+        font-size: .9em;
+    }
+}

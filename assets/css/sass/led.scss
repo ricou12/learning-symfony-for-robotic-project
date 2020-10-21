@@ -1,0 +1,22 @@
+.led {
+    &__header {
+        background-image: url('/build/images/header/led.jpg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        min-height: 400px;
+        @include move-Axe-Y($name:led01, $delai:1s, $start-Top:15px);
+
+        h1 {
+            @include move-Axe-Y($name:led02, $delai:1s, $start-Top:100%)
+        }
+
+        h2 {
+            @include move-Axe-Y($name:led03, $delai:1s, $start-Top:-100%)
+        }
+    }
+
+    img {
+        max-width: 100%;
+    }
+}

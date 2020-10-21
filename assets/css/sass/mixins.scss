@@ -1,0 +1,12 @@
+/* BOX SHADOW */
+@mixin box-shadow-up {
+    @include auto-prefixer__property( box-shadow,(-2px -2px 10px -5px #000000,7px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0)));
+}
+
+@mixin box-shadow-down {
+    @include auto-prefixer__property( box-shadow, (-2px -2px 8px -5px #000000,2px 4px 13px -7px rgb(0, 0, 0), 5px 5px 15px 5px rgba(0, 0, 0, 0)) );
+}
+
+@mixin box-shadow-no {
+    @include auto-prefixer__property( box-shadow, (0 0 0, 0 0 0) );
+}

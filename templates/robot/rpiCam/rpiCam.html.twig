@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Installer une caméra{% endblock %}
+{% block description %}Découvrez comment ajouter un module vidéo à votre Raspberry pi. L'installation et la configuration du avec linterface Web du module RPi Cam.{% endblock %}
+{% block body %}
+<article>
+    <div class="container-fluid border">
+        <div class="row">
+            <div class="col-12 py-5 rpiCam__header">
+                <div class="text-center">
+                    <h1 class="txtShadow--black txt-color--yellowHight py-4 text-uppercase">Installation et configuration
+                        d'une caméra</h1>
+                    <h2 class="text-white txtShadow--black py-4">L'interface Web du module RPi Cam</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container py-4 mt-2 rounded">
+        <div class="row">
+            <section class="col-12">
+                <h3 class=" txt-color--raspberry">Mise à jour du firmeware</h3>
+                <div class="d-inline-block mb-2">
+                    <img src="{{ asset('/build/images/terminal.png') }}" alt="Terminal" width="50" class="border">
+                    Ouvrir le terminal
+                </div>
+                <p>Mettre à jour puis à niveau la distribution et tous les packages installés du Raspberry Pi :</p>
+                <pre class="code">sudo apt-get update && sudo apt-get dist-upgrade -y && sudo rpi-update</pre>
+            </section>
+            
+            <section class="col-12">
+                <h3 class=" txt-color--raspberry">Git</h3>
+                <p>Vérifier si Git (gestionnaire de version) est installé :</p>
+                <pre class="code">git --version</pre>
+                <p>Sinon installer git :</p>
+                <pre class="code">sudo apt-get install git-core</pre>
+            </section>
+
+            <section class="col-12">
+                <h3 class=" txt-color--raspberry">Télécharger RPi Cam</h3>
+                <p>Récupérez la dernière version de Rpi Cam en clonant le référentiel GitHub du projet avec :</p>
+                <pre class="code">git clone https://github.com/silvanmelchior/RPi_Cam_Web_Interface.git</pre>
+                <h4>Changer les droits d'accés du fichier</h4>
+                <p>Avant de lancer l'installation de RpiCam. <br>
+                    Vous devez rendre exécutables le script pour qu'il fonctionne :
+                </p>
+                <pre class="code">cd RPi_Cam_Web_Interface<br>chmod u+x *.sh</pre>
+            </section>
+
+            <section class="col-12">
+                <h3 class=" txt-color--raspberry">Installation de RPi Cam</h3>
+                <p>Afin lancer l'installation du Rpi Cam</p>
+                <p>Dans l'interface qui s'ouvre : RPi Cam web Interface Installer</p>
+                <p>Sélectionner install, pour apache</p>
+                <p>Par défaut le répertoire d'installation est <span class="extrait">/var/www/html</span>, créér un sous
+                    dossier dans ce répertoire en
+                    ajoutant par exemple : RpiCam.<p>
+                        <pre class="code">/var/www/html/RpiCam</pre>
+                        <p>Le système propose de rebooter la machine</p>
+                        <p>Accèder à la configuration du Rpi </p>
+                        <pre class="code">./RPi_Cam_Web_Interface_Installer.sh</pre>
+                        <p>Cliquer sur <span class="extrait">1 install</span> mettre à jour puis à niveau, d'autre
+                            options peuvent être modifiées. </p>
+            </section>
+        </div>
+    </div>
+</article>
+{% endblock %}

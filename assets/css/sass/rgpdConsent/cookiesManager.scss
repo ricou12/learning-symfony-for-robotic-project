@@ -1,0 +1,115 @@
+
+.cookiesManager {
+
+    &__box {
+
+        box-shadow: 2px 3px 10px black;
+        display: none;
+        position: fixed;
+        bottom: 15px;
+        left: 15px;
+        background-color: rgba(0, 0, 0, 0.9);
+        z-index: 1050;
+        width: 400px;
+        border-radius: 5px;
+        padding: 20px 20px 0 20px;
+        overflow: hidden;
+        outline: 0;
+        font-family: 'Roboto', sans-serif;
+        color:white;
+
+        svg {
+            position: absolute;
+            z-index: -1;
+            top: 2px;
+            right:5px;
+        }
+
+        .title {
+            padding-top: .3rem;
+        }
+
+        .subtitle {
+            padding-top: .7rem;
+            font-weight: bold;
+        }
+
+        .comments { 
+            padding-top: .7rem;
+            text-align: justify;
+        }
+
+        .boxButton {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: .7rem; 
+        }
+
+        .contentCookies {
+            border: 1px solid rgb(46, 42, 42);
+            padding: .5rem;
+            margin-bottom: 1.2rem;
+            overflow-y: scroll;
+            max-height: 170px;
+        }
+
+        .mentions {
+            font-weight: bold;
+        }
+
+        .copyright {
+            margin-top: .8rem;
+        }
+
+        
+        // Taille des polices de caracteres
+        .ftsz-10 {
+            font-size: 1em;
+        }
+        
+        .ftsz-9 {
+            font-size: .9em;
+        }
+        
+        .ftsz-8 {
+            font-size: .8em;
+        }
+        
+        .ftsz-7 {
+            font-size: .7em;
+        }
+        
+        .ftsz-5 {
+            font-size: .5em;
+        }
+    
+        // Couleur des textes
+        .txt-color--raspberry {
+            color: rgb(197, 29, 74);
+        }
+
+        .txt-color--orange {
+            color: rgb(251, 117, 36);
+        }
+
+        @media screen and (max-width:575px) {
+            width: 100%;
+            left: 0;
+            bottom: 0;
+
+        }
+
+        /* Fading exits */
+    @include auto-prefixer__keyframes (fadeOut) {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+        }
+    }
+
+    }
+
+}

@@ -1,0 +1,90 @@
+{% import "components/components.html.twig" as component %}
+
+<footer class="container-fluid bg-dark text-light px-4 footer" id="footer">
+    <div class="row border-secondary border-bottom p-4">
+        <div class="col-12 text-center ">
+            <h6><a href="#anchor">Début de page</a></h6>
+        </div>
+    </div>
+    <div class="row">
+        <section class="col-12 col-md-4 col-lg-4 col-xl-4 p-4 order-2 order-md-1 border-secondary border-bottom">
+            <div class="row">
+                <div class="col-12">
+                    <h4 class="text-center">A propos</h4>
+                    <p>
+                        <span class="font-weight-bold">Développeur</span>: Lanza Eric <br>
+                        <span class="font-weight-bold">Email</span>: dwwm2109@gmail.com
+                    </p>
+                    <p>
+                        Ce site a été développé avec Jekyll un générateur de site statique, hebergé sur GitHub et
+                        déployé
+                        sur les gitHub pages.
+                    </p>
+                </div>
+                <div class="col-12 d-flex flex-wrap justify-content-start footer__langIcon">
+                    <a href="https://github.com/" target="__blank"><img src="{{ asset("/build/images/icon/github.png") }}" alt="GitHub"></a>
+                    <a href="https://jekyllrb.com/" target="__blank"><img src="{{ asset("/build/images/icon/jekyll.png") }}" alt="Jekyll"></a>
+                    <a href="https://github.com/Shopify/liquid" target="__blank"><img src="{{ asset("/build/images/icon/liquid.png") }}" alt="Liquid"></a>
+                    <a href="https://developer.mozilla.org/fr/docs/Web/HTML" target="__blank"><img src="{{ asset("/build/images/icon/html.png") }}" alt="HTML"></a>
+                    <a href="https://www.w3schools.com/css/" target="__blank"><img src="{{ asset("/build/images/icon/css.png") }}" alt="CSS"></a>
+                    <a href="https://sass-lang.com/" target="__blank"><img src="{{ asset("/build/images/icon/sass.png") }}" alt="SASS"></a>
+                    <a href="https://developer.mozilla.org/fr/docs/Web/JavaScript" target="__blank"><img src="{{ asset("/build/images/icon/js.png") }}" alt="Javascript"></a>
+                </div>
+            </div>
+        </section>
+        <section class="col-12 col-md-5 col-lg-5 col-xl-4 p-4 order-1 order-md-2 border-secondary border-bottom d-flex flex-column align-items-center">
+            <h4>Navigation</h4>
+            <ul>
+                <li><a href="{{'/' }}">Projet robotique</a></li>
+                <span class="mt-4 text-secondary font-weight-bold">Conception des télécommandes</span>
+                <li><a href="{{'/telecommande/solution-materiel-et-logiciel.html' }}">Solution matériel et logiciel</a></li>
+                <li><a href="{{'/telecommande/telecommande-web.html' }}">Télécommande web</a></li>
+                <li><a href="{{'/telecommande/liste-des-composants.html' }}">Les composants</a></li>
+                <li><a href="{{'/telecommande/emetteur-recepteur-radio.html' }}">Emetteur Récepteur NRF24L01</a></li>
+                <li><a href="{{'/telecommande/diode-electroluminescente.html' }}">Alimenter une LED</a></li>
+                <li><a href="{{'/telecommande/code-source-arduino.html' }}">Le code source</a></li>
+                <span class="mt-4 text-secondary font-weight-bold">Conception du robot</span>
+                <li><a href="{{'/robot/liste-des-composants.html' }}">Les composants</a></li>
+                <li><a href="{{'/robot/creer-un-hotspot-WiFi.html' }}">Créer un hotspot Wi-Fi</a></li>
+                <li><a href="{{'/robot/installer-et-configurer-une-camera.html' }}">Installer une caméra</a></li>
+                <li><a href="{{'/robot/code-source-arduino.html' }}">Le code source</a></li>
+                <li><a href="{{'/mentions-legales.html' }}">Mentions légales</a></li>
+                <li><a href="#" id="showBoxCookiesManager">Cookies</a></li>
+            </ul>
+        </section>
+        <section class="col-12 col-md-3 col-lg-3 col-xl-4 p-4 order-3 order-md-3">
+            <div class="row">
+                <div class="col-12">
+                    <h4 class="text-center mb-3">Découvrir mes autres sites</h4>
+                </div>
+                <aside class="col-6 col-sm-4 col-md-12 col-xl-6 d-flex flex-column align-items-center">
+                    {{ component.boxVideoLinkUrl(
+                        "/build/images/Screenshot_champi.jpg",
+                        "/build/video/myco.mp4",
+                        "https://petit-guide-des-champignons.000webhostapp.com/",
+                        "Architecture MVC personnalisée, langages: Html, Sass, Php, Twig, Sql."
+                    ) }}
+                </aside>
+                <aside class="col-6 col-sm-4 col-md-12 col-xl-6 d-flex flex-column align-items-center">
+                    {{ component.boxVideoLinkUrl(
+                        "/build/images/Screenshot_Meteo.png",
+                        "/build/video/meteo.mp4",
+                        "https://ricou12.github.io/meteo-webService/",
+                        "Application météo Javascript uitlisant une API."
+                    ) }}
+                </aside>
+                <aside class="col-6 col-sm-4 col-md-12 col-xl-6 d-flex flex-column align-items-center">
+                    {{ component.boxVideoLinkUrl(
+                        "/build/images/Screenshot_Meteo.png",
+                        "/build/video/pictureBox.mp4",
+                        "https://ricou12.github.io/PictureBox-BOOTSTRAP-JS/",
+                        "Premier pas avec HTML, CSS, Javascript."
+                    ) }}
+                </aside>
+                <aside class="footer__copyright ftsz-7">
+                    <a href="http://copyright.be" target="_blank" >Copyright © 2020 IHM-Robotique - Tous droits réservés</a>
+                </aside>
+            </div>
+        </section>
+    </div>
+</footer>

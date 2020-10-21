@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <!-- BOOTSTRAP -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+        <!-- GOOGLE FONTS -->
+        <link href="https://fonts.googleapis.com/css2?family=Ranchers&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"> 
+
+        <!-- Lien vers mes fichiers css -->
+        <link rel="stylesheet" href="{{ '/assets/css/main.css' }}" type="text/css">
+
+        <!-- autoriser l'indexation par les moteurs de recherche -->
+        <meta name="robots" content="index">
+
+        <!-- HTML Meta Tags -->
+        <title>Erreur 404 - IHM Robotique</title>
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset("/build/images/icon/favicon.png") }}"/>
+        <meta name="description" content="Désolé, cette page n'existe pas!">
+        <link rel="canonical" href="">
+
+        <!-- Google / Search Engine Tags -->
+        <meta itemprop="name" content="Désolé, cette page n'existe pas!">
+        <meta itemprop="description" content="Désolé, cette page n'existe pas!">
+        <meta itemprop="image" content="{{ asset('/build/video/logoOg.gif') }}">
+
+        <!-- Facebook Meta Tags -->
+        <meta property="og:locale" content="fr_FR"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:title" content="Erreur 404 - IHM Robotique"/>
+        <meta property="og:description" content="Désolé, cette page n'existe pas!"/>
+        <meta property="og:url" content=""/>
+        <meta property="og:image" content="{{ asset('/build/video/logoOg.gif') }}"/>
+        <meta property="og:image:width" content="300"/>
+        <meta property="og:image:height" content="169"/>
+
+        <!-- Twitter Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="Erreur 404 - IHM Robotique">
+        <meta name="twitter:description" content="Désolé, cette page n'existe pas!">
+        <meta name="twitter:image" content="{{ asset('/build/video/logoOg.gif') }}">
+    </head>
+
+    <body>
+        <main>
+            <div class="background erreur__bg--img"></div>
+            <div class="background erreur__bg--color"></div>
+
+            <article class="container-fluid d-flex flex-column justify-content-around align-items-center erreur">
+
+                <div class="row">
+                    <div class="col-12">
+                        <h1 class="text-center erreur__title">...OOPS  Erreur 404 - Page introuvable</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h2 class="text-center erreur__title font-italic">Désolé, vous avez emprunté le mauvais chemin !<br>Nous allons arranger ça.</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <a href="{{ '/' }}" class="btn btn-outline-light">Accueil</a>
+                    </div>
+                </div>     
+            </article>
+        </main>
+
+        {% block javascripts %}{% endblock %}
+        
+        <!-- Lien vers CDN -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        
+    </body>
+</html>

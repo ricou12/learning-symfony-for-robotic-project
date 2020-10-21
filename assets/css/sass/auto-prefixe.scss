@@ -1,0 +1,30 @@
+/* ***********************************************************************
+ **         Mixin destiné à automatiser la génération de préfixes       **
+ *********************************************************************** */
+
+@mixin auto-prefixer__property($property, $valueOfProperty, $prefixes: webkit moz ms o) {
+    @each $prefix in $prefixes {
+        #{"-" + $prefix + "-" + $property}: $valueOfProperty;
+    }
+    #{$property}: $valueOfProperty;
+}
+
+/* AUTO PREFIXE POUR KEYFRAMES */
+@mixin auto-prefixer__keyframes($animation_name) {
+    @-webkit-keyframes #{$animation_name} {
+        @content;
+    }
+
+    @-moz-keyframes #{$animation_name} {
+        @content;
+    }
+
+
+    @-o-keyframes #{$animation_name} {
+        @content;
+    }
+
+    @keyframes #{$animation_name} {
+        @content;
+    }
+}
