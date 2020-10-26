@@ -71,7 +71,7 @@ class UsersAuthentificatorAuthenticator extends AbstractFormLoginAuthenticator i
 
         if (!$user) {
             // fail authentication with a custom error
-            throw new CustomUserMessageAuthenticationException('Email could not be found.');
+            throw new CustomUserMessageAuthenticationException('L\'e-mail est introuvable.');
         }
 
         return $user;
@@ -97,7 +97,7 @@ class UsersAuthentificatorAuthenticator extends AbstractFormLoginAuthenticator i
         }
 
         // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
-        return new RedirectResponse($this->urlGenerator->generate('index'));
+        return new RedirectResponse($this->urlGenerator->generate('forum_index'));
         throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 

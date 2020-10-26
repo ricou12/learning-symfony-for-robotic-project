@@ -1,5 +1,26 @@
-// the ~ allows you to reference things in node_modules
+/* BOOTSTRAP
+    yarn add bootstrap --dev
+    Le ~ vous permet de référencer des choses dans node_modules
+    importe le node_modules/bootstrap/scss/bootstrap.scss fichier dans main.scss
+    Bootstrap JavaScript nécessite jQuery et Popper.js
+    yarn add jquery popper.js --dev
+    Obtenir bootstrap à partir de l'un de vos fichiers JavaScript app.js (bundle webpack encore)
+    const $ = require('jquery');
+    require('bootstrap');
+*/
 @import "~bootstrap/scss/bootstrap";
+
+/* RFS
+    Modifie automatiquement la taille des polices de caractères
+    Taille de police de base (unité en px ou rem)
+    npm: npm install rfs 
+        ou
+    yarn: yarn add rfs
+    Importation du module
+    @import "~rfs/scss";
+    usage:@include font-size(4rem); OU @include responsive-font-size(64px); OU @include rfs(64);
+*/
+@import "~rfs/scss";
 @import "sass/auto-prefixe";
 @import "sass/animateOrigin";
 @import "sass/animateRc";
@@ -26,5 +47,3 @@
 @import "sass/composants-vehicule";
 @import "sass/led";
 @import "sass/formAccount";
-@import "sass/mentions-legales";
-

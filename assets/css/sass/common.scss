@@ -28,6 +28,55 @@
         url('/build/fonts/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf') format("truetype");
 }
 
+
+// PROPRIETES COMMUNES AUX DIFFERENTES PAGES
+body {
+    font-family: 'RobotoGoogle', sans-serif;
+}
+
+[class*="__header"]{
+    word-spacing: .3rem;
+
+    h1{
+        font-family: 'Ranchers', cursive;
+        @include font-size(2.5rem);
+    }
+
+    h2{
+        font-family: 'Ranchers', cursive;
+        @include font-size(2rem);
+    }
+}
+
+h1,h2,h3,h4{
+    font-family:'Playfair Display';
+}
+
+h1 {
+    @include font-size(1.9rem);
+    font-weight: 700;
+}
+
+h2 {
+    @include font-size(1.7rem);
+    font-weight: 600;
+}
+
+h3 {
+    @include font-size(1.5rem);
+    font-weight: 600;
+}
+
+h4 {
+    // font-size: 1.1em;
+    @include font-size(1.3rem);
+    font-weight: 600;
+}
+
+p {
+    // @include font-size(1rem);
+}
+
 // TAILLE DES POLICES
 .ftsz-10 {
     font-size: 1em;
@@ -47,20 +96,6 @@
 
 .ftsz-5 {
     font-size: .5em;
-}
-
-// PROPRIETES COMMUNES AUX DIFFERENTES PAGES
-body {
-    font-family: 'RobotoGoogle', sans-serif;
-}
-
-[class*="__header"]{
-    font-family: 'Ranchers', cursive;
-    word-spacing: .2rem;
-}
-
-h1,h2,h4{
-    font-weight: 400;
 }
 
 
@@ -105,7 +140,7 @@ h1,h2,h4{
 }
 
 .bgColor--blackLight {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .bgColor-title--blue {
@@ -114,6 +149,14 @@ h1,h2,h4{
 
 .bgColor--blueLight {
     background-color: rgba(21, 35, 35, 0.63);
+}
+
+.bgColor--blueSky {
+    background-color: rgb(218, 219, 250);
+}
+
+.bgColor--blueDark {
+    background-color: rgb(41, 70, 127);
 }
 
 .bgColor--greenLight {
@@ -130,10 +173,6 @@ h1,h2,h4{
 
 .bgColor--orange {
     background-color: rgb(249, 142, 47);
-}
-
-.bgColor--blueDark {
-    background-color: rgb(41, 70, 127);
 }
 
 .bgColor--raspberry {
@@ -217,6 +256,7 @@ h1,h2,h4{
 }
 
 // TAILLE DES POLICES POUR SUPPORTS MOBILE
+/*
 @media screen and (max-width:575px){
     h1{
        font-size: 2em; 
@@ -238,3 +278,4 @@ h1,h2,h4{
         font-size: .9em;
     }
 }
+*/

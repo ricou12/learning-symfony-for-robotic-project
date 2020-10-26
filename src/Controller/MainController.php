@@ -16,7 +16,7 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/error.html", name="error404")
+     * @Route("/error", name="error404")
      */
     public function error404()
     {
@@ -24,7 +24,7 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/mentions-legales.html", name="mentions_legales")
+     * @Route("/mentions-legales", name="mentions_legales")
      */
     public function mentionsLegales()
     {
@@ -32,83 +32,83 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/robot/creer-un-hotspot-WiFi.html", name="hotPost")
+     * @Route("/robot/creer-un-hotspot-WiFi", name="hotPost")
      */
     public function hotPost()
     {
-        return $this->render('robot/hotPost/hotPost.html.twig', []);
+        return $this->render('bot/hotPost/hotPost.html.twig', []);
     }
 
     /**
-     * @Route("/robot/installer-et-configurer-une-camera.html", name="camera")
+     * @Route("/robot/installer-et-configurer-une-camera", name="camera")
      */
     public function rpiCam()
     {
-        return $this->render('robot/rpiCam/rpiCam.html.twig', []);
+        return $this->render('bot/rpiCam/rpiCam.html.twig', []);
     }
 
     /**
-     * @Route("/robot/code-source-arduino.html", name="robot_codeSource")
+     * @Route("/robot/code-source-arduino", name="robot_codeSource")
      */
     public function robotCodeSource()
     {
-        return $this->render('robot/codeSource/codeSource.html.twig', []);
+        return $this->render('bot/codeSource/codeSource.html.twig', []);
     }
 
     /**
-     * @Route("/robot/liste-des-composants.html", name="robot_composant")
+     * @Route("/robot/liste-des-composants", name="robot_composant")
      */
     public function robotComposant()
     {
-        return $this->render('robot/composants/composants.html.twig', []);
+        return $this->render('bot/composants/composants.html.twig', []);
     }
 
     /**
-     * @Route("/telecommande/solution-materiel-et-logiciel.html", name="technos_web")
+     * @Route("/telecommande/solution-materiel-et-logiciel", name="technos_web")
      */
     public function technos()
     {
-        return $this->render('telecommande/technos/technos.html.twig', []);
+        return $this->render('remoteControl/technos/technos.html.twig', []);
     }
 
     /**
-     * @Route("/telecommande/telecommande-web.html", name="interfaceWeb")
+     * @Route("/telecommande/telecommande-web", name="interfaceWeb")
      */
     public function interfaceWeb()
     {
-        return $this->render('telecommande/interfaceWeb/interfaceWeb.html.twig', []);
+        return $this->render('remoteControl/interfaceWeb/interfaceWeb.html.twig', []);
     }
 
     /**
-     * @Route("/telecommande/liste-des-composants.html", name="telecom_composant")
+     * @Route("/telecommande/liste-des-composants", name="telecom_composant")
      */
     public function telecomComposant()
     {
-        return $this->render('telecommande/composants/composants.html.twig', []);
+        return $this->render('remoteControl/composants/composants.html.twig', []);
     }
 
     /**
-     * @Route("/telecommande/emetteur-recepteur-radio.html", name="emetteur_radio")
+     * @Route("/telecommande/emetteur-recepteur-radio", name="emetteur_radio")
      */
     public function emetteurRecepteur()
     {
-        return $this->render('telecommande/emetteurRecepteur/emetteurRecepteur.html.twig', []);
+        return $this->render('remoteControl/emetteurRecepteur/emetteurRecepteur.html.twig', []);
     }
 
     /**
-     * @Route("/telecommande/diode-electroluminescente.html", name="led")
+     * @Route("/telecommande/diode-electroluminescente", name="led")
      */
     public function led()
     {
-        return $this->render('telecommande/led/led.html.twig', []);
+        return $this->render('remoteControl/led/led.html.twig', []);
     }
    
     /**
-     * @Route("/telecommande/code-source-arduino.html", name="telecom_codeSource")
+     * @Route("/telecommande/code-source-arduino", name="telecom_codeSource")
      */
     public function telecomCodeSource()
     {
-        return $this->render('telecommande/codeSource/codeSource.html.twig', []);
+        return $this->render('remoteControl/codeSource/codeSource.html.twig', []);
     }
 
 }

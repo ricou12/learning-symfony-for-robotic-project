@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=CommentsRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class Comments
 {
@@ -23,16 +24,6 @@ class Comments
     private $message;
 
     /**
-     * @ORM\Column(type="datetime")
-     */
-    private $created;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $modified;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Subjects::class, inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -43,6 +34,16 @@ class Comments
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @ORM\Column(type="datetime",nullable=true)
+     */
+    private $updatedAt;
 
     public function getId(): ?int
     {
@@ -57,30 +58,6 @@ class Comments
     public function setMessage(string $message): self
     {
         $this->message = $message;
-
-        return $this;
-    }
-
-    public function getCreated(): ?\DateTimeInterface
-    {
-        return $this->created;
-    }
-
-    public function setCreated(\DateTimeInterface $created): self
-    {
-        $this->created = $created;
-
-        return $this;
-    }
-
-    public function getModified(): ?\DateTimeInterface
-    {
-        return $this->modified;
-    }
-
-    public function setModified(\DateTimeInterface $modified): self
-    {
-        $this->modified = $modified;
 
         return $this;
     }
@@ -105,6 +82,47 @@ class Comments
     public function setUser(?Users $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /* ****************************************************** */
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function autoCreatedAt(){
+        $this->setCreatedAt(new \Datetime());
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /* ****************************************************** */
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function autoUpdatedAt(){
+        $this->setUpdatedAt(new \Datetime());
+    }
+
+
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }

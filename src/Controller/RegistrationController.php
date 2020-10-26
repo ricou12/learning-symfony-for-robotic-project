@@ -23,8 +23,10 @@ class RegistrationController extends AbstractController
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
+        // Si le formulaire est validé 
         if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
+
+            // encode le mot de passe
             $user->setPassword(
                 $passwordEncoder->encodePassword(
                     $user,
@@ -32,6 +34,7 @@ class RegistrationController extends AbstractController
                 )
             );
 
+            // ajoute le nouvel utilisateur dans la database
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
@@ -43,6 +46,7 @@ class RegistrationController extends AbstractController
                 $authenticator,
                 'main' // firewall name in security.yaml
             );
+            
         }
 
         return $this->render('registration/register.html.twig', [

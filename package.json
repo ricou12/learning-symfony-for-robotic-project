@@ -24,5 +24,8 @@
     "version": "1.0.0",
     "description": "Présentation d'un projet robotique",
     "main": "index.js",
-    "author": "ricou12"
+    "author": "ricou12",
+    "dependencies": {
+        "rfs": "^9.0.3"
+    }
 }

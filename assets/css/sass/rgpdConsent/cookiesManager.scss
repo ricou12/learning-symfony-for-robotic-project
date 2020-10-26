@@ -60,28 +60,6 @@
         .copyright {
             margin-top: .8rem;
         }
-
-        
-        // Taille des polices de caracteres
-        .ftsz-10 {
-            font-size: 1em;
-        }
-        
-        .ftsz-9 {
-            font-size: .9em;
-        }
-        
-        .ftsz-8 {
-            font-size: .8em;
-        }
-        
-        .ftsz-7 {
-            font-size: .7em;
-        }
-        
-        .ftsz-5 {
-            font-size: .5em;
-        }
     
         // Couleur des textes
         .txt-color--raspberry {
@@ -98,17 +76,6 @@
             bottom: 0;
 
         }
-
-        /* Fading exits */
-    @include auto-prefixer__keyframes (fadeOut) {
-        from {
-            opacity: 1;
-        }
-
-        to {
-            opacity: 0;
-        }
-    }
 
     }
 

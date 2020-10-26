@@ -1,69 +1,154 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-        {# <!-- GOOGLE FONTS --> #}
-        {# <link href="https://fonts.googleapis.com/css2?family=Ranchers&display=swap" rel="stylesheet">  #}
-        {# <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">  #}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-        {# <!-- autoriser l'indexation par les moteurs de recherche --> #}
-        <meta name="robots" content="index">
+    {# <!-- GOOGLE FONTS --> #}
+    {# <link href="https://fonts.googleapis.com/css2?family=Ranchers&display=swap" rel="stylesheet">  #}
+    {# <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">  #}
 
-        {# <!-- HTML Meta Tags --> #}
-        <title>{{ block('title') }} - IHM Robotique</title>
-        <link rel="shortcut icon" type="image/x-icon" href="{{ asset("/build/images/icon/favicon.png") }}"/>
-        <meta name="description" content="{{ block('description') }}">
-        <link rel="canonical" href="">
+    {# <!-- autoriser l'indexation par les moteurs de recherche --> #}
+    <meta name="robots" content="index">
 
-        {# <!-- Google / Search Engine Tags --> #}
-        <meta itemprop="name" content="{{ block('description') }}">
-        <meta itemprop="description" content="{{ block('description') }}">
-        <meta itemprop="image" content="{{ asset('/build/video/logoOg.gif') }}">
+    {# <!-- HTML Meta Tags --> #}
+    <title>{{ block('title') }} - IHM Robotique</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset("/build/images/icon/favicon.png") }}" />
+    <meta name="description" content="{{ block('description') }}">
+    <link rel="canonical" href="">
 
-        {# <!-- Facebook Meta Tags --> #}
-        <meta property="og:locale" content="fr_FR"/>
-        <meta property="og:type" content="website"/>
-        <meta property="og:title" content="{{ block('title') }} - IHM Robotique"/>
-        <meta property="og:description" content="{{ block('description') }}"/>
-        <meta property="og:url" content=""/>
-        <meta property="og:image" content="{{ asset('/build/video/logoOg.gif') }}"/>
-        <meta property="og:image:width" content="300"/>
-        <meta property="og:image:height" content="169"/>
+    {# <!-- Google / Search Engine Tags --> #}
+    <meta itemprop="name" content="{{ block('description') }}">
+    <meta itemprop="description" content="{{ block('description') }}">
+    <meta itemprop="image" content="{{ asset('/build/video/logoOg.gif') }}">
 
-        {# <!-- Twitter Meta Tags --> #}
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="{{ block('title') }} - IHM Robotique">
-        <meta name="twitter:description" content="{{ block('description') }}">
-        <meta name="twitter:image" content="{{ asset('/build/video/logoOg.gif') }}">
+    {# <!-- Facebook Meta Tags --> #}
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="{{ block('title') }} - IHM Robotique" />
+    <meta property="og:description" content="{{ block('description') }}" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="{{ asset('/build/video/logoOg.gif') }}" />
+    <meta property="og:image:width" content="300" />
+    <meta property="og:image:height" content="169" />
 
-        {# Renders a link tag (if your module requires any CSS)
+    {# <!-- Twitter Meta Tags --> #}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ block('title') }} - IHM Robotique">
+    <meta name="twitter:description" content="{{ block('description') }}">
+    <meta name="twitter:image" content="{{ asset('/build/video/logoOg.gif') }}">
+
+    {# Renders a link tag (if your module requires any CSS)
             <link rel="stylesheet" href="/build/app.css"> #}
-        {{ encore_entry_link_tags('app') }}
-             
-    </head>
+    {{ encore_entry_link_tags('app') }}
 
-    <body>
-        <header>
-            {% include "includes/navbar.html.twig" %}
-        </header>
-        
-        <main>
-             {% block body %}{% endblock %}
-        </main>
-       
-        {% include "includes/footer.html.twig" %}
-        
-        {# Gestion des consentements #}
-        <article class="cookiesManager__box text-white" id="cookie-root"></article>
-        
-        {# Renders app.js & a webpack runtime.js file #}
-        {# <script src="/build/runtime.js"></script>
+</head>
+
+<body>
+    <header>
+        {% block navigation %}
+                <div class="container navigation" id="anchor">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="{{'/'}}" data-toggle="tooltip" title="Projet robotique"><img src="{{ asset('/build/images/icon/robots.gif') }}" alt="Logo"
+                    width="70"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{'/' }}">Projet robotique<span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Conception des télécommandes
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <div class="dropdown text-left">
+                                <a class="dropdown-item"
+                                    href="{{'/telecommande/solution-materiel-et-logiciel' }}">Solution matériel et
+                                    logiciel</a>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <div class="dropdown text-left">
+                                <span class="dropdown-item text-danger font-weight-bold">Solution logiciel</span>
+                                <a class="dropdown-item" href="{{'/telecommande/telecommande-web' }}">Télécommande
+                                    web</a>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <div class="dropdown text-left">
+                                <span class="dropdown-item text-danger font-weight-bold">Solution Matérielle</span>
+                            </div>
+                            <a class="dropdown-item" href="{{'/telecommande/liste-des-composants' }}">Les
+                                composants</a>
+                            <div class="dropdown">
+                                <span class="dropdown-item text-danger font-weight-regular">Arduino</span>
+                            </div>
+                            <a class="dropdown-item" href="{{'/telecommande/emetteur-recepteur-radio' }}">Emetteur
+                                Récepteur NRF24L01</a>
+                            <a class="dropdown-item" href="{{'/telecommande/diode-electroluminescente' }}">Alimenter
+                                une LED</a>
+                            <a class="dropdown-item" href="{{'/telecommande/code-source-arduino' }}">Le code source</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownNext" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Conception du robot
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownNext">
+                            <a class="dropdown-item" href="{{ '/robot/liste-des-composants' }}">Les composants</a>
+                            <div class="dropdown">
+                                <span class="dropdown-item text-danger font-weight-regular">Raspberry</span>
+                            </div>
+                            <a class="dropdown-item" href="{{ '/robot/creer-un-hotspot-WiFi' }}">Créer un hotspot
+                                Wi-Fi</a>
+                            <a class="dropdown-item" href="{{ '/robot/installer-et-configurer-une-camera' }}">Installer
+                                une caméra</a>
+                            <div class="dropdown">
+                                <span class="dropdown-item text-danger font-weight-regular">Arduino</span>
+                            </div>
+                            <a class="dropdown-item" href="{{ '/robot/code-source-arduino' }}">Le code source</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="/forum/" role="button">
+                            Forum
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#footer" role="button">
+                            Contact
+                        </a>
+                    </li>
+                </ul>
+                {% block userAccount %}{% endblock %}
+            </div>
+        </nav>
+    </div>
+        {% endblock %}
+    </header>
+
+    <main>
+        {% block body %}{% endblock %}
+    </main>
+
+    {% include "includes/footer.html.twig" %}
+
+    {# Gestion des consentements #}
+    <article class="cookiesManager__box text-white" id="cookie-root"></article>
+    {# Renders app.js & a webpack runtime.js file #}
+    {# <script src="/build/runtime.js"></script>
             <script src="/build/app.js"></script> #}
-        {{ encore_entry_script_tags('app') }}
-        
-        {% block javascripts %}{% endblock %}
-    </body>
+    {{ encore_entry_script_tags('app') }}
+
+    {% block javascripts %}{% endblock %}
+</body>
+
 </html>

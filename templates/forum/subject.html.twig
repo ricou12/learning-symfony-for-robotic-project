@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue sur le forum{% endblock %}
+{% block description %}Vous avez besoin d'aide avec votre Raspberry Pi ou Arduino ? Ce forum est fait pour vous!{% endblock %}
+
+{# Ajoute l'icone de connection #}
+{% block userAccount %}{% include "includes/connect.html.twig" %}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+
+    </div>
+    <div class="row border border-secondary rounded">
+        <div class="col-12 p-3 text-white bgColor--raspberry">
+            <h3 class="font-weight-bold">{{ subject.title }}</h3> 
+            <div class="d-flex flex-row justify-content-between">
+                <p class="font-weight-bold ">{{ subject.user.author }}</p>
+                <p class="font-weight-light font-italic">{{ dateDiff(subject.createdAt|date("m/d/Y H:i", "Europe/Paris")) }}</p>
+            </div>
+        </div>
+        <div class="col-12 py-2">
+            {% if app.user %}
+            <p>
+                <a class="btn btn-outline-dark" data-toggle="collapse" href="#repondre" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    Repondre
+                </a>
+            </p>
+            <div class="collapse" id="repondre">
+                <div class="card card-body">
+                    {{ form_start(commentsForm) }}
+                        {{ form_row(commentsForm.message,
+                            {
+                                'attr': {'class': 'form-control','required':''},
+                                'required': true,
+                                'label':'Message',
+                                'label_attr': {'class': ''},
+                            })
+                        }}
+                        <div class="col-auto my-1">
+                            <button type="submit" class="btn btn-outline-dark mt-2">Envoyer</button>
+                        </div>
+                    {{ form_end(commentsForm) }}
+                </div>
+            </div>
+            {% endif %}    
+        </div>
+
+        <div class="col-12 p-3">
+            {{subject.description|nl2br}}
+        </div>
+    </div>
+
+    {% for comment in subject.comments %}
+    <div class="row border my-3 rounded">
+       <div class="col-12 bgColor--blueSky p-3 d-flex flex-row justify-content-between">
+        <h3 class="font-weight-bold">{{comment.user.author}}</h3>
+        <p class="font-weight-light font-italic">{{ dateDiff(comment.createdAt|date("m/d/Y H:i", "Europe/Paris")) }}</p>
+       </div>
+        <div class="col-12 p-3">
+            {{comment.message|nl2br}}
+        </div>
+    </div>
+    {% endfor %} 
+</div>
+{% endblock %}
+
