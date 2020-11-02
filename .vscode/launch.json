@@ -17,6 +17,13 @@
             "program": "${file}",
             "cwd": "${fileDirname}",
             "port": 9000
+        },
+        {
+            "name": "Launch index.html",
+            "type": "firefox",
+            "request": "launch",
+            "reAttach": true,
+            "file": "${workspaceFolder}/index.html"
         }
     ]
 }

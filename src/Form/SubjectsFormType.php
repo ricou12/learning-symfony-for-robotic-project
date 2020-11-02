@@ -6,6 +6,7 @@ use App\Entity\Subjects;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class SubjectsFormType extends AbstractType
 {
@@ -13,7 +14,10 @@ class SubjectsFormType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('description')
+            ->add('description',TextareaType::class,[
+                'required'   => true,
+                'attr' => ['rows' => '5','placeholder'=>''],
+            ])
         ;
     }
 

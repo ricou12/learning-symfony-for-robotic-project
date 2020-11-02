@@ -10,19 +10,17 @@ use App\Entity\Users;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-class UsersType extends AbstractType
+class UsersFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('email')
-            // ->add('roles')
+            ->add('roles')
             ->add('password')
             ->add('author')
             ->add('createdAt')
-            ->add('save', SubmitType::class)
         ;
     }
 

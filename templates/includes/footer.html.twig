@@ -11,6 +11,7 @@
             <div class="row">
                 <div class="col-12">
                     <h4 class="text-center">A propos</h4>
+                    <p><a class="ftsz-15 txt-color--blueSky txtShadow--black" href="{{path('sendMail')}}">Formulaire de Contact</a></p>
                     <p>
                         <span class="font-weight-bold">Développeur</span>: Lanza Eric <br>
                         <span class="font-weight-bold">Email</span>: dwwm2109@gmail.com
@@ -35,20 +36,20 @@
         <section class="col-12 col-md-5 col-lg-5 col-xl-4 p-4 order-1 order-md-2 border-secondary border-bottom d-flex flex-column align-items-center">
             <h4>Navigation</h4>
             <ul>
-                <li><a href="{{'/' }}">Projet robotique</a></li>
+                <li><a href="{{path('index')}}">Projet robotique</a></li>
                 <span class="mt-4 text-secondary font-weight-bold">Conception des télécommandes</span>
-                <li><a href="{{'/telecommande/solution-materiel-et-logiciel' }}">Solution matériel et logiciel</a></li>
-                <li><a href="{{'/telecommande/telecommande-web' }}">Télécommande web</a></li>
-                <li><a href="{{'/telecommande/liste-des-composants' }}">Les composants</a></li>
-                <li><a href="{{'/telecommande/emetteur-recepteur-radio' }}">Emetteur Récepteur NRF24L01</a></li>
-                <li><a href="{{'/telecommande/diode-electroluminescente' }}">Alimenter une LED</a></li>
-                <li><a href="{{'/telecommande/code-source-arduino' }}">Le code source</a></li>
+                <li><a href="{{path('remote_technos')}}">Solution matériel et logiciel</a></li>
+                <li><a href="{{path('remote_web')}}">Télécommande web</a></li>
+                <li><a href="{{path('remote_components')}}">Les composants</a></li>
+                <li><a href="{{path('emetteur_radio')}}">Emetteur Récepteur NRF24L01</a></li>
+                <li><a href="{{path('led')}}">Alimenter une LED</a></li>
+                <li><a href="{{path('telecom_code')}}">Le code source</a></li>
                 <span class="mt-4 text-secondary font-weight-bold">Conception du robot</span>
-                <li><a href="{{'/robot/liste-des-composants' }}">Les composants</a></li>
-                <li><a href="{{'/robot/creer-un-hotspot-WiFi' }}">Créer un hotspot Wi-Fi</a></li>
-                <li><a href="{{'/robot/installer-et-configurer-une-camera' }}">Installer une caméra</a></li>
-                <li><a href="{{'/robot/code-source-arduino' }}">Le code source</a></li>
-                <li><a href="{{'/mentions-legales' }}">Mentions légales</a></li>
+                <li><a href="{{path('bot_components')}}">Les composants</a></li>
+                <li><a href="{{path('hotPost')}}">Créer un hotspot Wi-Fi</a></li>
+                <li><a href="{{path('bot_cam')}}">Installer une caméra</a></li>
+                <li><a href="{{path('bot_code')}}">Le code source</a></li>
+                <li><a href="{{path('mentions_legales')}}">Mentions légales</a></li>
                 <li><a href="#" id="showBoxCookiesManager">Cookies</a></li>
             </ul>
         </section>

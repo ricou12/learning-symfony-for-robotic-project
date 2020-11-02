@@ -282,7 +282,10 @@
                     </tbody>
                 </table>
 
-                <section class="row mt-4">
+                <section class="row mt-4  d-flex align-items-center">
+                    <div class="col-12 col-lg-6 offset-lg-6">
+                        <h4 class="txt-color--raspberry">Le raspberry</h4>
+                    </div>
                     <div class="col-12 col-lg-6">
                         <!-- MODAL IMAGE Raspberry -->
                         <div class="text-center bg-white">
@@ -296,14 +299,50 @@
                             )}}
                         </div>
                     </div>
-                    <div class="col-12 col-lg-6 d-flex align-items-center">
+                    <div class="col-12 col-lg-6">
                         <div>
-                            <h4 class="txt-color--raspberry">Le raspberry</h4>
-                            <p>Ce micro
-                                ordinateur, plus rapide et plus complexe à utiliser que
-                                l'arduino permet d'exécuter un système d’exploitation réel sous Linux. <br>Il peut effectuer plusieurs
-                                tâches, il
-                                dispose jusqu’à quatre ports USB en natif et peut se connecter
+                            <p>Ce microcontrôleur est en faite un micro ordinateur, plus rapide et plus complexe à utiliser que
+                                l'arduino.<br>
+                                Il permet en outre d'exécuter plusieurs distributions relativement différentes.
+                            </p>   
+
+                            <dl class="row">
+                                <dt class="col-sm-3">Linux</dt>
+                                <dd class="col-sm-9">
+                                    <ul class="list-unstyled">
+                                        <li>raspbian (Wheezy, Jessie, Stretch).</li>
+                                        <li>Ubuntu Mate.</li>
+                                    </ul>
+                                </dd>
+
+                                <dt class="col-sm-3">Windows</dt>
+                                <dd class="col-sm-9">
+                                    <ul class="list-unstyled">
+                                        <li>Windows 10.</li>
+                                        <li>IoT Core pour la programmation et la domotique.</li>
+                                        <li>Windows 10 on ARM, version pour les microcontrôleurs equipés d’un processeur ARM.</li>
+                                    </ul>
+                                </dd>
+
+                                <dt class="col-sm-3">Média Center</dt>
+                                <dd class="col-sm-9">
+                                    <ul class="list-unstyled">
+                                        <li>OSMC : Open Source Media Center.</li>
+                                        <li>OpenELEC et LibreELEC.</li>
+                                    </ul>
+                                </dd>
+
+                                <dt class="col-sm-3">Les jeux</dt>
+                                <dd class="col-sm-9">
+                                    <ul class="list-unstyled">
+                                        <li>OSMC : Open Source Media Center.</li>
+                                        <li>OpenELEC et LibreELEC.</li>
+                                    </ul>
+                                </dd>
+                            </dl>
+                            <p>        
+                                Il
+                                dispose jusqu’à quatre ports USB et peut se connecter
                                 à
                                 Internet en
                                 wifi ou en filaire. <br>
@@ -318,25 +357,59 @@
                     </div>
                 </section>
 
-                <section class="row mt-4 mt-0-xl">
-                    <div class="col-12 col-lg-6 order-2 order-lg-1 d-flex align-items-center">
+                <section class="row mt-4 mt-0-xl d-flex align-items-center">
+                    <div class="col-12">
+                        <h4 class="txt-color--raspberry">L'arduino</h4>
+                    </div>
+                    <div class="col-12 col-lg-6 order-2 order-lg-1">
                         <div>
-                            <h4 class="txt-color--raspberry">L'arduino</h4>
-                             <p>Certe moins
-                                 puissant,
-                                  cette carte programmable simple sur laquelle on branche
-                                 des
-                                 composants électroniques, possède un grand nombre d'entrées/sorties (plus que le raspberry)
-                                 ce
-                                 qui permet
-                                 de brancher beaucoup de composants (capteurs, leds et autres... ). <br>
-                                 Il est donc principalement utilisé pour réaliser des interfaces électroniques avec des
-                                 capteurs,
-                                 des
-                                 actionneurs, circuits électroniques et autres... Une fois le programme chargé, l'Arduino
-                                 l’exécute en
-                                 boucle de manière autonome. Le langage utilisé est le C.</p> 
-                         </div>
+                            <p>Certe moins
+                                puissant,
+                                 cette carte programmable simple sur laquelle on branche
+                                des
+                                composants électroniques, possède un grand nombre d'entrées/sorties (plus que le raspberry)
+                                ce
+                                qui permet
+                                de brancher beaucoup de composants (capteurs, leds et autres... ).
+                            </p>
+                            <dl class="row">
+                                <dt class="col-sm-3">Les entrées analogiques</dt>
+                                <dd class="col-sm-9">broches étiquetées A suivie d’un nombre (6 pour le Uno, 16 pour le Méga).</dd>
+                            </dl>
+                            <dl class="row">
+                                <dt class="col-sm-3">Les sorties PWM</dt>
+                                <dd class="col-sm-9">permet de faire varier la vitesse d'un moteur électrique à courant continu ou l'intensité d'une led.</dd>
+                            </dl>
+                            <dl class="row">
+                                <dt class="col-sm-3">La ligne d'émission série</dt>
+                                <dd class="col-sm-9">broches étiquetées TX et RX employée pour communiquer avec l’ordinateur hôte, Mac ou  Windows.</dd>
+                            </dl>
+                            <dl class="row">
+                                <dt class="col-sm-3">Le bus I2C</dt>
+                                <dd class="col-sm-9">bus de communication pour dialoguer avec un autre Arduino ou tout circuits périphériques disposant de ce bus.</dd>
+                            </dl>
+                            <dl class="row">
+                                <dt class="col-sm-3">Les broches d'alimentation</dt>
+                                <dd class="col-sm-9">bus de communication pour dialoguer avec un autre Arduino ou tout circuits périphériques disposant de ce bus.
+                                    <ul class="list-group">
+                                        <li class="list-group-item">IOREF: indiquer aux shields la tension de fonctionnement de l’Arduino</li>
+                                        <li class="list-group-item">RESET: redémarrer l'arduino</li>
+                                        <li class="list-group-item">3.3V: pour alimenter un circuit externe en 3.3V</li>
+                                        <li class="list-group-item">5.5V: pour alimenter un circuit externe en 5.5V</li>
+                                        <li class="list-group-item">GND: La masse</li>
+                                        <li class="list-group-item">Vin: L’entrée du régulateur embarqué sur l’Arduino.</li>
+                                    </ul>
+                                </dd>
+                            </dl>
+                            <p>
+                                Il est donc principalement utilisé pour réaliser des interfaces électroniques avec des
+                                capteurs,
+                                des
+                                actionneurs, circuits électroniques et autres... Une fois le programme téléversé, l'Arduino
+                                l’exécute en
+                                boucle (loop) de manière autonome. Le langage utilisé est le C.
+                            </p> 
+                        </div>
                     </div>
                     <div class="col-12 col-lg-6 order-1 order-lg-2">
                         <!-- MODAL IMAGE Arduino -->

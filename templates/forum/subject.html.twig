@@ -8,15 +8,19 @@
 
 {% block body %}
 <div class="container">
-    <div class="row">
-
-    </div>
-    <div class="row border border-secondary rounded">
+    <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{{ path('forum_view') }}">Forum</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{ subject.title }}</li>
+  </ol>
+</nav>
+    <div class="row border border-secondary rounded mb-3">
         <div class="col-12 p-3 text-white bgColor--raspberry">
             <h3 class="font-weight-bold">{{ subject.title }}</h3> 
             <div class="d-flex flex-row justify-content-between">
                 <p class="font-weight-bold ">{{ subject.user.author }}</p>
-                <p class="font-weight-light font-italic">{{ dateDiff(subject.createdAt|date("m/d/Y H:i", "Europe/Paris")) }}</p>
+                {# <p class="font-weight-light font-italic">{{ dateDiff(subject.createdAt|date("m/d/Y H:i", "Europe/Paris")) }}</p> #}
+                <p class="font-weight-light font-italic">{{ subject.createdAt|format_datetime('full', 'none', locale='fr') }}</p>
             </div>
         </div>
         <div class="col-12 py-2">
@@ -27,7 +31,7 @@
                 </a>
             </p>
             <div class="collapse" id="repondre">
-                <div class="card card-body">
+                <div class="card card-body bgColor--blueSky">
                     {{ form_start(commentsForm) }}
                         {{ form_row(commentsForm.message,
                             {
@@ -49,12 +53,32 @@
         <div class="col-12 p-3">
             {{subject.description|nl2br}}
         </div>
-    </div>
 
-    {% for comment in subject.comments %}
+        <div class="col-12 p-3 border d-flex">
+            <div class="p-2 text-center">
+                <p>crée</p>
+                <p>{{subject.createdAt|format_datetime('short', 'none', locale='fr')}}</p>
+                
+            </div>
+            <div class="p-2 text-center">
+                <p>réponse</p>
+                {# <p>{{ subject.comments|sort dateDiff(subject.comments[0].createdAt|date("m/d/Y H:i", "Europe/Paris")) }}</p> #}
+                
+            </div>
+            <div class="p-2 text-center">
+                <p>{{subject.comments|length}}</p>
+                <p>réponses</p>
+            </div>
+            
+           
+        </div>
+    </div>
+    {# COMMENTAIRES #}
+    {% for comment in subject.comments|sort((a, b) => b.createdAt <=> a.createdAt) %}
     <div class="row border my-3 rounded">
        <div class="col-12 bgColor--blueSky p-3 d-flex flex-row justify-content-between">
         <h3 class="font-weight-bold">{{comment.user.author}}</h3>
+        <p>{{comment.createdAt|format_datetime('full', 'short', locale='fr')}}
         <p class="font-weight-light font-italic">{{ dateDiff(comment.createdAt|date("m/d/Y H:i", "Europe/Paris")) }}</p>
        </div>
         <div class="col-12 p-3">

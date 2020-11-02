@@ -51,7 +51,7 @@
         {% block navigation %}
                 <div class="container navigation" id="anchor">
         <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="navbar-brand" href="{{'/'}}" data-toggle="tooltip" title="Projet robotique"><img src="{{ asset('/build/images/icon/robots.gif') }}" alt="Logo"
+            <a class="navbar-brand" href="{{path('index')}}" data-toggle="tooltip" title="Projet robotique"><img src="{{ asset('/build/images/icon/robots.gif') }}" alt="Logo"
                     width="70"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,7 +61,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="{{'/' }}">Projet robotique<span class="sr-only">(current)</span>
+                        <a class="nav-link" href="{{path('index')}}">Projet robotique<span class="sr-only">(current)</span>
                         </a>
                     </li>
                     <li class="nav-item dropdown">
@@ -72,29 +72,29 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <div class="dropdown text-left">
                                 <a class="dropdown-item"
-                                    href="{{'/telecommande/solution-materiel-et-logiciel' }}">Solution matériel et
+                                    href="{{path('remote_technos')}}">Solution matériel et
                                     logiciel</a>
                             </div>
                             <div class="dropdown-divider"></div>
                             <div class="dropdown text-left">
                                 <span class="dropdown-item text-danger font-weight-bold">Solution logiciel</span>
-                                <a class="dropdown-item" href="{{'/telecommande/telecommande-web' }}">Télécommande
+                                <a class="dropdown-item" href="{{path('remote_web')}}">Télécommande
                                     web</a>
                             </div>
                             <div class="dropdown-divider"></div>
                             <div class="dropdown text-left">
                                 <span class="dropdown-item text-danger font-weight-bold">Solution Matérielle</span>
                             </div>
-                            <a class="dropdown-item" href="{{'/telecommande/liste-des-composants' }}">Les
+                            <a class="dropdown-item" href="{{path('remote_components')}}">Les
                                 composants</a>
                             <div class="dropdown">
                                 <span class="dropdown-item text-danger font-weight-regular">Arduino</span>
                             </div>
-                            <a class="dropdown-item" href="{{'/telecommande/emetteur-recepteur-radio' }}">Emetteur
+                            <a class="dropdown-item" href="{{path('emetteur_radio')}}">Emetteur
                                 Récepteur NRF24L01</a>
-                            <a class="dropdown-item" href="{{'/telecommande/diode-electroluminescente' }}">Alimenter
+                            <a class="dropdown-item" href="{{path('led') }}">Alimenter
                                 une LED</a>
-                            <a class="dropdown-item" href="{{'/telecommande/code-source-arduino' }}">Le code source</a>
+                            <a class="dropdown-item" href="{{path('telecom_code')}}">Le code source</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -103,22 +103,22 @@
                             Conception du robot
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownNext">
-                            <a class="dropdown-item" href="{{ '/robot/liste-des-composants' }}">Les composants</a>
+                            <a class="dropdown-item" href="{{path('bot_components')}}">Les composants</a>
                             <div class="dropdown">
                                 <span class="dropdown-item text-danger font-weight-regular">Raspberry</span>
                             </div>
-                            <a class="dropdown-item" href="{{ '/robot/creer-un-hotspot-WiFi' }}">Créer un hotspot
+                            <a class="dropdown-item" href="{{path('hotPost')}}">Créer un hotspot
                                 Wi-Fi</a>
-                            <a class="dropdown-item" href="{{ '/robot/installer-et-configurer-une-camera' }}">Installer
+                            <a class="dropdown-item" href="{{path('bot_cam')}}">Installer
                                 une caméra</a>
                             <div class="dropdown">
                                 <span class="dropdown-item text-danger font-weight-regular">Arduino</span>
                             </div>
-                            <a class="dropdown-item" href="{{ '/robot/code-source-arduino' }}">Le code source</a>
+                            <a class="dropdown-item" href="{{path('bot_code')}}">Le code source</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link" href="/forum/" role="button">
+                        <a class="nav-link" href="{{path('forum_view')}}" role="button">
                             Forum
                         </a>
                     </li>

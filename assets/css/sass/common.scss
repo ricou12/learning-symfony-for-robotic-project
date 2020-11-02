@@ -73,11 +73,24 @@ h4 {
     font-weight: 600;
 }
 
-p {
-    // @include font-size(1rem);
-}
 
 // TAILLE DES POLICES
+.ftsz-20 {
+    font-size: 2em;
+}
+
+.ftsz-17 {
+    font-size: 1.7em;
+}
+
+.ftsz-15 {
+    font-size: 1.5em;
+}
+
+.ftsz-12 {
+    font-size: 1.2em;
+}
+
 .ftsz-10 {
     font-size: 1em;
 }
@@ -191,6 +204,7 @@ p {
 .txt-color--turquoise {
     color: rgb(144, 228, 220);
 }
+
 .txt-color--blueSky {
     color: #00caf8;
 }

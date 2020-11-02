@@ -40,7 +40,7 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/robot/installer-et-configurer-une-camera", name="camera")
+     * @Route("/robot/installer-et-configurer-une-camera", name="bot_cam")
      */
     public function rpiCam()
     {
@@ -48,7 +48,7 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/robot/code-source-arduino", name="robot_codeSource")
+     * @Route("/robot/code-source-arduino", name="bot_code")
      */
     public function robotCodeSource()
     {
@@ -56,7 +56,7 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/robot/liste-des-composants", name="robot_composant")
+     * @Route("/robot/liste-des-composants", name="bot_components")
      */
     public function robotComposant()
     {
@@ -64,7 +64,7 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/telecommande/solution-materiel-et-logiciel", name="technos_web")
+     * @Route("/telecommande/solution-materiel-et-logiciel", name="remote_technos")
      */
     public function technos()
     {
@@ -72,7 +72,7 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/telecommande/telecommande-web", name="interfaceWeb")
+     * @Route("/telecommande/telecommande-web", name="remote_web")
      */
     public function interfaceWeb()
     {
@@ -80,7 +80,7 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/telecommande/liste-des-composants", name="telecom_composant")
+     * @Route("/telecommande/liste-des-composants", name="remote_components")
      */
     public function telecomComposant()
     {
@@ -104,7 +104,7 @@ class MainController extends AbstractController
     }
    
     /**
-     * @Route("/telecommande/code-source-arduino", name="telecom_codeSource")
+     * @Route("/telecommande/code-source-arduino", name="telecom_code")
      */
     public function telecomCodeSource()
     {

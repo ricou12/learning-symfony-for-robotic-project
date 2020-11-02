@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SubjectsController!{% endblock %}
+{% block description %}Hello SubjectsController!{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <h3>Liste des sujets</h3>
+        <div class="col-12">
+            <ul class="list-group">
+                {% for subject in subjects %}
+                <li class="list-group-item">
+                    <a href="/forum/{{subject.slug }}">{{ subject.title }}</a>
+                    <p>Extrait: {{ subject.description|slice(0,50) }}...</p>
+                    <a href="/subjects?slug={{subject.slug}}" class="btn btn-outline-dark">Supprimer méthode Get</a>
+                    <a href="/subjects/deleteSubject/{{subject.slug}}" class="btn btn-outline-dark">Supprimer redirige vers une fonction</a>
+                </li> 
+                {% endfor %}
+            </ul>  
+        </div>
+    </div>
+</div>
+{% endblock %}

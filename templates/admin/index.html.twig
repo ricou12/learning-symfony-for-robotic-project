@@ -1,0 +1,104 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+{% block description %}{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 p-3 text-white bg-primary">
+            <h1 class="text-center">Services d'administrations</h1>
+        </div>
+
+        <div class="col-12 p-5">
+            <h3 class="bg-info text-white p-3">
+                Liste des comptes utilisateurs {{users|length}} sur un total de {{ users.getTotalItemCount }}
+            </h3>
+            
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Actions</th>
+                        <th scope="col font-weight-light">{{ knp_pagination_sortable(users, 'Utilisateurs', 'author') }}</th>
+                        <th scope="col"{% if users.isSorted('author') %} class="text-secondary"{% endif %}>Email</th>
+                        <th scope="col">Mot de passe</th>
+                        <th scope="col">Role</th>
+                        <th scope="col">{{ knp_pagination_sortable(users, 'Crée le', 'createdAt') }}</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td class="d-flex flex-nowrap justify-content-between">
+                            <div>
+                                <button type="button" class="btn btn-outline-danger" data-toggle="modal"
+                                    data-target="#delete_{{user.id}}">
+                                    <img src="{{asset("/build/images/icon/trash.png")}}" width="25">
+                                </button>
+                                <div class="modal" id="delete_{{user.id}}" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title text-danger">Demande de confirmation</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Etes-vous certain de vouloir supprimer ce compte: <span
+                                                        class="font-weight-bold font-italic">{{user.author}}</span>
+                                                    !</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-outline-dark"
+                                                    data-dismiss="modal">Annuler</button>
+                                                <a href="{{ path('admin_user_delete', {'id':user.id}) }}"
+                                                    class="btn btn-outline-danger"><img
+                                                        src="{{asset("/build/images/icon/trash.png")}}"
+                                                        width="25"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <button type="button" class="btn btn-outline-danger" data-toggle="modal"
+                                    data-target="#update_{{user.id}}">
+                                    <img src="{{asset("/build/images/icon/update.png")}}" width="25">
+                                </button>
+                                <div class="modal" id="update_{{user.id}}" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-outline-dark"
+                                                    data-dismiss="modal">Annuler</button>
+                                                <a href="{{ path('admin_user_delete', {'id':user.id}) }}"
+                                                    class="btn btn-outline-danger"><img
+                                                        src="{{asset("/build/images/icon/trash.png")}}"
+                                                        width="25"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><a href="{{ path('admin_user_update', {'slug': user.id}) }}">{{user.author}}</a>
+                        </td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.password|slice(0,20) ~ '...'}}</td>
+                        <td></td>
+                        <td>{{user.createdAt|format_datetime('full', 'short', locale='fr')}}</td>
+                    </tr>
+                    {% endfor %}
+                        
+                </tbody>
+            </table>
+            {{ knp_pagination_render(users) }}
+        </div>
+    </div>
+</div>
+{% endblock %}

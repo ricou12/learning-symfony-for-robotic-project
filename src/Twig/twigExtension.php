@@ -46,33 +46,33 @@ class twigExtension extends AbstractExtension
         
         if($years >= 1){
             if($years == 1){
-               $resultat[]= $years." an"; 
+                array_push($resultat, $years." an"); 
             } else {
-                $resultat[]= $years." ans";
+                array_push($resultat, $years." ans");
             }
         } 
         elseif( $month >= 1 ) {
-            $resultat[]= $month." mois";
+            array_push($resultat, $month." mois");
         } 
         elseif( $days >= 1 ){
             if($days == 1){
-                $resultat[]= $days." jour"; 
+                array_push($resultat, $days." jour"); 
              } else {
-                $resultat[]= $days." jours";
+                array_push($resultat, $days." jours");
              }
         }
         elseif( $hour >= 1 ){
             if($hour == 1){
-                $resultat[]= $hour." heure"; 
+                array_push($resultat, $hour." heure"); 
              } else {
-                $resultat[]= $hour." heures";
+                array_push($resultat, $hour." heures");
              }
         }
         elseif( $min >= 1 ){
             if($min == 1){
-                $resultat[]= $min." minute"; 
+                array_push($resultat, $min." minute"); 
              } else {
-                $resultat[]= $min." minutes";
+                array_push($resultat, $min." minutes");
              }
         }
         
