@@ -24,14 +24,14 @@ J'ai ajouté différentes fonctionnalités pour la partie back-end.
  - Création d'un **forum**
 	 - Réalisation du schéma de la base de données en intégrant les cardinalités (associations entre les entités avec l'outils jMerise).
 	 - Création de la base de données et génération des entity avec la console.
-	 - Mise en place du système d'authentification sécurisé pour  l'enregistrement et la connexion des utilisateurs.
+	 - Mise en place du système d'authentification sécurisé pour l'enregistrement et la connexion des utilisateurs.
 	 - Développement des interfaces clients.
 	 - Développement du back office pour l’administration des comptes , sujets et commentaires.
 	 - Intégration de la pagination via un bundle.
 
 ## Installation
 
- 1. **Prérequis**: Vous devez avoir installer [**wampServer**](https://www.wampserver.com/).
+ 1. **Prérequis**: Vous devez avoir installé [**wampServer**](https://www.wampserver.com/).
 
  2. **Télécharger le projet** dans le dossier *www* de *wampserver* soit à partir du zip ou avec la commande  **git** via l'invite de commande.
 
@@ -49,14 +49,14 @@ J'ai ajouté différentes fonctionnalités pour la partie back-end.
 	    npm run watch
 
  5. **Créer la base de données**
-	 Vérifier et modifier si nécessaire le numéro port utilisé par mysql, dans le fichier de configuration app/**.env**.  (variable "DATABASE_URL=" )puis creer la base de données:
+	 Vérifier et modifier si nécessaire le numéro de port utilisé par mysql, dans le fichier de configuration app/**.env**.  (variable "DATABASE_URL=" )puis créer la base de données:
 
 	    php bin/console doctrine:database:create
 
- 7. **Importer le schema de la base de données**
+ 7. **Mettre à jour le schema de la base de données**
  
 
-	    php bin/console doctrine:migrations:migrate 
+		php bin/console doctrine:migrations:migrate 
 
  8. Vous pouvez enfin **exécuter le projet** en lançant simplement le serveur fourni par symfony ou bien avec le serveur apache.
 	Avec **Symfony** utiliser la commande:
@@ -66,7 +66,7 @@ J'ai ajouté différentes fonctionnalités pour la partie back-end.
 	  
 	 Avec **Apache** vous devez créer un serveurs virtuels, pour cela cliquer sur l'icone Wampserver dans la barre des taches sélectionner vos ***VirtualHosts -> gestion VirtualHosts*** et ajouter un nom et le chemin du projet (**attention** il s'agit de cibler le dossier public qui contient le fichier index.php).
 	 Ensuite il faut modifier la configuration  du fichier ***httpd-vhost.conf*** , accessible la aussi avec l’icône Wampserver dans la barre des taches ***apache->httpd-vhost.conf***.
-	  En effet il faut indiquer à apache de rediriger les requête vers le controller frontal car c'est lui qui intègre le système de routage.
+	  En effet il faut indiquer à apache de rediriger les requêtes vers le controller frontal car c'est lui qui gère le système de routage.
 	  Mais avant cela vérifier que le module d'apache ***rewrite_module*** est activé, ce qui est le cas lors de l'installation par défaut.
 	  Enfin, modifier la directive comme suit:
 	 
