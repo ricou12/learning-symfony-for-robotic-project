@@ -39,7 +39,7 @@ J'ai ajouté différentes fonctionnalités pour la partie back-end.
 		 
  3. **Mettre à jour les dépendances du projet** à partir du terminal de votre éditeur de code avec la commande:
 
-		   composer install
+		composer install
 
  4. **Transpilation du code SCSS et intégration des assets** avec le bundle Webpack Encore, pour cela utiliser la commande:
 
