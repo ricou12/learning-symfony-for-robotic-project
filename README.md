@@ -1,5 +1,5 @@
 
-# Learning symfony for project robotic
+# Learning symfony for robotic project 
 
 Ce projet en cours de développement a pour objectif d'exploiter le potentiel du ***framework Symfony.***
 
