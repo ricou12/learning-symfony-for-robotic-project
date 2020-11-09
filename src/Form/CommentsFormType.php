@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class CommentsFormType extends AbstractType
 {
@@ -15,17 +16,21 @@ class CommentsFormType extends AbstractType
     {
         $builder
             ->add('message',TextareaType::class,[
-                'required'   => true,
-                'attr' => ['rows' => '5'],
+                'attr'=> ['class'=> 'form-control',
+                    'rows' => '5'
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Merci d\'entrer un commentaire',
+                    ]),
+                ],
+                'label' => 'Message',
+                'required' => true,
             ])
-            // ->add('createdAt')
-            // ->add('updatedAt')
-            // ->add('subject')
-            // ->add('user')
-            // ->add('save', SubmitType::class, 
-            //     [
-            //         'label' => 'Ajouter le commentaire',
-            //     ])
+            ->add('save',SubmitType::class,[
+                'attr' => ['class'=>'mt-3 btn btn-outline-success'],
+                'label' =>'Répondre',
+            ])
         ;
     }
 

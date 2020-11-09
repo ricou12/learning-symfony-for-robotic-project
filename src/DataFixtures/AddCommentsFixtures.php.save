@@ -1,0 +1,40 @@
+<?php
+
+namespace App\DataFixtures;
+
+use App\Entity\Comments;
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Persistence\ObjectManager;
+use App\DataFixtures\AppUsersFixtures;
+use App\DataFixtures\AppSubjectsFixtures;
+
+class AddCommentsFixtures extends Fixture
+{
+    public function load(ObjectManager $manager)
+    {
+        for ($i = 0; $i < 5; $i++) {
+            $subject = new Comments();
+            $subject
+            ->setMessage(" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in hendrerit nibh, vel sagittis tellus. In imperdiet feugiat ante, eget sollicitudin libero porttitor sed. Etiam vitae faucibus magna. Mauris at ipsum rhoncus purus rutrum gravida. Quisque id neque euismod, efficitur urna nec, interdum quam. Pellentesque auctor maximus nulla in efficitur. Ut gravida urna vitae consequat bibendum. Proin eget porta orci. Cras aliquam sagittis justo, sodales euismod velit molestie egestas. Vivamus iaculis pellentesque nisl non feugiat. Nunc at turpis suscipit lectus bibendum finibus.
+
+                Praesent vehicula eget tellus sit amet accumsan. Sed fringilla eros in nulla euismod tempus. Sed commodo aliquam velit sed bibendum. Nulla accumsan convallis metus. Nunc facilisis turpis ut neque vehicula faucibus. Suspendisse vitae lobortis odio. Nullam eu ex eget purus tincidunt iaculis et nec nulla.
+                
+                Curabitur sem nulla, tempor vel sapien sit amet, lacinia bibendum libero. Suspendisse laoreet aliquam velit nec vestibulum. Pellentesque metus nibh, venenatis et eros non, viverra fringilla enim. Donec dapibus ligula at ante auctor placerat. Integer finibus aliquam arcu, in fringilla sapien finibus a. Fusce sapien felis, consectetur eget nulla non, commodo ultricies orci. Donec fermentum mi id eros auctor fringilla. Pellentesque in feugiat ante. Phasellus sit amet aliquet odio. Suspendisse commodo velit a dignissim faucibus. Proin quis odio quis lectus blandit ornare at quis libero. Duis tempor, odio vitae rhoncus porttitor, nulla ex egestas nisi, eget eleifend neque sapien varius est. Sed iaculis nisi vel turpis aliquam, at malesuada sem fringilla. Sed vehicula ut risus at elementum. ".$i)
+            
+            ->setUser($this->getReference(AppUsersFixtures::USER_REFERENCE))
+            
+            ->setSubject($this->getReference(AppSubjectsFixtures::SUBJECT_REFERENCE));
+
+            $manager->persist($subject);
+        }
+
+        $manager->flush();
+    }
+
+    public function getDependencies()
+    {
+        return array(
+            AppSubjectsFixtures::class,
+        );
+    }
+}

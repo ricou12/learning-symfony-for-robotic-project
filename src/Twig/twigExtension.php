@@ -7,6 +7,7 @@ use Twig\TwigFunction;
 
 class twigExtension extends AbstractExtension
 {
+    
     public function getFilters(): array
     {
         return [
@@ -20,14 +21,8 @@ class twigExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('sayHello', [$this, 'sayHello']),
             new TwigFunction('dateDiff', [$this, 'dateDiff']),
         ];
-    }
-
-    public function sayHello()
-    {
-        return ('hello');
     }
 
     public function dateDiff(string $date){

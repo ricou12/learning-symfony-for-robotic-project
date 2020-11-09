@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue sur le forum{% endblock %}
+{% block description %}Vous avez besoin d'aide avec votre Raspberry Pi ou Arduino ? Ce forum est fait pour vous
+!{% endblock %}
+
+{# Ajoute l'icone de connection #}
+{% block userAccount %}{% include "includes/connect.html.twig" %}{% endblock %}
+
+{% block body %}
+<article class="forum">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 py-5 telecommand__header">
+        <div class="text-center">
+          <h1 class="txtShadow--white txt-color--raspberry py-4 text-uppercase">Bienvenue sur le forum</h1>
+          <h2 class="text-warning txtShadow--black py-5 text-center">
+            Vous avez besoin d'aide avec votre <br> Raspberry Pi ou Arduino ?
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row border">
+      {# CHARTE DU FORUM #}
+      <div class="col-12 p-3">
+        {% include "includes/charteForum.html.twig" %}
+      </div>
+
+      {# AJOUTER UN SUJET #}
+      {% if app.user %}
+      <div class="col-12 border p-3">
+        <h5 class="text-info d-flex justify-content-around">
+          <a class="btn btn-outline-success" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">
+            Poster un nouveau un sujet
+          </a>
+        </h5>
+        <div class="collapse multi-collapse" id="multiCollapseExample1">
+          <div class="card card-body">
+            {{ form(subjectsform) }}
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+      {# TABLEAU LISTE DES SUJETS #}
+      <div class="col-12 p-3">
+        <div class="table-responsive-md">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col font-weight-light">{{subjects|length}} Sujet(s)</th>
+                <th scope="col">Description</th>
+                <th scope="col">Auteur</th>
+                <th scope="col">Reponses</th>
+                <th scope="col">Activité</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              {% if subjects %}
+                {% for subject in subjects|sort((a, b) => b.createdAt <=> a.createdAt) %}
+                <tr>
+                  <td><a href="{{ path('forum_subject', {'slug': subject.slug}) }}">{{subject.title}}</a></td>
+                  <td>{{subject.description|slice(0,100)}}...</td>
+                  <td>{{subject.user.author}}</td>
+                  <td>{{subject.comments|length}}</td>
+                  <td>{{ dateDiff(subject.createdAt|date("m/d/Y H:i",false)) }}</td>
+                </tr>
+                {% endfor %}
+              {% endif %}
+            </tbody>
+          </table>
+          {{ knp_pagination_render(subjects) }}
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+{% endblock %}

@@ -10,37 +10,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 
-/*  
-GENERER AUTOMATIQUEMENT LA DATE DE CREATION ET LA DATE DE MISE A JOUR
-METHODE N°1 / BUNDLE
-    Installer le bundle: 
-        composer require stof/doctrine-extensions-bundle
-
-    Importation et alias avec l'opérateur use: 
-        use Gedmo\Mapping\Annotation as Gedmo;
-
-    Modifier l'annotation des propriétés de date :
-     * @var \DateTime $created_at
-     * 
-     * @Gedmo\Timestampable(on="create")
-     * @ORM\Column(type="datetime")
-    private $created_at;
-    Enfin supprimer les setters pour created_at et updated_at
-
-METHODE N°2 / EVENT (écouteur d'evenement avant persistence des données)
-    https://symfony.com/doc/current/doctrine/events.html
-    1- Informer Doctrine que notre entité contient des callbacks de cycle de vie
-        grâce à l'annotation HasLifecycleCallbacks
-        * @ORM\HasLifecycleCallbacks() juste avant la definition de class
-    2- Informer Doctrine d'exécuter cette méthode (ce callback) dès que l'entité est crée ou modifiée
-        EX: évenement lié a la création d’une entitée.
-            * @ORM\PrePersist
-        EX: évenement lié a la modification d’une entitée existante.
-            * @ORM\PreUpdate                
-*/  
-
-
-
 /**
  * @ORM\Entity(repositoryClass=UsersRepository::class)
  * @UniqueEntity(fields={"email"}, message="Il existe déjà un compte avec cet e-mail")

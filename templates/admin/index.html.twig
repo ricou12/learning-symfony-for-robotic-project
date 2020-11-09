@@ -2,34 +2,54 @@
 
 {% block title %}Hello AdminController!{% endblock %}
 {% block description %}{% endblock %}
+{# Ajoute l'icone de connection #}
+{% block userAccount %}{% include "includes/connect.html.twig" %}{% endblock %}
 
 {% block body %}
 <div class="container-fluid">
     <div class="row">
-        <div class="col-12 p-3 text-white bg-primary">
+        <div class="col-12 p-3">
             <h1 class="text-center">Services d'administrations</h1>
         </div>
 
         <div class="col-12 p-5">
-            <h3 class="bg-info text-white p-3">
-                Liste des comptes utilisateurs {{users|length}} sur un total de {{ users.getTotalItemCount }}
+            <h3 class=" p-3">
+                Liste des comptes utilisateurs {{usersPagination|length}} sur un total de {{ usersPagination.getTotalItemCount }}
             </h3>
             
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Actions</th>
-                        <th scope="col font-weight-light">{{ knp_pagination_sortable(users, 'Utilisateurs', 'author') }}</th>
-                        <th scope="col"{% if users.isSorted('author') %} class="text-secondary"{% endif %}>Email</th>
-                        <th scope="col">Mot de passe</th>
+                        <th {% if usersPagination.isSorted('id') %} class="font-italic bgColor--greenExtraLight"{% endif %}>{{ knp_pagination_sortable(usersPagination, 'Id', 'id') }}</th>
+                        <th scope="col" {% if usersPagination.isSorted('author') %} class="font-italic bgColor--greenExtraLight"{% endif %}>{{ knp_pagination_sortable(usersPagination, 'Utilisateurs', 'author') }}</th>
+                        <th scope="col">Email</th>
                         <th scope="col">Role</th>
-                        <th scope="col">{{ knp_pagination_sortable(users, 'Crée le', 'createdAt') }}</th>
-
+                        <th scope="col">Sujets</th>
+                        <th scope="col">Commentaires</th>
+                        <th scope="col" {% if usersPagination.isSorted('createdAt') %} class="font-italic bgColor--greenExtraLight"{% endif %}>{{ knp_pagination_sortable(usersPagination, 'Crée le', 'createdAt') }}</th>
+                        <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for user in users %}
+                    {% for user in usersPagination %}
                     <tr>
+                        <td>{{user.id}}</td>
+                        <td>{{user.author}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{# On boucle sur les rôles #}
+                            {% for role in user.roles %}
+                                {% if role == "ROLE_USER" %}
+                                    Utilisateur
+                                {% elseif role == "ROLE_EDITOR" %}
+                                    Editeur
+                                {% elseif role == "ROLE_ADMIN" %}
+                                    Administrateur
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                        <td><a href="{{ path('admin_user_subjects',{'id': user.id}) }}">{{user.subjects|length}}</a></td>
+                        <td><a href="{{ path('admin_user_comments',{'id': user.id}) }}">{{user.comments|length}}</a></td>
+                        <td>{{user.createdAt|format_datetime('full', 'short', timezone ='Europe/Paris', locale='fr')}}</td>
                         <td class="d-flex flex-nowrap justify-content-between">
                             <div>
                                 <button type="button" class="btn btn-outline-danger" data-toggle="modal"
@@ -63,41 +83,18 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div>
-                                <button type="button" class="btn btn-outline-danger" data-toggle="modal"
-                                    data-target="#update_{{user.id}}">
+                                <a href="{{ path('admin_user_update', {'id': user.id}) }}" class="btn btn-outline-danger">
                                     <img src="{{asset("/build/images/icon/update.png")}}" width="25">
-                                </button>
-                                <div class="modal" id="update_{{user.id}}" tabindex="-1" role="dialog">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
-
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-outline-dark"
-                                                    data-dismiss="modal">Annuler</button>
-                                                <a href="{{ path('admin_user_delete', {'id':user.id}) }}"
-                                                    class="btn btn-outline-danger"><img
-                                                        src="{{asset("/build/images/icon/trash.png")}}"
-                                                        width="25"></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                </a>
                             </div>
                         </td>
-                        <td><a href="{{ path('admin_user_update', {'slug': user.id}) }}">{{user.author}}</a>
-                        </td>
-                        <td>{{user.email}}</td>
-                        <td>{{user.password|slice(0,20) ~ '...'}}</td>
-                        <td></td>
-                        <td>{{user.createdAt|format_datetime('full', 'short', locale='fr')}}</td>
                     </tr>
                     {% endfor %}
                         
                 </tbody>
             </table>
-            {{ knp_pagination_render(users) }}
+            {{ knp_pagination_render(usersPagination) }}
         </div>
     </div>
 </div>

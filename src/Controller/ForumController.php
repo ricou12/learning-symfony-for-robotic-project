@@ -4,15 +4,17 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-// use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-// use App\Entity\Users;
 use App\Entity\Comments;
 use App\Form\CommentsFormType;
 use App\Entity\Subjects;
 use App\Form\SubjectsFormType;
+use App\Form\EditUserFormType;
+use App\form\ForumUserFormType;
+use Knp\Component\Pager\PaginatorInterface; // Nous appelons le bundle KNP Paginator
 
 /**
  * Class ForumController
@@ -22,21 +24,25 @@ use App\Form\SubjectsFormType;
 class ForumController extends AbstractController
 {
     /**
-     * @Route("/", name="view")
+     * @Route("/", name="subjects")
      */
-    public function index(Request $request): Response
+    public function index(Request $request, PaginatorInterface $paginator): Response
     {
         // Utilisateur avec session active
-        $userSession = $this->get('security.token_storage')->getToken()->getUser();
-        
-        // Méthode findBy qui permet de récupérer les données avec des critères de filtre et de tri
-        $subjects = $this->getDoctrine()->getRepository(Subjects::class)->findBy([],['createdAt' => 'desc']);
-        // if (!$subjects) {
-        //     // Si aucun sujet n'est trouvé, nous créons une exception
-        //     throw $this->createNotFoundException(
-        //         'Aucun sujet n\'a été publié'
-        //     );
-        // }
+        $userSession = $this->get('security.token_storage')->getToken()->getUser();      
+        $subjects = $this->getDoctrine()->getRepository(Subjects::class)->findBy([],['createdAt' => 'ASC']);
+
+        $subjects = $paginator->paginate(
+            $subjects, // Requête contenant les données à paginer (ici nos articles)
+            $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
+            10 // Nombre de résultats par page
+        );
+
+        $subjects->setCustomParameters([
+            'align' => 'center',
+            'size' => 'medium',
+            'rounded' => true,
+        ]);
 
         // formulaire pour l'ajout d'un nouveau sujet
         $subject = new subjects();
@@ -52,15 +58,14 @@ class ForumController extends AbstractController
             return new RedirectResponse('/forum');
         }
 
-        return $this->render('forum/forum.html.twig', [
-            'controller_name' => 'SubjectsController',
+        return $this->render('forum/subjects.html.twig', [
             'subjects' => $subjects,
             'subjectsform' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/subject/{slug}", name="subject")
+     * @Route("/sujet/{slug}", name="subject")
      */
     public function getSubject(Request $request, $slug): Response 
     {
@@ -96,21 +101,26 @@ class ForumController extends AbstractController
     }
 
     /**
-     * @route("/subjects/delete/{slug}", name="deleteSubject")
+     * @Route("/profil/modifier", name="update_user")
      */
-    public function deleteSubject($slug) {
-        // Utilisateur avec session active
+    public function editUser(UserInterface $user, Request $request)
+    {
+        $form = $this->createForm(ForumUserFormType::class, $user);
+        $form->handleRequest($request);
 
-        $userSession = $this->get('security.token_storage')->getToken()->getUser();
-
-        $subject = $this->getDoctrine()->getRepository(Subjects::class)->findOneBy(['slug' => $slug]);
-
-        if($subject && $userSession->getUsername()  == $subject->getUser()->getEmail() ){
+        if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($subject);
+            $entityManager->persist($user);
             $entityManager->flush();
+
+            $this->addFlash('message', 'Utilisateur modifié avec succès');
+            return $this->redirectToRoute('forum_subjects');
         }
-        return $this->redirectToRoute('forum_view');
+        
+        return $this->render('users/edituser.html.twig', [
+            'title'=> 'Mes informations',
+            'userForm' => $form->createView(),
+        ]);
     }
 
     /**

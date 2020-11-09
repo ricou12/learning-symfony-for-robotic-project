@@ -67,7 +67,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Conception des télécommandes
+                            Télécommandes
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <div class="dropdown text-left">
@@ -100,7 +100,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownNext" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Conception du robot
+                            Robot
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownNext">
                             <a class="dropdown-item" href="{{path('bot_components')}}">Les composants</a>
@@ -118,7 +118,7 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link" href="{{path('forum_view')}}" role="button">
+                        <a class="nav-link" href="{{path('forum_subjects')}}" role="button">
                             Forum
                         </a>
                     </li>
@@ -127,6 +127,12 @@
                             Contact
                         </a>
                     </li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{path('admin_utilisateurs')}}">Administrer</a>
+                    </li>
+                    {% endif %}
+                    
                 </ul>
                 {% block userAccount %}{% endblock %}
             </div>
