@@ -26,7 +26,7 @@ class twigExtension extends AbstractExtension
     }
 
     public function dateDiff(string $date){
-        $tomorrow = date("m/d/Y H:i", strtotime('now'));
+        $tomorrow = date("m/d/Y H:i:s", strtotime('now'));
         $tomorrow = date_create($tomorrow);
         $target = date_create($date);
         $diff = $tomorrow->diff($target);
@@ -36,6 +36,7 @@ class twigExtension extends AbstractExtension
         $days = $diff->d;
         $hour = $diff->h;
         $min = $diff->i;
+        $sec = $diff->s;
 
         $resultat=array();
         
@@ -68,6 +69,13 @@ class twigExtension extends AbstractExtension
                 array_push($resultat, $min." minute"); 
              } else {
                 array_push($resultat, $min." minutes");
+             }
+        }
+        elseif( $sec >= 1 ){
+            if($sec == 1){
+                array_push($resultat, $sec." seconde"); 
+             } else {
+                array_push($resultat, $sec." secondes");
              }
         }
         

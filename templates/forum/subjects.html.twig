@@ -23,7 +23,7 @@
   </div>
 
   <div class="container">
-    <div class="row border">
+    <div class="row">
       {# CHARTE DU FORUM #}
       <div class="col-12 p-3">
         {% include "includes/charteForum.html.twig" %}
@@ -31,14 +31,14 @@
 
       {# AJOUTER UN SUJET #}
       {% if app.user %}
-      <div class="col-12 border p-3">
+      <div class="col-12 py-2">
         <h5 class="text-info d-flex justify-content-around">
-          <a class="btn btn-outline-success" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">
+          <a class="btn btn-outline-dark" data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">
             Poster un nouveau un sujet
           </a>
         </h5>
-        <div class="collapse multi-collapse" id="multiCollapseExample1">
-          <div class="card card-body">
+        <div class="collapse" id="collapseExample1">
+          <div class="card card-body bg-dark text-white p-4">
             {{ form(subjectsform) }}
           </div>
         </div>
@@ -46,22 +46,25 @@
       {% endif %}
 
       {# TABLEAU LISTE DES SUJETS #}
-      <div class="col-12 p-3">
+      <div class="col-12 mt-3">
         <div class="table-responsive-md">
           <table class="table">
             <thead>
               <tr>
-                <th scope="col font-weight-light">{{subjects|length}} Sujet(s)</th>
+                <th {% if subjectsPagination.isSorted('title') %} class="font-italic bgColor--greenExtraLight"{% endif %}>
+                    {{ knp_pagination_sortable(subjectsPagination, subjectsPagination.getTotalItemCount ~ ' sujets', 'title') }}
+                </th>
                 <th scope="col">Description</th>
                 <th scope="col">Auteur</th>
                 <th scope="col">Reponses</th>
-                <th scope="col">Activité</th>
-
+                <th {% if subjectsPagination.isSorted('createdAt') %} class="font-italic bgColor--greenExtraLight"{% endif %}>
+                    {{ knp_pagination_sortable(subjectsPagination, ' Activité', 'createdAt') }}
+                </th>
               </tr>
             </thead>
             <tbody>
-              {% if subjects %}
-                {% for subject in subjects|sort((a, b) => b.createdAt <=> a.createdAt) %}
+              {% if subjectsPagination %}
+                {% for subject in subjectsPagination|sort((a, b) => b.createdAt <=> a.createdAt) %}
                 <tr>
                   <td><a href="{{ path('forum_subject', {'slug': subject.slug}) }}">{{subject.title}}</a></td>
                   <td>{{subject.description|slice(0,100)}}...</td>
@@ -73,7 +76,7 @@
               {% endif %}
             </tbody>
           </table>
-          {{ knp_pagination_render(subjects) }}
+          {{ knp_pagination_render(subjectsPagination) }}
         </div>
       </div>
     </div>

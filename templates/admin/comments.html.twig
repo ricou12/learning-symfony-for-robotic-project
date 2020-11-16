@@ -11,55 +11,69 @@
         <div class="col-12">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ path('admin_utilisateurs') }}">Administration</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Commentaires du forum</li>
+                    <li class="breadcrumb-item"><a href="{{ path('admin_users') }}">Administration</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{commentsPagination[0].user.author}}</li>
                 </ol>
             </nav>
-            <h1>Liste des commentaires postés par {{user.author}}</h1>
+            <h1>{{commentsPagination[0].user.author}} a posté {{commentsPagination.getTotalItemCount}} commentaires</h1>
             <div class="mt-4 p-4 border shadow rounded">
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">id</th>
+                            <th scope="col" {% if commentsPagination.isSorted('id') %} class="font-italic bgColor--greenExtraLight"{% endif %}>
+                                {{ knp_pagination_sortable(commentsPagination, 'Id', 'id') }}
+                            </th>
                             <th scope="col">Commentaires</th>
-                            <th scope="col">createdAt</th>
+                            <th scope="col" {% if commentsPagination.isSorted('createdAt') %} class="font-italic bgColor--greenExtraLight"{% endif %}>
+                                {{ knp_pagination_sortable(commentsPagination, 'Créé le', 'id') }}
+                            </th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for comment in comments %}
+                        {% for comment in commentsPagination %}
                         <tr>
                             <td>{{ comment.id }}</td>
                             <td>{{ comment.message|nl2br }}</td>
-                            <td>{{ comment.createdAt|format_datetime('full', 'none', timezone ='Europe/Paris', locale='fr') }}</td>
-                            <td>
-                                <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#delete_{{comment.id}}">
-                                    <img src="{{asset("/build/images/icon/trash.png")}}" width="25">
-                                </button>
-                                <div class="modal" id="delete_{{comment.id}}" tabindex="-1" role="dialog">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title text-danger">Demande de confirmation</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>Etes-vous certain de vouloir supprimer ce commentaire: <span class="font-weight-bold font-italic"></span> !</p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Annuler</button>
-                                            <a href="{{ path('admin_delete_comment', {'slug':comment.slug, 'id':comment.user.id}) }}" class="btn btn-outline-danger"><img src="{{asset("/build/images/icon/trash.png")}}" width="25"></a>
-                                        </div>
+                            <td>{{ comment.createdAt|format_datetime('full', 'short', timezone ='Europe/Paris', locale='fr') }}</td>
+                            <td class="d-flex flex-nowrap justify-content-between">
+                                <div class="mx-1">
+                                    <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#delete_{{comment.id}}">
+                                        <img src="{{asset("/build/medias/images/icon/trash.png")}}" width="25">
+                                    </button>
+                                    <div class="modal" id="delete_{{comment.id}}" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title text-danger">Demande de confirmation</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Etes-vous certain de vouloir supprimer ce commentaire: <span class="font-weight-bold font-italic"></span> !</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Annuler</button>
+                                                <a href="{{ path('admin_delete_comment', {'slugComment':comment.slug}) }}" class="btn btn-outline-danger"><img src="{{asset("/build/medias/images/icon/trash.png")}}" width="25"></a>
+                                            </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="mx-1">
+                                    <p>
+                                        <a class="btn btn-outline-primary" href="{{ path('admin_update_comment',{'slugComment':comment.slug}) }}">
+                                        <img src="{{asset("/build/medias/images/icon/update.png")}}"  width="25">
+                                        </a>
+                                    </p> 
+                                </div> 
                             </td>
                         </tr>
                         {% endfor %}
                     </tbody>
                 </table>
+                {{ knp_pagination_render(commentsPagination) }}
             </div>
         </div>
     </div>

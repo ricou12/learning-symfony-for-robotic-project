@@ -8,9 +8,9 @@ const base_container_video = () => {
 const play_video = () => {
     return `
     <video class="robotique__video--height videoWeb-1" controls autoplay>
-        <source src="build/video/video.mp4" type="video/mp4">
+        <source src="build/medias/video/video.mp4" type="video/mp4">
             <p>Votre navigateur ne prend pas en charge les vidéos HTML5. Voici 
-                <a href="/build/video/video.mp4">un lien pour télécharger la vidéo</a>.
+                <a href="/build/medias/video/video.mp4">un lien pour télécharger la vidéo</a>.
             </p>
     </video>`;
 }

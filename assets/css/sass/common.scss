@@ -3,29 +3,29 @@
 @font-face {
     font-family:"RobotoGoogle";
     src:
-        url('/build/fonts/Roboto/Roboto-Black.ttf') format("truetype"),
-        url('/build/fonts/Roboto/Roboto-BlackItalic.ttf') format("truetype"),
-        url('/build/fonts/Roboto/Roboto-Bold.ttf') format("truetype"),
-        url('/build/fonts/Roboto/Roboto-BoldItalic.ttf') format("truetype"),
-        url('/build/fonts/Roboto/Roboto-Italic.ttf') format("truetype"),
-        url('/build/fonts/Roboto/Roboto-Light.ttf') format("truetype"),
-        url('/build/fonts/Roboto/Roboto-LightItalic.ttf') format("truetype"),
-        url('/build/fonts/Roboto/Roboto-Medium.ttf') format("truetype")
-        url('/build/fonts/Roboto/Roboto-MediumItalic.ttf') format("truetype"),
-        url('/build/fonts/Roboto/Roboto-Regular.ttf') format("truetype"),
-        url('/build/fonts/Roboto/Roboto-Thin.ttf') format("truetype"),
-        url('/build/fonts/Roboto/Roboto-ThinItalic.ttf') format("truetype"),;
+        url('/build/medias/fonts/Roboto/Roboto-Black.ttf') format("truetype"),
+        url('/build/medias/fonts/Roboto/Roboto-BlackItalic.ttf') format("truetype"),
+        url('/build/medias/fonts/Roboto/Roboto-Bold.ttf') format("truetype"),
+        url('/build/medias/fonts/Roboto/Roboto-BoldItalic.ttf') format("truetype"),
+        url('/build/medias/fonts/Roboto/Roboto-Italic.ttf') format("truetype"),
+        url('/build/medias/fonts/Roboto/Roboto-Light.ttf') format("truetype"),
+        url('/build/medias/fonts/Roboto/Roboto-LightItalic.ttf') format("truetype"),
+        url('/build/medias/fonts/Roboto/Roboto-Medium.ttf') format("truetype")
+        url('/build/medias/fonts/Roboto/Roboto-MediumItalic.ttf') format("truetype"),
+        url('/build/medias/fonts/Roboto/Roboto-Regular.ttf') format("truetype"),
+        url('/build/medias/fonts/Roboto/Roboto-Thin.ttf') format("truetype"),
+        url('/build/medias/fonts/Roboto/Roboto-ThinItalic.ttf') format("truetype"),;
 }
 
 @font-face {
     font-family: "Ranchers";
-    src: url('/build/fonts/Ranchers/Ranchers-Regular.ttf') format("truetype");
+    src: url('/build/medias/fonts/Ranchers/Ranchers-Regular.ttf') format("truetype");
 }
 
 @font-face {
     font-family:"Playfair Display";
     src:
-        url('/build/fonts/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf') format("truetype");
+        url('/build/medias/fonts/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf') format("truetype");
 }
 
 
@@ -34,7 +34,7 @@ body {
     font-family: 'RobotoGoogle', sans-serif;
 }
 
-[class*="__header"]{
+div [class*="__header"]{
     word-spacing: .3rem;
 
     h1{
@@ -191,6 +191,11 @@ h4 {
 .bgColor--raspberry {
     background-color: rgb(197, 29, 74);
 }
+
+.bgColor--redDark {
+    background-color: rgb(127, 48, 48);;
+}
+
 
 /* COLOR */
 .txt-color--blue {

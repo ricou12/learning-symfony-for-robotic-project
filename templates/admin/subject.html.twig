@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue sur le forum{% endblock %}
+{% block description %}Vous avez besoin d'aide avec votre Raspberry Pi ou Arduino ? Ce forum est fait pour
+vous!{% endblock %}
+
+{# Ajoute l'icone de connection #}
+{% block userAccount %}{% include "includes/connect.html.twig" %}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('admin_users') }}">Administration</a></li>
+            <li class="breadcrumb-item" aria-current="page"><a href="{{ path('admin_user_subjects',{'id': subject.user.id,'page':'1'}) }}">{{ subject.user.author }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ subject.title }}</li>
+        </ol>
+    </nav>
+    <div class="row border border-secondary rounded mb-3">
+        <div class="col-12 p-3 text-white bgColor--raspberry">
+            <h3 class="font-weight-bold">{{ subject.title }}</h3>
+            <div class="d-flex flex-row justify-content-between">
+                <p class="font-weight-bold">{{ subject.user.author }}</p>
+                <p class="font-weight-light font-italic">
+                    {{ subject.createdAt|format_datetime('full', 'short', timezone ='Europe/Paris', locale='fr') }}</p>
+            </div>
+        </div>
+
+        <div class="col-12 p-3">
+            {{subject.description|nl2br}}
+        </div>
+    </div>
+    {# COMMENTAIRES #}
+    {% for comment in subjectPagination|sort((a, b) => b.createdAt <=> a.createdAt) %}
+    <div class="row border my-3 rounded">
+        <div class="col-12 bgColor--blueSky p-3 d-flex flex-row justify-content-between">
+            <h3 class="font-weight-bold">{{comment.user.author}}</h3>
+            <p class="font-weight-light font-italic">{{ comment.createdAt|format_datetime('full', 'short', timezone ='Europe/Paris', locale='fr') }}
+            </p>
+        </div>
+        <div class="col-12 p-3">
+            {# {{comment.message|raw}} #}
+            {{comment.message|nl2br}}
+        </div>
+        <div class="col-12 p-3 d-flex justify-content-between">
+            <p class="text-secondary font-italic">{{comment.createdAt|format_datetime('full', 'short', timezone ='Europe/Paris', locale='fr')}}</p>
+            <div class="d-flex">
+                <div class="mx-1">
+                    <button type="button" class="btn btn-outline-danger" data-toggle="modal"
+                        data-target="#delete_{{comment.id}}">
+                        <img src="{{asset("/build/medias/images/icon/trash.png")}}" width="25">
+                    </button>
+                    <div class="modal" id="delete_{{comment.id}}" tabindex="-1" role="dialog">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title text-danger">Demande de confirmation</h5>
+                                    <button type="button" class="close" data-dismiss="modal"
+                                        aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Etes-vous certain de vouloir supprimer le commentaire de : <span
+                                        class="font-weight-bold font-italic">{{comment.user.author}}</span>
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-dark"
+                                        data-dismiss="modal">Annuler</button>
+                                    <a href="{{ path('admin_delete_comment',{'slugComment':comment.slug,'slugSubject':subject.slug }) }}"
+                                        class="btn btn-outline-danger"><img
+                                            src="{{asset("/build/medias/images/icon/trash.png")}}"
+                                            width="25"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mx-1">
+                    <p>
+                        <a class="btn btn-outline-primary" href="{{ path('admin_update_comment',{'slugComment':comment.slug, 'slugSubject':subject.slug}) }}">
+                        <img src="{{asset("/build/medias/images/icon/update.png")}}"  width="25">
+                        </a>
+                    </p> 
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+     {{ knp_pagination_render(subjectPagination) }}
+    
+</div>
+{% endblock %}

@@ -16,19 +16,20 @@ class CommentsFormType extends AbstractType
     {
         $builder
             ->add('message',TextareaType::class,[
+                'row_attr'=> ['class'=>'form-group'],
                 'attr'=> ['class'=> 'form-control',
                     'rows' => '5'
                 ],
+                'label' => 'Message',
+                'required' => true,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Merci d\'entrer un commentaire',
                     ]),
                 ],
-                'label' => 'Message',
-                'required' => true,
             ])
             ->add('save',SubmitType::class,[
-                'attr' => ['class'=>'mt-3 btn btn-outline-success'],
+                'attr' => ['class'=>'btn btn-success'],
                 'label' =>'Répondre',
             ])
         ;

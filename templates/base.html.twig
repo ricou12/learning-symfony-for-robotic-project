@@ -15,14 +15,14 @@
 
     {# <!-- HTML Meta Tags --> #}
     <title>{{ block('title') }} - IHM Robotique</title>
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset("/build/images/icon/favicon.png") }}" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset("build/medias/images/icon/favicon.png") }}" />
     <meta name="description" content="{{ block('description') }}">
     <link rel="canonical" href="">
 
     {# <!-- Google / Search Engine Tags --> #}
     <meta itemprop="name" content="{{ block('description') }}">
     <meta itemprop="description" content="{{ block('description') }}">
-    <meta itemprop="image" content="{{ asset('/build/video/logoOg.gif') }}">
+    <meta itemprop="image" content="{{ asset('/build/medias/video/logoOg.gif') }}">
 
     {# <!-- Facebook Meta Tags --> #}
     <meta property="og:locale" content="fr_FR" />
@@ -30,7 +30,7 @@
     <meta property="og:title" content="{{ block('title') }} - IHM Robotique" />
     <meta property="og:description" content="{{ block('description') }}" />
     <meta property="og:url" content="" />
-    <meta property="og:image" content="{{ asset('/build/video/logoOg.gif') }}" />
+    <meta property="og:image" content="{{ asset('/build/medias/video/logoOg.gif') }}" />
     <meta property="og:image:width" content="300" />
     <meta property="og:image:height" content="169" />
 
@@ -38,10 +38,10 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ block('title') }} - IHM Robotique">
     <meta name="twitter:description" content="{{ block('description') }}">
-    <meta name="twitter:image" content="{{ asset('/build/video/logoOg.gif') }}">
+    <meta name="twitter:image" content="{{ asset('/build/medias/video/logoOg.gif') }}">
 
     {# Renders a link tag (if your module requires any CSS)
-            <link rel="stylesheet" href="/build/app.css"> #}
+            <link rel="stylesheet" href="/build/medias/app.css"> #}
     {{ encore_entry_link_tags('app') }}
 
 </head>
@@ -51,7 +51,7 @@
         {% block navigation %}
                 <div class="container navigation" id="anchor">
         <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="navbar-brand" href="{{path('index')}}" data-toggle="tooltip" title="Projet robotique"><img src="{{ asset('/build/images/icon/robots.gif') }}" alt="Logo"
+            <a class="navbar-brand" href="{{path('index')}}" data-toggle="tooltip" title="Projet robotique"><img src="{{ asset('/build/medias/images/icon/robots.gif') }}" alt="Logo"
                     width="70"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -129,7 +129,7 @@
                     </li>
                     {% if is_granted('ROLE_ADMIN') %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{path('admin_utilisateurs')}}">Administrer</a>
+                        <a class="nav-link" href="{{ path('admin_users',{}) }}">Administrateur</a>
                     </li>
                     {% endif %}
                     

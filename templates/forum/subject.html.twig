@@ -24,7 +24,7 @@ vous!{% endblock %}
                     {{ subject.createdAt|format_datetime('full', 'none', timezone ='Europe/Paris', locale='fr') }}</p>
             </div>
         </div>
-        <div class="col-12 py-2">
+        <div class="col-12 mt-2">
             {% if app.user %}
             <p>
                 <a class="btn btn-outline-dark" data-toggle="collapse" href="#repondre" role="button"
@@ -40,11 +40,11 @@ vous!{% endblock %}
             {% endif %}
         </div>
 
-        <div class="col-12 p-3">
+        <div class="col-12 p-4">
             {{subject.description|nl2br}}
         </div>
 
-        <div class="col-12 p-3 border d-flex">
+        {# <div class="col-12 p-3 border d-flex">
             <div class="p-2 text-center">
                 <p>crée</p>
                 <p>{{subject.createdAt|format_datetime('short', 'none', timezone ='Europe/Paris', locale='fr')}}</p>
@@ -52,19 +52,15 @@ vous!{% endblock %}
             </div>
             <div class="p-2 text-center">
                 <p>réponse</p>
-                {# <p>{{ subject.comments|sort dateDiff(subject.comments[0].createdAt|date("m/d/Y H:i", false)) }}</p> #}
-
             </div>
             <div class="p-2 text-center">
                 <p>{{subject.comments|length}}</p>
                 <p>réponses</p>
             </div>
-
-
-        </div>
+        </div> #}
     </div>
     {# COMMENTAIRES #}
-    {% for comment in subject.comments|sort((a, b) => b.createdAt <=> a.createdAt) %}
+    {% for comment in commentsPagination|sort((a, b) => b.createdAt <=> a.createdAt) %}
     <div class="row border my-3 rounded">
         <div class="col-12 bgColor--blueSky p-3 d-flex flex-row justify-content-between">
             <h3 class="font-weight-bold">{{comment.user.author}}</h3>
@@ -80,5 +76,6 @@ vous!{% endblock %}
         </div>
     </div>
     {% endfor %}
+    {{ knp_pagination_render(commentsPagination) }}
 </div>
 {% endblock %}

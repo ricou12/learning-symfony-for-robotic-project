@@ -21,7 +21,7 @@ const blocText = () => {
 const base_container_video_2 = () => {
     return `
     <div class="col-12 col-md-4 d-flex justify-content-center align-items-center">
-        <img src="/build/images/telecom.png" alt="Telecommande-web" class="interfaceWeb__image">
+        <img src="/build/medias/images/telecom.png" alt="Telecommande-web" class="interfaceWeb__image">
         <button class="interfaceWeb__video__play-button">Voir la vidéo</button>
     </div>
     <div class="col-12 col-md-8 mt-4 mt-md-0 blocText">
@@ -33,9 +33,9 @@ const base_container_video_2 = () => {
 const playVideo = () => {
     return `<div class="col-12 d-flex justify-content-center align-items-start">
         <video class="videoWeb interfaceWeb__video--height" controls autoplay>
-            <source src="/build/video/telecom.mp4" type="video/mp4">
+            <source src="/build/medias/video/telecom.mp4" type="video/mp4">
                 <p>Votre navigateur ne prend pas en charge les vidéos HTML5. Voici 
-                    <a href="/build/video/telecom.mp4">Un lien pour télécharger la vidéo</a>.
+                    <a href="/build/medias/video/telecom.mp4">Un lien pour télécharger la vidéo</a>.
                 </p>
         </video>
         </div> 

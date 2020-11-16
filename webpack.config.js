@@ -14,9 +14,15 @@ Encore
     // only needed for CDN's or sub-directory deploy
     //.setManifestKeyPrefix('build/')
 
+    /* Cela copiera tous les dossiers et fichiers de './assets' vers le chemin de sortie 'public/build/'.
+     *  Si le contrôle de version est activé, les fichiers copiés comprendront un hachage basé sur leur contenu.
+     *  Ex: effectuer le rendu à l'intérieur de Twig d'une image, en utilisant la fonction asset()
+     *      <img src="{{ asset('build/medias/images/icon/favicon.png') }}" alt="logo">
+     *      Dossier d'origine dans le projet 'assets/medias/images/icon/favicon.png'
+     *      Copira vers le dossier 'public/build/medias/images/icon/favicon.png'
+     */
     .copyFiles({
-         from: './assets/medias',
-
+        from: './assets',
          // optional target path, relative to the output dir
          //to: 'images/[path][name].[ext]',
 
@@ -26,13 +32,7 @@ Encore
          // only copy files matching this pattern
          //pattern: /\.(png|jpg|jpeg)$/
      })
-     /* Cela copiera tous les dossiers et fichiers de 'assets/medias/' vers le chemin de sortie 'public/build/'.
-     *  Si le contrôle de version est activé, les fichiers copiés comprendront un hachage basé sur leur contenu.
-     *  Ex: effectuer le rendu à l'intérieur de Twig d'une image, en utilisant la fonction asset()
-     *      <img src="{{ asset('build/images/icon/favicon.png') }}" alt="logo">
-     *      Dossier d'origine dans le projet 'assets/medias/images/icon/favicon.png'
-     *      Copira vers le dossier 'public/build/images/icon/favicon.png'
-     */
+     
 
     /*
      * ENTRY CONFIG

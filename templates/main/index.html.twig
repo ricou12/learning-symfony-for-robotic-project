@@ -10,7 +10,7 @@
     <div class="container-fluid robotique">
         <div class="row robotique__header">
             <div class="col-12 col-lg-3 d-none d-lg-flex justify-content-center align-items-center">
-                <img src="{{ asset('/build/images/composants/raspberry-pi-4.webp') }}" alt="Raspberry-pi"
+                <img src="{{ asset('/build/medias/images/composants/raspberry-pi-4.webp') }}" alt="Raspberry-pi"
                     class="robotique__header__img01">
             </div>
             <div class="col-12 col-lg-6 py-5">
@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div class="col-12 col-lg-3 d-none d-lg-flex justify-content-center align-items-center">
-                <img src="{{ asset('/build/images/composants/arduino-officiel.png') }}" alt="Arduino uno"
+                <img src="{{ asset('/build/medias/images/composants/arduino-officiel.png') }}" alt="Arduino uno"
                     class="robotique__header__img02">
             </div>
         </div>
@@ -37,7 +37,7 @@
                     {# Modal #}
                     {{component.modalRc(
                         "Radio télécommande",
-                        "/build/images/telecommande.png",
+                        "/build/medias/images/telecommande.png",
                         "telecommande",
                         "effect-grayscaleZoomTurnIn",
                         "lg"
@@ -89,7 +89,7 @@
                 <div class="text-center">
                     {{component.modalRc(
                         "Interface de commande web",
-                        "/build/images/telecom.png",
+                        "/build/medias/images/telecom.png",
                         "web",
                         "effect-grayscaleZoomTurnOut",
                         "md"
@@ -103,7 +103,7 @@
                 <div class="text-center">
                     {{component.modalRc(
                         "Robot",
-                        "/build/images/robot.png",
+                        "/build/medias/images/robot.png",
                         "vehicule",
                         "effect-move_X",
                         "xl"
@@ -292,7 +292,7 @@
                             {# Modal #}
                             {{component.modalRc(
                                 "Raspberry",
-                                "/build/images/composants/raspberry-pi4.png", 
+                                "/build/medias/images/composants/raspberry-pi4.png", 
                                 "raspberry",
                                 "",
                                 "md"
@@ -417,7 +417,7 @@
                             {# Modal #}
                             {{component.modalRc(
                                 "Arduino",
-                                "/build/images/composants/arduino.png", 
+                                "/build/medias/images/composants/arduino.png", 
                                 "arduino",
                                 "",
                                 "md"
@@ -434,6 +434,5 @@
 {% endblock %}
 
 {% block javascripts %}
-    {# // <script src="{{ asset('build/demoVideo.js') }}"></script> #}
     {{ encore_entry_script_tags('main') }}
 {% endblock %}

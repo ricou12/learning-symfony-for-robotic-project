@@ -5,11 +5,11 @@ namespace App\Controller;
 use App\Repository\UsersRepository;
 use App\Entity\Users;
 use App\Repository\SubjectsRepository;
-use App\Entity\Subjects;
 use App\Repository\CommentsRepository;
 use App\Form\EditUserFormType;
+use App\Form\SubjectsFormType;
+use App\Form\CommentsFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,23 +24,15 @@ use Knp\Component\Pager\PaginatorInterface; // Nous appelons le bundle KNP Pagin
 class AdminController extends AbstractController
 {
     /**
-     * @Route("/", name="utilisateurs", methods={"GET"})
+     * @Route("/utilisateurs/{sort}/{direction}/{page}", name="users", methods={"GET"})
      */
-    public function index(UsersRepository $users, Request $request, PaginatorInterface $paginator): Response
+    public function index($sort='id', $direction='ASC', $page='1', UsersRepository $users, PaginatorInterface $paginator)
     {
-        if($request->query->get('sort')){
-            $sort = $request->query->get('sort');
-            $direction = $request->query->get('direction');
-            $page = $request->query->getInt('page', 1);
-            $donnees = $users->findBy([],[$sort =>  $direction]);
-            // $this->redirectToRoute('test', ['sort'=>$sort, 'direction'=>$direction,'page'=>$page ]);
-        } else {
-            $donnees = $users->findAll();
-        }
-        
+        $donnees = $users->findBy([],[$sort => $direction]);
+
         $usersPagination = $paginator->paginate(
             $donnees, // Requête contenant les données à paginer (ici nos articles)
-            $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
+            $page, // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
             10 // Nombre de résultats par page
         );
 
@@ -78,11 +70,11 @@ class AdminController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('message', 'Utilisateur modifié avec succès');
-            return $this->redirectToRoute('admin_utilisateurs');
+            return $this->redirectToRoute('admin_users');
         }
         
-        return $this->render('users/edituser.html.twig', [
-            'title'=>"Editer le profil",
+        return $this->render('admin/edituser.html.twig', [
+            'author'=> $user->getAuthor(),
             'userForm' => $form->createView(),
         ]);
     }
@@ -98,28 +90,98 @@ class AdminController extends AbstractController
             $entityManager->remove($userDelete);
             $entityManager->flush();
         }
-        return $this->redirectToRoute('admin_utilisateurs');
+        return $this->redirectToRoute('admin_users');
     }
 
     // SUJETS FORUM //
 
     /**
-     * @Route("/sujets/{id}", name="user_subjects")
+     * @Route("/sujets/{id}/{page}", name="user_subjects")
      */
-    public function showSubjects($id,UsersRepository $users){
+    public function showSubjects($id, $page='1', UsersRepository $users, PaginatorInterface $paginator){
         $user = $users->find($id);
-        $subjects = $user->getSubjects();
+        $allSubjects = $user->getSubjects();
+
+        $usersPagination = $paginator->paginate(
+            $allSubjects,
+            $page,
+            10
+        );
+
+        /* PERSONALISER POUR LE RENDU */
+        $usersPagination->setCustomParameters([
+            'align' => 'center',
+            'size' => 'medium',
+            'rounded' => true,
+        ]);
 
         return $this->render('admin/subjects.html.twig', [
             'user' => $user,
-            'subjects' => $subjects,
+            'subjects' => $allSubjects,
+            'usersPagination' => $usersPagination,
         ]);
     }
 
     /**
-     * @route("/sujets/supprimer/{slug}/{id}", name="delete_subject")
+     * @Route("/sujet/{slug}/{page}", name="user_subject")
      */
-    public function deleteSubject($slug,$id, SubjectsRepository $subjects) {
+    public function showSubject(SubjectsRepository $subjects, $slug, $page='1', PaginatorInterface $paginator)
+    {
+        // On récupère l'article correspondant au slug
+        $subject = $subjects->findOneBy(['slug' => $slug]);
+        $comments = $subject->getComments();
+        if(!$subject){
+            // Si aucun sujet n'est trouvé, nous créons une exception
+            throw $this->createNotFoundException('L\'article n\'existe pas');
+        } 
+        
+        $subjectPagination = $paginator->paginate(
+            $comments,
+            $page,
+            10
+        );
+
+        /* PERSONALISER POUR LE RENDU */
+        $subjectPagination->setCustomParameters([
+            'align' => 'center',
+            'size' => 'medium',
+            'rounded' => true,
+        ]);
+
+        // Si l'article existe nous envoyons les données à la vue
+        return $this->render('admin/subject.html.twig', [
+            'subject' => $subject,
+            'subjectPagination' => $subjectPagination,
+        ]);
+    }
+
+    /**
+     * @Route("/sujet/modifier/{slug}", name="update_subject")
+     */
+    public function editSubject($slug, Request $request, SubjectsRepository $SubjectsRepository)
+    {
+        $subject = $SubjectsRepository->findOneBy(['slug'=> $slug]);
+        $form = $this->createForm(SubjectsFormType::class, $subject);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($subject);
+            $entityManager->flush();
+
+            return $this->redirectToRoute( 'admin_user_subjects',['id' => $subject->getUser()->getId()] );
+        }
+        
+        return $this->render('admin/editSubject.html.twig', [
+            'author'=> $subject->getUser()->getAuthor(),
+            'subjectForm' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @route("/sujet/supprimer/{slug}", name="delete_subject")
+     */
+    public function deleteSubject($slug, SubjectsRepository $subjects) {
         $subject = $subjects->findOneBy(['slug' => $slug]);
 
         if($subject)
@@ -127,37 +189,92 @@ class AdminController extends AbstractController
             $entityManager->remove($subject);
             $entityManager->flush();
 
-        return $this->redirectToRoute('admin_user_subjects',['id'=>$id]);
+        return $this->redirectToRoute('admin_user_subjects',['id'=>$subject->getUser()->getId()]);
     }
 
 
     // COMMENTAIRES FORUM //
 
-    /**
-     * @Route("/commentaires/{id}", name="user_comments")
+    /** 
+     * @Route("/commentaires/{id}/{sort}/{direction}/{page}", name="user_comments")
      */
-    public function showComments($id,UsersRepository $users){
-        $user = $users->find($id);
-        $comments = $user->getComments();
+    public function showComments($id, $sort='id', $direction='ASC', $page='1', PaginatorInterface $paginator,CommentsRepository $commentsRepository){
+        // $user = $users->find($id);
+        // $comments = $user->getComments();
+        $comments = $commentsRepository->findBy(['user' => $id], [$sort => $direction]);
+
+        $commentsPagination = $paginator->paginate(
+            $comments,
+            $page,
+            10
+        );
+
+        /* PERSONALISER POUR LE RENDU */
+        $commentsPagination->setCustomParameters([
+            'align' => 'center',
+            'size' => 'medium',
+            'rounded' => true,
+        ]);
+
 
         return $this->render('admin/comments.html.twig', [
-            'user' => $user,
-            'comments' => $comments,
+            // 'user' => $user,
+            'commentsPagination' => $commentsPagination,
         ]);
     }
 
     /**
-     * @route("/commentaires/supprimer/{slug}/{id}", name="delete_comment")
+     * @Route("/commentaire/modifier/{slugComment}/{slugSubject}", name="update_comment")
      */
-    public function deleteComment($slug,$id, CommentsRepository $Comments) {
-        $Comment = $Comments->findOneBy(['slug' => $slug]);
+    public function editComment($slugComment, $slugSubject = null, Request $request, CommentsRepository $CommentsRepository)
+    {
+        $Comment = $CommentsRepository->findOneBy(['slug'=> $slugComment]);
+        $form = $this->createForm(CommentsFormType::class, $Comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            /* RECUPERE LES PARMETRE DE LA ROUTE
+                $route = $request->attributes->get('_route');
+                $params = $request->attributes->get('_route_params');
+            */
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($Comment);
+            $entityManager->flush();
+
+            if(is_null( $slugSubject )){
+                // Redirige vers la liste des commentaires lié à un utilisateur
+                return $this->redirectToRoute('admin_user_comments',['id' => $Comment->getUser()->getId()]);
+            } else {
+                // Redirige vers le sujet lié à un utilisateur
+               return $this->redirectToRoute('admin_user_subject',['slug' => $slugSubject]); 
+            }
+        }
+        
+        return $this->render('admin/editComment.html.twig', [
+            'author'=> $Comment->getUser()->getAuthor(),
+            'commentForm' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @route("/commentaire/supprimer/{slugComment}/{slugSubject}", name="delete_comment")
+     */
+    public function deleteComment($slugComment, $slugSubject = null, CommentsRepository $Comments) {
+        $Comment = $Comments->findOneBy(['slug' => $slugComment]);
 
         if($Comment)
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($Comment);
             $entityManager->flush();
 
-        return $this->redirectToRoute('admin_user_comments',['id'=>$id]);
+        if(is_null( $slugSubject )){
+            // Redirige vers la liste des commentaires lié à un utilisateur
+            return $this->redirectToRoute('admin_user_comments',['id' => $Comment->getUser()->getId()]);
+        } else {
+            // Redirige vers le sujet lié à un utilisateur
+           return $this->redirectToRoute('admin_user_subject',['slug' => $slugSubject]); 
+        }
+        
     }
-
+   
 }

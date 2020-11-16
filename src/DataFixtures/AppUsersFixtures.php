@@ -55,7 +55,7 @@ class AppUsersFixtures extends Fixture
             $subject = new Subjects();
             $subject
                 ->setTitle($faker->sentence($nbWords = 6, $variableNbWords = true))
-                ->setDescription($faker->text($maxNbChars = 200) )
+                ->setDescription($faker->text($maxNbChars = 2000) )
                 ->setUser($user);
             $manager->persist($subject);
             $this->createComments($faker,$manager,$user,$subject);
@@ -63,7 +63,7 @@ class AppUsersFixtures extends Fixture
     }
 
     public function createComments($faker,$manager, $user,$subject) {
-        $maxSubject = rand (1, 10);
+        $maxSubject = rand (1, 20);
         for ($i = 0; $i <= $maxSubject; $i++) {
             $comment = new Comments();
             $comment

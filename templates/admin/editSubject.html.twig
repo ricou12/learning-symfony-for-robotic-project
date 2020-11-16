@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modifier un utilisateur{% endblock %}
+{% block title %}Editer le sujet{% endblock %}
 {% block description %}{% endblock %}
 {# Ajoute l'icone de connection #}
 {% block userAccount %}{% include "includes/connect.html.twig" %}{% endblock %}
@@ -15,9 +15,17 @@
                     <li class="breadcrumb-item active" aria-current="page">{{author}}</li>
                 </ol>
             </nav>
-            <h1>Modifier le compte utilisateur</h1>
+            <h1>Editer le sujet</h1>
             <div class="mt-4 p-4 border shadow rounded">
-                {{ form(userForm) }}
+                {{ form_start(subjectForm) }}
+                    {{ form_row(subjectForm.title) }}
+                    {{ form_row(subjectForm.description) }}
+                    {{ form_row(subjectForm.save,{
+                        'label':'Enregistrer les modifications',
+                    }) 
+                }}
+                {{ form_end(subjectForm) }}
+                {# {{ form(subjectForm) }} #}
             </div>
         </div>
     </div>

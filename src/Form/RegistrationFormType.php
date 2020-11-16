@@ -42,7 +42,6 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
-                'help' => 'The ZIP/Postal code for your credit card\'s billing address.',
             ])
         ;
     }

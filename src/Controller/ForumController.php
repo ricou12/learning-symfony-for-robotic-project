@@ -8,11 +8,12 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use App\Repository\CommentsRepository;
 use App\Entity\Comments;
 use App\Form\CommentsFormType;
+use App\Repository\SubjectsRepository;
 use App\Entity\Subjects;
 use App\Form\SubjectsFormType;
-use App\Form\EditUserFormType;
 use App\form\ForumUserFormType;
 use Knp\Component\Pager\PaginatorInterface; // Nous appelons le bundle KNP Paginator
 
@@ -24,21 +25,21 @@ use Knp\Component\Pager\PaginatorInterface; // Nous appelons le bundle KNP Pagin
 class ForumController extends AbstractController
 {
     /**
-     * @Route("/", name="subjects")
+     * @Route("/sujets/{sort}/{direction}/{page}", name="subjects")
      */
-    public function index(Request $request, PaginatorInterface $paginator): Response
+    public function index($sort='createdAt', $direction='DESC', $page='1', Request $request, PaginatorInterface $paginator): Response
     {
         // Utilisateur avec session active
-        $userSession = $this->get('security.token_storage')->getToken()->getUser();      
-        $subjects = $this->getDoctrine()->getRepository(Subjects::class)->findBy([],['createdAt' => 'ASC']);
+        $userSession = $this->get('security.token_storage')->getToken()->getUser();   
+        $subjects = $this->getDoctrine()->getRepository(Subjects::class)->findBy([],[$sort => $direction]);
 
-        $subjects = $paginator->paginate(
+        $subjectsPagination = $paginator->paginate(
             $subjects, // Requête contenant les données à paginer (ici nos articles)
-            $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
-            10 // Nombre de résultats par page
+            $page, // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
+            20 // Nombre de résultats par page
         );
 
-        $subjects->setCustomParameters([
+        $subjectsPagination->setCustomParameters([
             'align' => 'center',
             'size' => 'medium',
             'rounded' => true,
@@ -55,29 +56,42 @@ class ForumController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($subject);
             $entityManager->flush();
-            return new RedirectResponse('/forum');
+            return $this->redirectToRoute('forum_subjects');
         }
 
         return $this->render('forum/subjects.html.twig', [
-            'subjects' => $subjects,
+            'subjectsPagination' => $subjectsPagination,
             'subjectsform' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/sujet/{slug}", name="subject")
+     * @Route("/sujet/{slug}/{page}", name="subject")
      */
-    public function getSubject(Request $request, $slug): Response 
+    public function getSubject($slug, $page='1', Request $request, SubjectsRepository $subjectsRepository, CommentsRepository $commentsRepository, PaginatorInterface $paginator): Response 
     {
          // Utilisateur avec session active
          $userSession = $this->get('security.token_storage')->getToken()->getUser();    
 
         // On récupère l'article correspondant au slug
-        $subject = $this->getDoctrine()->getRepository(Subjects::class)->findOneBy(['slug' => $slug]);
-        if(!$subject){
-            // Si aucun sujet n'est trouvé, nous créons une exception
-            throw $this->createNotFoundException('L\'article n\'existe pas');
-        }       
+        // $subject = $this->getDoctrine()->getRepository(Subjects::class)->findOneBy(['slug' => $slug]);
+        $subject =  $subjectsRepository->findOneBy(['slug' => $slug]);
+        $comments = $subject->getComments();
+        // $comments = $commentsRepository->findOneBy([],['slug' => $slug]);
+
+        $commentsPagination = $paginator->paginate(
+            $comments, // Requête contenant les données à paginer (ici nos articles)
+           $page, // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
+           7 // Nombre de résultats par page
+        );
+
+        $commentsPagination->setCustomParameters([
+            'align' => 'center',
+            'size' => 'medium',
+            'rounded' => true,
+        ]);
+        
+        // $comments = $subject->getcom
 
         // Champs de formulaire pour ajout d'un commentaire
         $comment = new comments();
@@ -97,6 +111,7 @@ class ForumController extends AbstractController
         return $this->render('forum/subject.html.twig', [
             'subject' => $subject,
             'commentsForm' => $formComments->createView(),
+            'commentsPagination' => $commentsPagination,
         ]);
     }
 
@@ -123,31 +138,6 @@ class ForumController extends AbstractController
         ]);
     }
 
-    /**
-     * @route("/comments/delete/{slug}", name="deleteComment")
-     */
-    public function deleteComment($slug) {
-        // Utilisateur avec session active
-
-        // METHODE GET : ajouter au parametre de la fonction Request $request 
-        // Supprime le sujet à partir du slug
-
-        // $slug = $request->query->get('slug');
-        // if($slug ){
-        //     $this->deleteSubject($slug);
-        //     return new RedirectResponse('/forum');
-        // }
-
-        $userSession = $this->get('security.token_storage')->getToken()->getUser();
-
-        $comment = $this->getDoctrine()->getRepository(Comments::class)->findOneBy(['slug' => $slug]);
-
-        if($$comment && $userSession->getUsername()  == $comment->getUser()->getEmail() ){
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($comment);
-            $entityManager->flush();
-        }
-        return $this->redirectToRoute('subject',['slug']);
-    }
+    
     
 }

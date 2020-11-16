@@ -6,10 +6,10 @@
 {% block userAccount %}{% include "includes/connect.html.twig" %}{% endblock %}
 
 {% block body %}
-<div class="container-fluid">
+<div class="container">
     <div class="row">
         <div class="col-12 p-3">
-            <h1 class="text-center">Services d'administrations</h1>
+            <h1 class="text-center">Services d'administreur</h1>
         </div>
 
         <div class="col-12 p-5">
@@ -20,13 +20,19 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th {% if usersPagination.isSorted('id') %} class="font-italic bgColor--greenExtraLight"{% endif %}>{{ knp_pagination_sortable(usersPagination, 'Id', 'id') }}</th>
-                        <th scope="col" {% if usersPagination.isSorted('author') %} class="font-italic bgColor--greenExtraLight"{% endif %}>{{ knp_pagination_sortable(usersPagination, 'Utilisateurs', 'author') }}</th>
+                        <th {% if usersPagination.isSorted('id') %} class="font-italic bgColor--greenExtraLight"{% endif %}>
+                            {{ knp_pagination_sortable(usersPagination, 'Id', 'id') }}
+                        </th>
+                        <th scope="col" {% if usersPagination.isSorted('author') %} class="font-italic bgColor--greenExtraLight"{% endif %}>
+                            {{ knp_pagination_sortable(usersPagination, 'Utilisateurs', 'author') }}
+                        </th>
                         <th scope="col">Email</th>
                         <th scope="col">Role</th>
                         <th scope="col">Sujets</th>
-                        <th scope="col">Commentaires</th>
-                        <th scope="col" {% if usersPagination.isSorted('createdAt') %} class="font-italic bgColor--greenExtraLight"{% endif %}>{{ knp_pagination_sortable(usersPagination, 'Crée le', 'createdAt') }}</th>
+                        <th scope="col">Réponses</th>
+                        <th scope="col" {% if usersPagination.isSorted('createdAt') %} class="font-italic bgColor--greenExtraLight"{% endif %}>
+                            {{ knp_pagination_sortable(usersPagination, 'Créé le', 'createdAt') }}
+                        </th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
@@ -34,7 +40,7 @@
                     {% for user in usersPagination %}
                     <tr>
                         <td>{{user.id}}</td>
-                        <td>{{user.author}}</td>
+                        <td><a href="{{ path('admin_user_subjects',{'id': user.id}) }}">{{user.author}}</a></td>
                         <td>{{user.email}}</td>
                         <td>{# On boucle sur les rôles #}
                             {% for role in user.roles %}
@@ -51,10 +57,10 @@
                         <td><a href="{{ path('admin_user_comments',{'id': user.id}) }}">{{user.comments|length}}</a></td>
                         <td>{{user.createdAt|format_datetime('full', 'short', timezone ='Europe/Paris', locale='fr')}}</td>
                         <td class="d-flex flex-nowrap justify-content-between">
-                            <div>
+                            <div class="mx-1">
                                 <button type="button" class="btn btn-outline-danger" data-toggle="modal"
                                     data-target="#delete_{{user.id}}">
-                                    <img src="{{asset("/build/images/icon/trash.png")}}" width="25">
+                                    <img src="{{asset("/build/medias/images/icon/trash.png")}}" width="25">
                                 </button>
                                 <div class="modal" id="delete_{{user.id}}" tabindex="-1" role="dialog">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -67,17 +73,16 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <p>Etes-vous certain de vouloir supprimer ce compte: <span
-                                                        class="font-weight-bold font-italic">{{user.author}}</span>
-                                                    !</p>
+                                                <p>Etes-vous certain de vouloir supprimer le compte de : <span
+                                                        class="font-weight-bold font-italic">{{user.author}}</span> <br>
+                                                        Les sujets et commentaires liés seront supprimés !
+                                                </p>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-outline-dark"
-                                                    data-dismiss="modal">Annuler</button>
-                                                <a href="{{ path('admin_user_delete', {'id':user.id}) }}"
-                                                    class="btn btn-outline-danger"><img
-                                                        src="{{asset("/build/images/icon/trash.png")}}"
-                                                        width="25"></a>
+                                                <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Annuler</button>
+                                                <a href="{{ path('admin_user_delete', {'id':user.id}) }}" class="btn btn-outline-danger">
+                                                    <img src="{{asset("/build/medias/images/icon/trash.png")}}" width="25">
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -85,13 +90,12 @@
                             </div>
                             <div>
                                 <a href="{{ path('admin_user_update', {'id': user.id}) }}" class="btn btn-outline-danger">
-                                    <img src="{{asset("/build/images/icon/update.png")}}" width="25">
+                                    <img src="{{asset("/build/medias/images/icon/update.png")}}" width="25">
                                 </a>
                             </div>
                         </td>
                     </tr>
                     {% endfor %}
-                        
                 </tbody>
             </table>
             {{ knp_pagination_render(usersPagination) }}

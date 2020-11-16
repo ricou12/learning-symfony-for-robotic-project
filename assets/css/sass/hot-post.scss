@@ -1,7 +1,7 @@
 .hotPost{
     &__header{
-        background: right bottom/33% no-repeat  url('/build/images/icon/logo_raspap.png'),
-        center / cover no-repeat url('/build/images/header/hotPost.jpg');
+        background: right bottom/33% no-repeat  url('/build/medias/images/icon/logo_raspap.png'),
+        center / cover no-repeat url('/build/medias/images/header/hotPost.jpg');
         min-height: 400px;
         overflow: hidden;
         @include move-Axe-Y($name:hotPost01,$delai:1s, $start-Top:20px);
@@ -19,7 +19,7 @@
 
 @media screen and (min-width:1199px){
     .hotPost__header{
-        background: right bottom/400px no-repeat  url('/build/images/icon/logo_raspap.png'),
-        center / cover no-repeat url('/build/images/header/hotPost.jpg');
+        background: right bottom/400px no-repeat  url('/build/medias/images/icon/logo_raspap.png'),
+        center / cover no-repeat url('/build/medias/images/header/hotPost.jpg');
     }
 }
