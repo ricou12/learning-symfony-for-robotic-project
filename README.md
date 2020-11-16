@@ -4,9 +4,9 @@
 Ce projet en cours de développement a pour objectif d'exploiter le potentiel du ***framework Symfony.***
 
 ## Partie Front-end
-J'ai intègré la partie front-end du site publié sur les GitHub Pages [**ihm-robotique**](https://ricou12.github.io/Robotique/) développé avec Jekyll, un générateur de site statique.
+J'ai intégré la partie front-end du site publié sur les GitHub Pages [**ihm-robotique**](https://ricou12.github.io/Robotique/) développé avec Jekyll, un générateur de site statique.
 
-Sur ce premier projet je m'étais consacré à la rédaction du contenu, en exploitant différents langages et technologies.
+Sur ce premier projet, je m'étais consacré à la rédaction du contenu, en exploitant différents langages et technologies.
 
  - HTML, Bootstrap, approfondissement de SASS, JavaScript, utilisation d'un langage de templating (liquid).
  - Optimisation du SEO pour le référencement sur les moteurs de recherches.
@@ -26,7 +26,7 @@ J'ai ajouté différentes fonctionnalités pour la partie back-end.
 	 - Création de la base de données et génération des entity avec la console.
 	 - Mise en place du système d'authentification sécurisé pour l'enregistrement et la connexion des utilisateurs.
 	 - Développement des interfaces clients.
-	 - Développement du back office pour l’administration des comptes , sujets et commentaires.
+	 - Développement du back office pour l’administration des comptes, sujets et commentaires.
 	 - Intégration de la pagination via un bundle.
 
 ## Installation
@@ -44,7 +44,7 @@ J'ai ajouté différentes fonctionnalités pour la partie back-end.
  4. **Transpilation du code SCSS et intégration des assets** avec le bundle Webpack Encore, pour cela utiliser la commande:
 
 	    yarn watch
-	ou si vous préféré le gestionnaire de package NPM
+	ou si vous préférez le gestionnaire de package NPM
 
 	    npm run watch
 
@@ -64,9 +64,9 @@ J'ai ajouté différentes fonctionnalités pour la partie back-end.
 
 	    symfony server:start
 	  
-	 Avec **Apache** vous devez créer un serveurs virtuels, pour cela cliquer sur l'icone Wampserver dans la barre des taches sélectionner vos ***VirtualHosts -> gestion VirtualHosts*** et ajouter un nom et le chemin du projet (**attention** il s'agit de cibler le dossier public qui contient le fichier index.php).
-	 Ensuite il faut modifier la configuration  du fichier ***httpd-vhost.conf*** , accessible la aussi avec l’icône Wampserver dans la barre des taches ***apache->httpd-vhost.conf***.
-	  En effet il faut indiquer à apache de rediriger les requêtes vers le controller frontal car c'est lui qui gère le système de routage.
+	 Avec **Apache** vous devez créer un serveur virtuel, pour cela cliquer sur l'icone Wampserver dans la barre des taches, sélectionner vos ***VirtualHosts -> gestion VirtualHosts*** et ajouter un nom et le chemin du projet (**attention** il s'agit de cibler le dossier public qui contient le fichier index.php).
+	 Ensuite il faut modifier la configuration  du fichier ***httpd-vhost.conf*** , accessible là aussi avec l’icône Wampserver dans la barre des taches ***apache->httpd-vhost.conf***.
+	  En effet, il faut indiquer à apache de rediriger les requêtes vers le controller frontal car c'est lui qui gère le système de routage.
 	  Mais avant cela vérifier que le module d'apache ***rewrite_module*** est activé, ce qui est le cas lors de l'installation par défaut.
 	  Enfin, modifier la directive comme suit:
 	 
