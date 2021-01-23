@@ -53,7 +53,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    // USTILISATEURS MODIFICATION ET SUPPRESSION //
+    // UTILISATEURS MODIFICATION ET SUPPRESSION //
 
     /**
      * @Route("/profil/modifier/{id}", name="user_update")
@@ -100,6 +100,7 @@ class AdminController extends AbstractController
      */
     public function showSubjects($id, $page='1', UsersRepository $users, PaginatorInterface $paginator){
         $user = $users->find($id);
+        // Sujets lies a l'utilisateur
         $allSubjects = $user->getSubjects();
 
         $usersPagination = $paginator->paginate(
@@ -122,8 +123,9 @@ class AdminController extends AbstractController
         ]);
     }
 
+    
     /**
-     * @Route("/sujet/{slug}/{page}", name="user_subject")
+     * @Route("/sujet/detail/{slug}/{page}", name="user_subject", methods={"GET"})
      */
     public function showSubject(SubjectsRepository $subjects, $slug, $page='1', PaginatorInterface $paginator)
     {
@@ -156,7 +158,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/sujet/modifier/{slug}", name="update_subject")
+     * @Route("/sujet/modifier/{slug}", name="update_subject", methods={"GET", "POST"})
      */
     public function editSubject($slug, Request $request, SubjectsRepository $SubjectsRepository)
     {
@@ -179,7 +181,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @route("/sujet/supprimer/{slug}", name="delete_subject")
+     * @route("/sujet/supprimer/{slug}", name="delete_subject", methods={"GET"})
      */
     public function deleteSubject($slug, SubjectsRepository $subjects) {
         $subject = $subjects->findOneBy(['slug' => $slug]);
@@ -196,11 +198,12 @@ class AdminController extends AbstractController
     // COMMENTAIRES FORUM //
 
     /** 
-     * @Route("/commentaires/{id}/{sort}/{direction}/{page}", name="user_comments")
+     * @Route("/commentaires/detail/{id}/{sort}/{direction}/{page}", name="user_comments", methods={"GET"})
      */
     public function showComments($id, $sort='id', $direction='ASC', $page='1', PaginatorInterface $paginator,CommentsRepository $commentsRepository){
         // $user = $users->find($id);
         // $comments = $user->getComments();
+        // OU
         $comments = $commentsRepository->findBy(['user' => $id], [$sort => $direction]);
 
         $commentsPagination = $paginator->paginate(
@@ -224,7 +227,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/commentaire/modifier/{slugComment}/{slugSubject}", name="update_comment")
+     * @Route("/commentaire/modifier/{slugComment}/{slugSubject}", name="update_comment", methods={"GET", "POST"})
      */
     public function editComment($slugComment, $slugSubject = null, Request $request, CommentsRepository $CommentsRepository)
     {
@@ -257,7 +260,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @route("/commentaire/supprimer/{slugComment}/{slugSubject}", name="delete_comment")
+     * @route("/commentaire/supprimer/{slugComment}/{slugSubject}", name="delete_comment", methods={"GET"})
      */
     public function deleteComment($slugComment, $slugSubject = null, CommentsRepository $Comments) {
         $Comment = $Comments->findOneBy(['slug' => $slugComment]);

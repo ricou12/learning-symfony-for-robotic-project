@@ -27,7 +27,7 @@ vous!{% endblock %}
         </div>
 
         <div class="col-12 p-3">
-            {{subject.description|nl2br}}
+            {{subject.description|raw}}
         </div>
     </div>
     {# COMMENTAIRES #}
@@ -39,8 +39,8 @@ vous!{% endblock %}
             </p>
         </div>
         <div class="col-12 p-3">
-            {# {{comment.message|raw}} #}
-            {{comment.message|nl2br}}
+            {{comment.message|raw}}
+            {# {{comment.message|nl2br}} #}
         </div>
         <div class="col-12 p-3 d-flex justify-content-between">
             <p class="text-secondary font-italic">{{comment.createdAt|format_datetime('full', 'short', timezone ='Europe/Paris', locale='fr')}}</p>

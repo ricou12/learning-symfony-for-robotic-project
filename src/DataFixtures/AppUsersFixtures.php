@@ -25,12 +25,12 @@ class AppUsersFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $userAdmin = new Users;
-            $userAdmin
-                ->setAuthor("Lanza eric")
-                ->setEmail("lanzae32@gmail.com")
-                ->setRoles(["ROLE_ADMIN"])
-                ->setPassword($this->encoder->encodePassword($userAdmin, 'RicouAdmin=05-12'));
-            $manager->persist($userAdmin);
+        $userAdmin
+            ->setAuthor("Lanza eric")
+            ->setEmail("lanzae32@gmail.com")
+            ->setRoles(["ROLE_ADMIN"])
+            ->setPassword($this->encoder->encodePassword($userAdmin, 'RicouAdmin=05-12'));
+        $manager->persist($userAdmin);
 
         // On configure dans quelles langues nous voulons nos données
         $faker = Faker\Factory::create('fr_FR');

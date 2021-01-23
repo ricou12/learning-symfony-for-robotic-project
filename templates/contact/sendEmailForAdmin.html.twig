@@ -1,0 +1,31 @@
+
+<!-- <div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-12 rounded border"> -->
+            <h1>Formulare de contact</h1>
+            <p>
+                <span class="font-weight-bold">
+                    Date d'envoi du formulaire : 
+                </span>
+                <span class="font-italic">
+                   {{sending_date|format_datetime('full', 'short', timezone ='Europe/Paris', locale='fr')}}
+                </span>
+            </p>
+            <p>
+                <span class="font-weight-bold">
+                    Votre contact : 
+                </span>
+                {{firstname}} {{lastname}}
+            </p>
+            <p>
+                <span class="font-weight-bold">
+                    Coordonnées téléphonique : 
+                </span>
+                {{phone}}
+            </p>
+            <p class="bg-danger">
+            {{message|nl2br}}
+            </p>
+        <!-- </div>
+    </div>
+</div> -->

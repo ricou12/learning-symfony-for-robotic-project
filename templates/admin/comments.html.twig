@@ -34,7 +34,7 @@
                         {% for comment in commentsPagination %}
                         <tr>
                             <td>{{ comment.id }}</td>
-                            <td>{{ comment.message|nl2br }}</td>
+                            <td>{{ comment.message|raw }}</td>
                             <td>{{ comment.createdAt|format_datetime('full', 'short', timezone ='Europe/Paris', locale='fr') }}</td>
                             <td class="d-flex flex-nowrap justify-content-between">
                                 <div class="mx-1">

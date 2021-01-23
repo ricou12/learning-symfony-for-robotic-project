@@ -41,7 +41,7 @@ vous!{% endblock %}
         </div>
 
         <div class="col-12 p-4">
-            {{subject.description|nl2br}}
+            {{subject.description|raw}}
         </div>
 
         {# <div class="col-12 p-3 border d-flex">
@@ -60,7 +60,7 @@ vous!{% endblock %}
         </div> #}
     </div>
     {# COMMENTAIRES #}
-    {% for comment in commentsPagination|sort((a, b) => b.createdAt <=> a.createdAt) %}
+    {% for comment in commentsPagination %}
     <div class="row border my-3 rounded">
         <div class="col-12 bgColor--blueSky p-3 d-flex flex-row justify-content-between">
             <h3 class="font-weight-bold">{{comment.user.author}}</h3>
@@ -69,7 +69,7 @@ vous!{% endblock %}
         </div>
         <div class="col-12 p-3">
             {# {{comment.message|raw}} #}
-            {{comment.message|nl2br}}
+            {{comment.message|raw}}
         </div>
         <div class="col-12 p-3">
             <p class="text-secondary font-italic">{{comment.createdAt|format_datetime('full', 'short', timezone ='Europe/Paris', locale='fr')}}</p>

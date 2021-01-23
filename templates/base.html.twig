@@ -49,95 +49,96 @@
 <body>
     <header>
         {% block navigation %}
-                <div class="container navigation" id="anchor">
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="navbar-brand" href="{{path('index')}}" data-toggle="tooltip" title="Projet robotique"><img src="{{ asset('/build/medias/images/icon/robots.gif') }}" alt="Logo"
-                    width="70"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        <div class="container navigation" id="anchor">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a class="navbar-brand" href="{{path('index')}}" data-toggle="tooltip" title="Projet robotique"><img
+                        src="{{ asset('/build/medias/images/icon/robots.gif') }}" alt="Logo" width="70"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{path('index')}}">Projet robotique<span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Télécommandes
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <div class="dropdown text-left">
-                                <a class="dropdown-item"
-                                    href="{{path('remote_technos')}}">Solution matériel et
-                                    logiciel</a>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{path('index')}}">Projet robotique<span
+                                    class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Télécommandes
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <div class="dropdown text-left">
+                                    <a class="dropdown-item" href="{{path('remote_technos')}}">Solution matériel et
+                                        logiciel</a>
+                                </div>
+                                <div class="dropdown-divider"></div>
+                                <div class="dropdown text-left">
+                                    <span class="dropdown-item text-danger font-weight-bold">Solution logiciel</span>
+                                    <a class="dropdown-item" href="{{path('remote_web')}}">Télécommande
+                                        web</a>
+                                </div>
+                                <div class="dropdown-divider"></div>
+                                <div class="dropdown text-left">
+                                    <span class="dropdown-item text-danger font-weight-bold">Solution Matérielle</span>
+                                </div>
+                                <a class="dropdown-item" href="{{path('remote_components')}}">Les
+                                    composants</a>
+                                <div class="dropdown">
+                                    <span class="dropdown-item text-danger font-weight-regular">Arduino</span>
+                                </div>
+                                <a class="dropdown-item" href="{{path('emetteur_radio')}}">Emetteur
+                                    Récepteur NRF24L01</a>
+                                <a class="dropdown-item" href="{{path('led') }}">Alimenter
+                                    une LED</a>
+                                <a class="dropdown-item" href="{{path('telecom_code')}}">Le code source</a>
                             </div>
-                            <div class="dropdown-divider"></div>
-                            <div class="dropdown text-left">
-                                <span class="dropdown-item text-danger font-weight-bold">Solution logiciel</span>
-                                <a class="dropdown-item" href="{{path('remote_web')}}">Télécommande
-                                    web</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownNext" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Robot
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownNext">
+                                <a class="dropdown-item" href="{{path('bot_components')}}">Les composants</a>
+                                <div class="dropdown">
+                                    <span class="dropdown-item text-danger font-weight-regular">Raspberry</span>
+                                </div>
+                                <a class="dropdown-item" href="{{path('hotPost')}}">Créer un hotspot
+                                    Wi-Fi</a>
+                                <a class="dropdown-item" href="{{path('bot_cam')}}">Installer
+                                    une caméra</a>
+                                <div class="dropdown">
+                                    <span class="dropdown-item text-danger font-weight-regular">Arduino</span>
+                                </div>
+                                <a class="dropdown-item" href="{{path('bot_code')}}">Le code source</a>
                             </div>
-                            <div class="dropdown-divider"></div>
-                            <div class="dropdown text-left">
-                                <span class="dropdown-item text-danger font-weight-bold">Solution Matérielle</span>
-                            </div>
-                            <a class="dropdown-item" href="{{path('remote_components')}}">Les
-                                composants</a>
-                            <div class="dropdown">
-                                <span class="dropdown-item text-danger font-weight-regular">Arduino</span>
-                            </div>
-                            <a class="dropdown-item" href="{{path('emetteur_radio')}}">Emetteur
-                                Récepteur NRF24L01</a>
-                            <a class="dropdown-item" href="{{path('led') }}">Alimenter
-                                une LED</a>
-                            <a class="dropdown-item" href="{{path('telecom_code')}}">Le code source</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownNext" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Robot
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownNext">
-                            <a class="dropdown-item" href="{{path('bot_components')}}">Les composants</a>
-                            <div class="dropdown">
-                                <span class="dropdown-item text-danger font-weight-regular">Raspberry</span>
-                            </div>
-                            <a class="dropdown-item" href="{{path('hotPost')}}">Créer un hotspot
-                                Wi-Fi</a>
-                            <a class="dropdown-item" href="{{path('bot_cam')}}">Installer
-                                une caméra</a>
-                            <div class="dropdown">
-                                <span class="dropdown-item text-danger font-weight-regular">Arduino</span>
-                            </div>
-                            <a class="dropdown-item" href="{{path('bot_code')}}">Le code source</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" href="{{path('forum_subjects')}}" role="button">
-                            Forum
-                        </a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" href="#footer" role="button">
-                            Contact
-                        </a>
-                    </li>
-                    {% if is_granted('ROLE_ADMIN') %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('admin_users',{}) }}">Administrateur</a>
-                    </li>
-                    {% endif %}
-                    
-                </ul>
-                {% block userAccount %}{% endblock %}
-            </div>
-        </nav>
-    </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="{{path('forum_subjects')}}" role="button">
+                                Forum
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="#footer" role="button">
+                                Contact
+                            </a>
+                        </li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('admin_users',{}) }}">Administrateur</a>
+                        </li>
+                        {% endif %}
+
+                    </ul>
+                    {% block userAccount %}{% endblock %}
+                </div>
+            </nav>
+        </div>
         {% endblock %}
     </header>
 

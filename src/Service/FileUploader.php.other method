@@ -1,0 +1,44 @@
+<?php
+// src/Service/FileUploader.php
+namespace App\Service;
+
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\String\Slugger\SluggerInterface;
+
+class FileUploader
+{
+    private $targetDirectoryDocs;
+    private $slugger;
+
+    // Méthode donc la valeur de l'argument $targetDirectoryDocs est stocké dans le fichier de config service.yaml
+    public function __construct($targetDirectoryDocs, SluggerInterface $slugger)
+    {
+        $this->targetDirectoryDocs = $targetDirectoryDocs;
+        $this->slugger = $slugger;
+    }
+
+    public function upload(UploadedFile $file)
+    {
+        // Renomme la pièce jointe
+        $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+        // Ceci est nécessaire pour inclure en toute sécurité le nom du fichier dans l'URL
+        $safeFilename = $this->slugger->slug($originalFilename);
+        $fileName = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
+
+        // Déplace le fichier vers le dossier ou les documents sont stockés
+        try {
+            $file->move($this->getTargetDirectory(),  $fileName); // 
+        } catch (FileException $e) {
+            
+            // ... handle exception if something happens during file upload
+        }
+
+        return $fileName;
+    }
+
+    public function getTargetDirectory()
+    {
+        return $this->targetDirectoryDocs;
+    }
+}

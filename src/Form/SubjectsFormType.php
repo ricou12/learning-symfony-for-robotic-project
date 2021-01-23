@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 class SubjectsFormType extends AbstractType
 {
@@ -19,15 +20,15 @@ class SubjectsFormType extends AbstractType
             ->add('title',null,[
                 'row_attr'=>['class'=>'form-group'],
                 'attr' => ['class' => 'form-control'],
-                'label' => 'Titre du sujet',
+                'label' => 'Quelle est votre question ?',
                 'required'=> true,
             ])
-            ->add('description',TextareaType::class,[
+            ->add('description',CKEditorType::class,[
                 'row_attr'=>['class'=>'form-group'],
                 'attr'=> ['class'=> 'form-control',
                     'rows' => '5'
                 ],
-                'label' => 'Description',
+                'label' => 'Décrivez ',
                 'label_attr' => ['class' => ''],
                 'required' => true,
                 'constraints' => [

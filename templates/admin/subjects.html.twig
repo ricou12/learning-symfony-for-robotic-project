@@ -33,7 +33,7 @@
                         <tr>
                             <td>{{ subject.id }}</td>
                             <td><a href="{{ path('admin_user_subject', {'slug': subject.slug}) }}">{{ subject.title }}</a></td>
-                            <td>{{ subject.description|nl2br|slice(0,255)}}...</td>
+                            <td>{{ subject.description|raw }}...</td>
                             <td>{{ subject.comments|length }}</td>
                             <td>{{ subject.createdAt|format_datetime('full', 'short', timezone ='Europe/Paris', locale='fr') }}</td>
                             <td class="d-flex">

@@ -4,22 +4,22 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use App\Form\ContactFormType;
 use App\Entity\Contact;
-use Symfony\Component\String\Slugger\SluggerInterface;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
+// use Symfony\Component\String\Slugger\SluggerInterface;
+use App\Service\FileUploader;
 
 class ContactController extends AbstractController
 {
     /**
      * @Route("/contact", name="sendMail")
      */
-    public function index(Request $request,SluggerInterface $slugger, MailerInterface $mailer)
+    public function index(Request $request, MailerInterface $mailer, FileUploader $fileUploader)
     {
         $contact = new Contact();
         $formContact = $this->createForm(ContactFormType::class,$contact);
@@ -33,37 +33,15 @@ class ContactController extends AbstractController
             //  Si une piéce jointe existe
             if($docFile)
             {
-                // Renomme la pièce jointe
-                $originalFilename = pathinfo($docFile->getClientOriginalName(), PATHINFO_FILENAME);
-                // Ceci est nécessaire pour inclure en toute sécurité le nom du fichier dans l'URL
-                $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename.'-'.uniqid().'.'.$docFile->guessExtension();
+                $docFileFileName = $fileUploader->upload($docFile, $this->getParameter('docs_directory'));
+                $contact->setFilePath($docFileFileName);
+            } 
 
-                // Déplace le fichier vers le dossier ou les documents sont stockés
-                try
-                {
-                    $docFile->move(
-                        $this->getParameter('docs_directory'),
-                        $newFilename
-                    );
-                    // Met à jour la propriété pour stocker le nom du fichier PDF ou jpg
-                    $copyFile = $this->getParameter('docs_directory').'/'.$newFilename;
-                    $contact->setFilePath($copyFile);
-                }
-                catch (FileException $e)
-                {
-                    // ... gérer l'exception si quelque chose se produit pendant le téléchargement du fichier
-                    $copyFile =null;
-                }
-
-            } else {
-                $copyFile =null;
-            }
-
-            // peristence des données
+            // // peristence des données
             $this->persistContact($contact);
-            // Envoi de l'email
-            $this->sendMail($formContact, $mailer, $copyFile);
+            // // Envoi de l'email
+            $fileAttachement = $this->getParameter('docs_directory').'/'.$docFileFileName;
+            $this->sendMail($formContact, $mailer, $fileAttachement);
 
             // redirection vers le forum
             return $this->redirectToRoute('forum_subjects');
@@ -82,9 +60,9 @@ class ContactController extends AbstractController
         $entityManager->flush(); 
     }
 
-    public function sendMail($formContact, $mailer, $downloadFile)
+    public function sendMail($formContact, $mailer, $downloadFile=null)
     {
-        $email = (new Email())
+        $email = (new TemplatedEmail())
             ->from($formContact->get('email')->getData())
             ->to('lanzae32@gmail.com')
             //->cc('cc@example.com')
@@ -93,15 +71,25 @@ class ContactController extends AbstractController
             //->priority(Email::PRIORITY_HIGH)
             ->subject('IHM Robotique - formulaire contact')
             // ->text($formContact->get('message')->getData());
-            ->html('
-                <p>'.$formContact->get('nom')->getData().'</p>
-                <p>'.$formContact->get('prenom')->getData().'</p>
-                <p>'.$formContact->get('tel')->getData().'</p>
-                <p>'.$formContact->get('message')->getData().'</p>'
-            );
+            // path of the Twig template to render
+            ->htmlTemplate('contact/sendEmailForAdmin.html.twig')
+             // pass variables (name => value) to the template
+            ->context([
+                'sending_date' => new \DateTime('NOW'),
+                'lastname' => $formContact->get('nom')->getData(),
+                'firstname' => $formContact->get('prenom')->getData(),
+                'phone' => $formContact->get('tel')->getData(),
+                'message' => $formContact->get('message')->getData(),
+            ]);
             if(!is_null($downloadFile)){
                 $email->attachFromPath($downloadFile);
             }
-            $mailer->send($email);
+            try {
+                // $mailer->send($email);
+            } catch (TransportExceptionInterface $e) {
+                throw $this->createNotFoundException('Une erreur c\'est produite. Impossible d\'envoyer l\'émail. ');
+                // some error prevented the email sending; display an
+                // error message or try to resend the message
+            }
     }
 }

@@ -66,18 +66,26 @@ class ForumController extends AbstractController
     }
 
     /**
-     * @Route("/sujet/{slug}/{page}", name="subject")
+     * @Route(
+     *      "/sujet/{slug}/{sort}/{direction}/{page}",
+     *      defaults={ 
+     *          "sort":"createdAt",
+     *          "direction":"DESC",
+     *          "page":"1", 
+     *      },
+     *      name="subject"
+     * )
      */
-    public function getSubject($slug, $page='1', Request $request, SubjectsRepository $subjectsRepository, CommentsRepository $commentsRepository, PaginatorInterface $paginator): Response 
+    public function getSubject($slug, $sort, $direction, $page, Request $request, SubjectsRepository $subjectsRepository, CommentsRepository $commentsRepository, PaginatorInterface $paginator): Response 
     {
          // Utilisateur avec session active
          $userSession = $this->get('security.token_storage')->getToken()->getUser();    
 
         // On récupère l'article correspondant au slug
-        // $subject = $this->getDoctrine()->getRepository(Subjects::class)->findOneBy(['slug' => $slug]);
         $subject =  $subjectsRepository->findOneBy(['slug' => $slug]);
-        $comments = $subject->getComments();
-        // $comments = $commentsRepository->findOneBy([],['slug' => $slug]);
+        // $comments = $subject->getComments();
+        // OU
+        $comments = $commentsRepository->findBy(['subject' => $subject->getId()], [$sort => $direction]);
 
         $commentsPagination = $paginator->paginate(
             $comments, // Requête contenant les données à paginer (ici nos articles)
@@ -90,13 +98,12 @@ class ForumController extends AbstractController
             'size' => 'medium',
             'rounded' => true,
         ]);
-        
-        // $comments = $subject->getcom
 
         // Champs de formulaire pour ajout d'un commentaire
         $comment = new comments();
         $formComments = $this->createForm(CommentsFormType::class, $comment);
         $formComments->handleRequest($request);
+        
         // Si le formulaire est validé 
         if ($formComments->isSubmitted() && $formComments->isValid()) {
             $comment->setUser($userSession);

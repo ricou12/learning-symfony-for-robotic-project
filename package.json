@@ -26,6 +26,7 @@
     "main": "index.js",
     "author": "ricou12",
     "dependencies": {
+        "ckeditor": "^4.12.1",
         "rfs": "^9.0.3"
     }
 }
